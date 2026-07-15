@@ -1,0 +1,664 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT 練功坊：行政 AI 修煉之旅</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="side-panel" aria-label="玩家狀態與關卡選單">
+        <section class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="img">
+              <rect x="8" y="9" width="48" height="46" rx="10"></rect>
+              <path d="M19 24h26M19 34h18M19 44h24"></path>
+              <circle cx="46" cy="19" r="6"></circle>
+            </svg>
+          </div>
+          <p class="eyebrow">AI 應用學習者</p>
+          <h1>ChatGPT 練功坊</h1>
+          <p>AI 修煉之旅</p>
+        </section>
+
+        <section class="status-card character-card" aria-live="polite">
+          <div class="character-scene" id="characterScene">
+            <img id="characterImage" class="character-image" src="./assets/characters/level-0-novice.png" alt="新手行政俠角色圖" />
+          </div>
+          <div>
+            <span class="label">修煉等級</span>
+            <strong id="levelLabel">新手行政俠</strong>
+          </div>
+          <p class="character-note" id="characterNote">目前裝備：空手入門，先學會安全使用 AI。</p>
+          <div class="equipment-row" id="equipmentRow" aria-label="已取得裝備"></div>
+          <div class="xp-row">
+            <span>EXP</span>
+            <strong id="xpLabel">0 / 700</strong>
+          </div>
+          <div class="progress-track">
+            <span id="xpBar"></span>
+          </div>
+        </section>
+
+        <nav class="level-list" aria-label="關卡">
+          <button class="level-button active" data-level="0">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>新手村</span>
+            <small>課程介紹與介面導覽</small>
+          </button>
+          <button class="level-button" data-level="1">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第一關</span>
+            <small>先看 ChatGPT 能做什麼</small>
+          </button>
+          <button class="level-button" data-level="2">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第二關</span>
+            <small>認識生成式 AI</small>
+          </button>
+          <button class="level-button" data-level="3">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第三關</span>
+            <small>提示詞公式</small>
+          </button>
+          <button class="level-button" data-level="4">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第四關</span>
+            <small>行政六大應用</small>
+          </button>
+          <button class="level-button" data-level="5">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第五關</span>
+            <small>ChatGPT 功能選擇</small>
+          </button>
+          <button class="level-button" data-level="6">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>第六關</span>
+            <small>資安、查證與責任</small>
+          </button>
+          <button class="level-button" data-level="7">
+            <span class="level-icon" aria-hidden="true"></span>
+            <span>最終關</span>
+            <small>進階工具與課後資源</small>
+          </button>
+        </nav>
+      </aside>
+
+      <section class="game-stage">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Game Mode</p>
+            <h2 id="stageTitle">課程介紹與介面導覽</h2>
+          </div>
+          <div class="top-actions">
+            <button class="icon-button" id="resetButton" type="button" title="重置進度" aria-label="重置進度">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v6h6"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="map-band" aria-label="修煉地圖">
+          <div class="map-visual" aria-hidden="true">
+            <svg viewBox="0 0 940 210">
+              <defs>
+                <linearGradient id="mapPaperGradient" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#fff7df"></stop>
+                  <stop offset="50%" stop-color="#f6edd4"></stop>
+                  <stop offset="100%" stop-color="#efe1bd"></stop>
+                </linearGradient>
+                <filter id="mapSoftShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#705b2e" flood-opacity="0.18"></feDropShadow>
+                </filter>
+                <pattern id="mapDots" width="28" height="28" patternUnits="userSpaceOnUse">
+                  <circle cx="4" cy="4" r="1.5"></circle>
+                </pattern>
+              </defs>
+              <rect class="map-paper" x="12" y="12" width="916" height="186" rx="22"></rect>
+              <rect class="map-dot-field" x="12" y="12" width="916" height="186" rx="22"></rect>
+              <path class="map-coast" d="M32 166 C120 146 196 178 272 158 S430 139 516 164 S672 184 760 154 S858 137 914 158"></path>
+              <path class="map-lake" d="M662 38c62-26 126 2 135 42 9 43-46 76-111 62-58-12-87-76-24-104Z"></path>
+              <path class="map-river" d="M412 188 C500 150 562 178 637 139 S726 119 822 144"></path>
+              <path class="map-hill" d="M88 176c48-46 94-46 136 0Z"></path>
+              <path class="map-hill second" d="M250 44c40-36 78-36 116 0Z"></path>
+              <path class="map-hill third" d="M500 178c54-48 104-48 154 0Z"></path>
+              <g class="map-clouds">
+                <path d="M48 55c12-17 34-14 39 4 18-5 35 6 36 22H32c0-13 7-22 16-26Z"></path>
+                <path d="M365 52c12-14 30-13 37 4 15-2 28 7 31 20h-84c1-11 7-19 16-24Z"></path>
+                <path d="M780 42c12-15 32-12 38 5 17-4 32 7 34 21h-88c0-12 6-21 16-26Z"></path>
+              </g>
+              <g class="map-trees">
+                <path d="M110 90h32l-16-30Z"></path>
+                <path d="M122 102h32l-16-30Z"></path>
+                <path d="M146 92h32l-16-30Z"></path>
+                <path d="M232 152h22l-11-21Z"></path>
+                <path d="M250 162h24l-12-23Z"></path>
+                <path d="M596 74h22l-11-22Z"></path>
+                <path d="M616 86h25l-13-25Z"></path>
+                <path d="M697 162h28l-14-27Z"></path>
+                <path d="M720 154h28l-14-27Z"></path>
+                <path d="M746 164h28l-14-27Z"></path>
+              </g>
+              <g class="map-landmarks">
+                <path d="M62 125h26v22H62zM75 108l23 17H52z"></path>
+                <path d="M174 46h24v22h-24zM186 28l18 18h-36z"></path>
+                <path d="M404 135h26v24h-26zM417 119l21 16h-42z"></path>
+                <path d="M642 34h28v23h-28zM656 19l22 15h-44z"></path>
+                <path d="M872 58h30v31h-30zM887 34l23 24h-46z"></path>
+              </g>
+              <g class="map-compass">
+                <circle cx="860" cy="46" r="24"></circle>
+                <path d="M860 26v40M840 46h40"></path>
+                <path d="m860 30 7 16-7 16-7-16Z"></path>
+              </g>
+              <path class="map-route-shadow" d="M70 145 C145 62 210 48 285 118 S430 190 525 126 S650 36 735 78 S820 140 885 92"></path>
+              <path class="map-route" d="M70 145 C145 62 210 48 285 118 S430 190 525 126 S650 36 735 78 S820 140 885 92"></path>
+              <path class="map-route-dash" d="M70 145 C145 62 210 48 285 118 S430 190 525 126 S650 36 735 78 S820 140 885 92"></path>
+              <g class="map-node active" data-map-node="0">
+                <circle cx="74" cy="144" r="22"></circle>
+                <text x="74" y="151">0</text>
+                <text class="map-label" x="74" y="184">入門</text>
+              </g>
+              <g class="map-node" data-map-node="1">
+                <circle cx="186" cy="70" r="22"></circle>
+                <text x="186" y="77">N</text>
+                <text class="map-label" x="186" y="37">成果</text>
+              </g>
+              <g class="map-node" data-map-node="2">
+                <circle cx="292" cy="122" r="22"></circle>
+                <text x="292" y="129">1</text>
+                <text class="map-label" x="292" y="160">AI</text>
+              </g>
+              <g class="map-node" data-map-node="3">
+                <circle cx="416" cy="166" r="22"></circle>
+                <text x="416" y="173">2</text>
+                <text class="map-label" x="416" y="203">公式</text>
+              </g>
+              <g class="map-node" data-map-node="4">
+                <circle cx="535" cy="124" r="22"></circle>
+                <text x="535" y="131">3</text>
+                <text class="map-label" x="535" y="162">應用</text>
+              </g>
+              <g class="map-node" data-map-node="5">
+                <circle cx="650" cy="66" r="22"></circle>
+                <text x="650" y="73">4</text>
+                <text class="map-label" x="650" y="34">功能</text>
+              </g>
+              <g class="map-node" data-map-node="6">
+                <circle cx="765" cy="90" r="22"></circle>
+                <text x="765" y="97">5</text>
+                <text class="map-label" x="765" y="128">資安</text>
+              </g>
+              <g class="map-node" data-map-node="7">
+                <circle cx="886" cy="94" r="25"></circle>
+                <text x="886" y="101">B</text>
+                <text class="map-label" x="886" y="135">課後</text>
+              </g>
+              <g class="map-flag">
+                <path d="M900 62v55"></path>
+                <path d="M900 62h-40l10 14-10 14h40"></path>
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <article class="quest-panel">
+            <div class="chapter-meta">
+              <span id="stageTag">新手村</span>
+              <span id="stageBadge">AI 觀念徽章</span>
+            </div>
+            <h3 class="quest-heading">
+              <span id="questIcon" class="quest-icon" aria-hidden="true"></span>
+              <span id="questTitle">AI 是助理，不是主管</span>
+            </h3>
+            <p id="questStory"></p>
+
+            <section class="quick-start" id="quickStart" aria-label="三步開始">
+              <div class="quick-start-head">
+                <p class="eyebrow">三步開始</p>
+                <a
+                  href="https://app.notion.com/p/AI-ChatGPT-1f48b2eb7216803ea830de522e3ef98a?pvs=21"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打開提示詞庫
+                </a>
+              </div>
+              <div class="quick-steps">
+                <article>
+                  <span>1</span>
+                  <strong>找任務</strong>
+                  <p>先確認你要寫作、整理、分析、設計還是學習。</p>
+                </article>
+                <article>
+                  <span>2</span>
+                  <strong>選工具</strong>
+                  <p>依情境選 ChatGPT 功能、連接工具或桌面版。</p>
+                </article>
+                <article>
+                  <span>3</span>
+                  <strong>複製提示詞</strong>
+                  <p>到提示詞庫拿一張卡片來改。</p>
+                </article>
+              </div>
+              <div class="quick-reminder">
+                <strong>小提醒</strong>
+                <ul>
+                  <li>先給背景，再要求輸出。</li>
+                  <li>一次任務不要太大，可以先要大綱，再逐段展開。</li>
+                  <li>不滿意時，直接要求調整語氣、字數、格式或對象。</li>
+                  <li>重要內容要人工檢查，尤其是法規、金額、日期、人名與個資。</li>
+                  <li>好用的提示詞記得存下來，下一次只要替換情境即可。</li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="beginner-rules" id="beginnerRules" aria-label="初學者使用守則">
+              <div class="rules-head">
+                <p class="eyebrow">初學者使用守則</p>
+                <span>先安全，再好用</span>
+              </div>
+              <div class="rules-grid">
+                <article>
+                  <strong>不貼敏感資料</strong>
+                  <p>避免個資、帳密、未公開資料外流。</p>
+                </article>
+                <article>
+                  <strong>重要資訊要查證</strong>
+                  <p>ChatGPT 可能回答錯誤或過時。</p>
+                </article>
+                <article>
+                  <strong>問題要具體</strong>
+                  <p>任務、對象、格式越清楚，結果越好。</p>
+                </article>
+                <article>
+                  <strong>回答當草稿</strong>
+                  <p>最後仍需要人工判斷與修改。</p>
+                </article>
+                <article>
+                  <strong>先大綱再展開</strong>
+                  <p>複雜任務分段做，品質更穩。</p>
+                </article>
+                <article>
+                  <strong>不滿意就追問</strong>
+                  <p>可要求改語氣、縮短、換格式、補表格。</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="interface-guide" id="interfaceGuide" aria-label="ChatGPT 介面導覽">
+              <div class="interface-head">
+                <div>
+                  <p class="eyebrow">ChatGPT 介面導覽</p>
+                  <h4>先認得按鈕，再開始練習</h4>
+                </div>
+                <span>實際畫面會依帳號與版本略有差異</span>
+              </div>
+
+              <div class="interface-note">
+                先看「左側導覽、模型與工具、輸入框、回答操作、帳號設定」五個區域，再進入實作任務。
+              </div>
+
+              <div class="interface-resource">
+                <div>
+                  <p class="eyebrow">介面補充資料</p>
+                  <strong>ChatGPT 常用功能介紹</strong>
+                </div>
+                <a
+                  href="https://app.notion.com/p/ChatGPT-39e8b2eb72168007b14bf4c146505859?source=copy_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打開功能介紹
+                </a>
+              </div>
+
+              <div class="section-subhead">
+                <p class="eyebrow">網頁版工作介面</p>
+                <span>適合課堂示範、跨裝置使用與分享連結</span>
+              </div>
+
+              <div class="interface-map" aria-label="ChatGPT 介面按鈕位置示意圖">
+                <div class="mock-sidebar">
+                  <span class="map-pin pin-one">1</span>
+                  <div class="mock-brand">ChatGPT</div>
+                  <div class="mock-button">新增對話</div>
+                  <div class="mock-button">專案 / GPTs</div>
+                  <div class="mock-history"></div>
+                  <div class="mock-history short"></div>
+                  <span class="map-pin pin-five">5</span>
+                  <div class="mock-user">帳號與設定</div>
+                </div>
+                <div class="mock-main">
+                  <div class="mock-topbar">
+                    <span class="map-pin pin-two">2</span>
+                    <div class="mock-model">模型 / 工具選單</div>
+                    <div class="mock-share">分享</div>
+                  </div>
+                  <div class="mock-chat">
+                    <span class="map-pin pin-four">4</span>
+                    <div class="mock-answer"></div>
+                    <div class="mock-answer narrow"></div>
+                    <div class="mock-actions">複製　重新生成　追問　評分</div>
+                  </div>
+                  <div class="mock-input">
+                    <span class="map-pin pin-three">3</span>
+                    <span>附件</span>
+                    <strong>輸入訊息或貼上提示詞</strong>
+                    <span>語音</span>
+                    <span>送出</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="interface-map-legend" aria-label="介面編號對照">
+                <span><b>1</b>左側導覽</span>
+                <span><b>2</b>上方控制</span>
+                <span><b>3</b>輸入與送出</span>
+                <span><b>4</b>回答操作</span>
+                <span><b>5</b>帳號設定</span>
+              </div>
+
+              <div class="desktop-workspace" aria-label="桌面版 ChatGPT 工作介面">
+                <div class="desktop-head">
+                  <div>
+                    <p class="eyebrow">桌面版工作介面</p>
+                    <h4>把 ChatGPT 變成工作時可快速叫出的助理</h4>
+                  </div>
+                  <span>適合日常工作流程</span>
+                </div>
+
+                <div class="desktop-layout">
+                  <div class="desktop-window">
+                    <div class="window-bar">
+                      <span></span><span></span><span></span>
+                      <strong>ChatGPT Desktop</strong>
+                    </div>
+                    <div class="window-body">
+                      <aside>
+                        <div></div>
+                        <div></div>
+                        <div class="short"></div>
+                      </aside>
+                      <main>
+                        <div class="desktop-chip">快速啟動</div>
+                        <div class="desktop-line"></div>
+                        <div class="desktop-line short"></div>
+                        <div class="desktop-input">貼上文字、上傳檔案、語音輸入</div>
+                      </main>
+                    </div>
+                  </div>
+                  <div class="desktop-points">
+                    <article>
+                      <strong>快速叫出</strong>
+                      <p>可在工作中快速開啟，不必先切到瀏覽器分頁。</p>
+                    </article>
+                    <article>
+                      <strong>檔案工作</strong>
+                      <p>適合拖曳或上傳文件、表格、圖片後請 AI 整理。</p>
+                    </article>
+                    <article>
+                      <strong>語音與口述</strong>
+                      <p>適合口述想法、會議重點或先做初步筆記。</p>
+                    </article>
+                    <article>
+                      <strong>工作不中斷</strong>
+                      <p>可搭配原本正在使用的文件、簡報、表格流程。</p>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="compare-table" aria-label="網頁版與桌面版差異總結">
+                  <div class="compare-row compare-head">
+                    <span>比較項目</span>
+                    <span>網頁版 ChatGPT</span>
+                    <span>桌面版 ChatGPT</span>
+                  </div>
+                  <div class="compare-row">
+                    <span>進入方式</span>
+                    <span>打開瀏覽器登入使用。</span>
+                    <span>安裝 App 後從電腦直接開啟。</span>
+                  </div>
+                  <div class="compare-row">
+                    <span>適合情境</span>
+                    <span>課堂示範、跨裝置、共用連結。</span>
+                    <span>日常辦公、快速詢問、處理手邊檔案。</span>
+                  </div>
+                  <div class="compare-row">
+                    <span>操作感</span>
+                    <span>像一般網站，容易投影教學。</span>
+                    <span>像工作小工具，可快速切換與呼叫。</span>
+                  </div>
+                  <div class="compare-row">
+                    <span>注意事項</span>
+                    <span>留意瀏覽器分頁、登入帳號與分享資料。</span>
+                    <span>留意是否為官方 App、版本更新與資料安全。</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="interface-accordion">
+                <details open>
+                  <summary><span class="summary-number">1</span>左側導覽區</summary>
+                  <div class="interface-grid">
+                    <article>
+                      <strong>新增對話</strong>
+                      <p>開一個新的聊天主題，適合開始新的任務。</p>
+                    </article>
+                    <article>
+                      <strong>歷史紀錄</strong>
+                      <p>找回之前的對話，可重新命名、歸檔或刪除。</p>
+                    </article>
+                    <article>
+                      <strong>專案 / Projects</strong>
+                      <p>把同一任務的對話、檔案與指令集中管理。</p>
+                    </article>
+                    <article>
+                      <strong>GPTs / Apps</strong>
+                      <p>進入特定工具或連接服務，依任務選擇合適入口。</p>
+                    </article>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary-number">2</span>上方控制區</summary>
+                  <div class="interface-grid">
+                    <article>
+                      <strong>模型選擇</strong>
+                      <p>切換適合的模型或模式，例如一般問答、推理、研究或快速回應。</p>
+                    </article>
+                    <article>
+                      <strong>工具選單</strong>
+                      <p>開啟搜尋、檔案分析、圖片、圖表、Canvas 或其他可用工具。</p>
+                    </article>
+                    <article>
+                      <strong>分享</strong>
+                      <p>產生可分享連結；分享前要確認沒有敏感資訊。</p>
+                    </article>
+                    <article>
+                      <strong>更多選項</strong>
+                      <p>管理對話，例如重新命名、移動、封存或刪除。</p>
+                    </article>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary-number">3</span>輸入與送出區</summary>
+                  <div class="interface-grid">
+                    <article>
+                      <strong>訊息輸入框</strong>
+                      <p>輸入任務、背景、限制、格式與希望的語氣。</p>
+                    </article>
+                    <article>
+                      <strong>附件 / 上傳</strong>
+                      <p>加入文件、表格、圖片或資料檔；上傳前先確認資安。</p>
+                    </article>
+                    <article>
+                      <strong>語音 / Dictation</strong>
+                      <p>用口述輸入想法、會議重點或初步筆記。</p>
+                    </article>
+                    <article>
+                      <strong>送出 / 停止</strong>
+                      <p>送出提示詞；生成中若方向不對，可停止再修正。</p>
+                    </article>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary-number">4</span>回答操作區</summary>
+                  <div class="interface-grid">
+                    <article>
+                      <strong>複製</strong>
+                      <p>把回答複製到文件、信件、表格或簡報草稿中。</p>
+                    </article>
+                    <article>
+                      <strong>重新生成</strong>
+                      <p>請 ChatGPT 換一版答案，適合比較不同寫法。</p>
+                    </article>
+                    <article>
+                      <strong>追問</strong>
+                      <p>要求縮短、改語氣、補表格、列步驟或加查核來源。</p>
+                    </article>
+                    <article>
+                      <strong>評分回饋</strong>
+                      <p>對回答按好或不好，協助系統理解回答是否有幫助。</p>
+                    </article>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary-number">5</span>帳號與設定區</summary>
+                  <div class="interface-grid">
+                    <article>
+                      <strong>個人化設定</strong>
+                      <p>設定偏好語氣、工作情境或常用格式。</p>
+                    </article>
+                    <article>
+                      <strong>記憶</strong>
+                      <p>管理 ChatGPT 可能記住的偏好；不需要時可關閉或刪除。</p>
+                    </article>
+                    <article>
+                      <strong>資料控制</strong>
+                      <p>檢查聊天紀錄、訓練資料使用、匯出或刪除資料設定。</p>
+                    </article>
+                    <article>
+                      <strong>方案與功能限制</strong>
+                      <p>不同帳號方案會影響模型、工具、檔案與語音功能可用性。</p>
+                    </article>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <div class="info-stack" id="knowledgeList"></div>
+
+            <section class="resource-link-panel" id="modeResource" aria-label="ChatGPT 版本與模式差異整理">
+              <div>
+                <p class="eyebrow">補充資源</p>
+                <h4>ChatGPT 版本與模式差異整理</h4>
+                <p>搭配第一關理解不同版本、模式與適合情境。</p>
+              </div>
+              <div class="resource-actions">
+                <a
+                  href="https://app.notion.com/p/ChatGPT-39e8b2eb7216800eb398e0c7b7b9ab9b?source=copy_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  版本與模式差異整理
+                </a>
+              </div>
+            </section>
+
+            <section class="example-links" id="exampleLinks" aria-label="AI 功能範例">
+              <div class="example-head">
+                <p class="eyebrow">AI 功能範例</p>
+                <span>點開看看 AI 可以做成什麼</span>
+              </div>
+              <div class="example-grid">
+                <a href="https://ljc0507.github.io/semicon-2026-asc/" target="_blank" rel="noopener noreferrer">
+                  <span class="example-icon">導</span>
+                  <strong>活動導覽</strong>
+                  <p>活動資訊、議程、攤位或參觀動線的互動頁。</p>
+                </a>
+                <a href="https://ljc0507.github.io/ashunhouse/" target="_blank" rel="noopener noreferrer">
+                  <span class="example-icon">文</span>
+                  <strong>社群貼文生成器</strong>
+                  <p>依活動或品牌情境產出貼文草稿。</p>
+                </a>
+              </div>
+            </section>
+
+            <section class="task-card">
+              <div>
+                <p class="eyebrow">通關任務</p>
+                <h4 id="taskTitle"></h4>
+              </div>
+              <p id="taskBody"></p>
+              <div class="prompt-box">
+                <div class="prompt-head">
+                  <span>可用提示詞</span>
+                  <button type="button" id="copyPrompt">複製</button>
+                </div>
+                <pre id="promptText"></pre>
+              </div>
+              <button class="primary-button" id="completeButton" type="button">完成本關</button>
+              <details class="answer-hint">
+                <summary>解答提示</summary>
+                <div id="answerHint"></div>
+              </details>
+              <section class="quiz-card" aria-label="關卡測驗">
+                <div class="quiz-head">
+                  <div>
+                    <p class="eyebrow">關卡測驗</p>
+                    <h4>5 題是非檢核</h4>
+                  </div>
+                  <strong id="quizScore">尚未作答</strong>
+                </div>
+                <form id="quizForm" class="quiz-form"></form>
+                <button class="secondary-button" id="submitQuiz" type="button">送出測驗</button>
+              </section>
+            </section>
+          </article>
+
+          <aside class="reward-panel">
+            <section class="badges">
+              <p class="eyebrow">徽章收集</p>
+              <div id="badgeGrid" class="badge-grid"></div>
+            </section>
+
+            <section class="tool-cards">
+              <p class="eyebrow">道具卡</p>
+              <button class="tool-card" data-tool="tone"><span class="tool-icon" aria-hidden="true"></span>語氣轉換卡</button>
+              <button class="tool-card" data-tool="table"><span class="tool-icon" aria-hidden="true"></span>表格化卡</button>
+              <button class="tool-card" data-tool="audit"><span class="tool-icon" aria-hidden="true"></span>查核卡</button>
+              <button class="tool-card" data-tool="summary"><span class="tool-icon" aria-hidden="true"></span>主管摘要卡</button>
+              <button class="tool-card" data-tool="mask"><span class="tool-icon" aria-hidden="true"></span>資安遮蔽卡</button>
+              <button class="tool-card" data-tool="variation"><span class="tool-icon" aria-hidden="true"></span>小提醒</button>
+            </section>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="toolDialog">
+      <div class="dialog-card">
+        <button class="icon-button close-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">道具卡</p>
+        <h3 id="toolTitle"></h3>
+        <p id="toolBody"></p>
+        <pre id="toolPrompt"></pre>
+      </div>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
