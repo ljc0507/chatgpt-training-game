@@ -9,6 +9,24 @@
       ["學習目標", "判斷哪些生活、行政與學習任務適合交給 ChatGPT 協助"],
       ["操作原則", "回答先當草稿，正式送出前仍需人工確認"],
       ["介面導覽", "先認得網頁版與桌面版的導覽、輸入、工具、回答與設定區"],
+      {
+        title: "GPT-5.6 模型速覽",
+        body: "2026 年 7 月 GPT-5.6 開放後，模型拆成 Sol、Terra、Luna 三個版本。付費聊天主力以 Sol 為主；免費版聊天暫時仍以 5.5 線為主，選工具時仍建議先看任務需求與實際帳號介面。",
+        points: [
+          "Sol：旗艦版本，適合複雜任務、長文件、深度整理與高品質產出。",
+          "Terra：均衡版本，適合資料整理、工作流程與成本效益較平衡的任務。",
+          "Luna：輕量版本，適合速度優先、成本較低或大量簡單任務。"
+        ],
+        details: {
+          title: "查看 Sol / Terra / Luna 差異",
+          headers: ["版本", "定位", "API 價格（每百萬 token）", "聊天版誰能用"],
+          rows: [
+            ["Sol", "旗艦", "$5 進 / $30 出", "Plus 以上，付費聊天新主力"],
+            ["Terra", "均衡", "$2.50 進 / $15 出", "聊天沒有；免費層可在 ChatGPT Work / Codex 用"],
+            ["Luna", "輕量", "$1 進 / $6 出", "聊天沒有；主要走 API"]
+          ]
+        }
+      },
       ["課程資源", "提示詞庫與課後練習會作為延伸複習材料"]
     ],
     taskTitle: "建立自己的學習目標",
@@ -772,18 +790,27 @@ const interfaceTopics = {
     ]
   },
   top: {
-    title: "2 模式與工具入口",
-    body: "Plus 版首頁常見入口包含 Chat / Work 模式、輸入框旁的加號、語音與語言設定，以及畫面下方的工具捷徑。分享說明可另外對照右上方或更多選單。",
+    title: "2 工具入口與快捷工具",
+    body: "Plus 版首頁常見工具入口包含輸入框左側的加號、輸入框右側的語音與語言設定，以及畫面下方的快捷工具。Chat / Work 已移到第 6 點獨立說明。",
     visual: "plusHome",
     items: [
-      ["1 Chat / Work", "畫面上方中央切換不同工作模式；一般問答可用 Chat，較完整的工作流程可依帳號功能切到 Work。"],
-      ["2 加號", "輸入框左側的加號可加入檔案、圖片或開啟其他可用工具。"],
-      ["3 建立圖像", "畫面下方的快捷工具，可用來產生圖片或視覺素材。"],
-      ["4 編寫或編輯", "畫面下方的快捷工具，適合撰寫、改寫、潤飾文件、公告、文案或其他文字內容。"],
-      ["5 查資料", "畫面下方的快捷工具，適合搜尋、整理來源或做資料查詢；重要資訊仍需回到可靠來源確認。"],
-      ["6 語音 / 語言", "輸入框右側可切換語言、使用麥克風或語音模式，適合口述想法與練習口說。"],
-      ["7 分享", "分享按鈕常在對話右上方或更多選單裡；分享前要確認沒有敏感資訊。", "share"],
-      ["8 更多選單", "部分功能會因視窗寬度或版本被收合，可從更多選單尋找其他隱藏操作。"]
+      ["2-1 加號", "輸入框左側的加號可加入檔案、圖片或開啟其他可用工具。適合把 PDF、Word、Excel、CSV 或圖片交給 ChatGPT 分析。"],
+      ["2-2 建立圖像", "畫面下方的快捷工具，可用來產生活動主視覺、海報概念、社群素材或教學插圖。"],
+      ["2-3 編寫或編輯", "畫面下方的快捷工具，適合撰寫、改寫、潤飾公告、Email、企劃書、文案或長篇內容。"],
+      ["2-4 查資料", "畫面下方的快捷工具，適合搜尋、整理來源或做資料查詢；重要資訊仍需回到官方或可靠來源確認。"],
+      ["2-5 語音 / 語言", "輸入框右側可切換語言、使用麥克風或語音模式，適合口述想法、練習口說或快速輸入初稿。"],
+      ["2-6 分享", "分享按鈕常在對話右上方或更多選單裡；分享前要確認沒有個資、帳密、未公開資料或敏感資訊。", "share"],
+      ["2-7 更多選單", "部分功能會因視窗寬度、帳號方案或版本被收合，可從更多選單尋找其他隱藏操作。"]
+    ]
+  },
+  modeSwitch: {
+    title: "6 Chat / Work 模式",
+    body: "7 月改版後，部分帳號會在畫面上方看到 Chat / Work 切換。使用前先判斷任務是單次問答，還是需要整理資料、產出文件與長流程工作。",
+    items: [
+      ["Chat 模式", "適合快速問答、改寫一句話、翻譯、摘要、靈感發想與一般對話。範例：請把這段口語訊息改成正式通知。"],
+      ["Work 模式", "適合較完整的工作流程，例如研究資料、整理檔案、產出文件、表格、簡報大綱或報告。範例：請根據這份活動資料整理成果報告架構。"],
+      ["怎麼選", "任務短、資料少、只要快速回覆時用 Chat；資料多、需要檔案整理或產出正式成果時，優先嘗試 Work。"],
+      ["課堂練習範例", "同一段活動通知先在 Chat 要求改寫，再在 Work 要求整理成公告、Email、簡報大綱三種輸出，比較兩者差異。"]
     ]
   },
   input: {
@@ -799,6 +826,7 @@ const interfaceTopics = {
   answer: {
     title: "4 回答操作區",
     body: "ChatGPT Plus 的回答下方通常會出現一排操作圖示，部分功能會收在「更多」選單中。注意：實際按鈕可能依版本、裝置與回答類型略有不同。",
+    visual: "answerActions",
     items: [
       ["複製", "把回答複製到文件、信件、表格或簡報草稿中。"],
       ["分享 / 匯出", "將回答或對話分享出去；分享前要確認沒有敏感資訊。"],
@@ -860,20 +888,41 @@ const interfaceVisuals = {
         <span>外掛程式</span>
       </div>
       <div class="plus-main">
-        <div class="mode-toggle"><b>1</b><span>Chat</span><span>Work</span></div>
-        <div class="share-dot"><b>7</b><span>分享</span></div>
+        <div class="share-dot"><b>2-6</b><span>分享</span></div>
         <div class="hero-question">我可以幫你什麼忙？</div>
         <div class="plus-input">
-          <b>2</b>
+          <b>2-1</b>
           <span class="input-text">詢問 ChatGPT</span>
           <span class="lang-dot">中</span>
-          <span class="voice-dot">6</span>
+          <span class="voice-dot">2-5</span>
         </div>
-        <div class="quick-tool tool-image"><b>3</b><span>建立圖像</span></div>
-        <div class="quick-tool tool-write"><b>4</b><span>編寫或編輯</span></div>
-        <div class="quick-tool tool-search"><b>5</b><span>查資料</span></div>
-        <div class="more-dot"><b>8</b><span>更多</span></div>
+        <div class="quick-tool tool-image"><b>2-2</b><span>建立圖像</span></div>
+        <div class="quick-tool tool-write"><b>2-3</b><span>編寫或編輯</span></div>
+        <div class="quick-tool tool-search"><b>2-4</b><span>查資料</span></div>
+        <div class="more-dot"><b>2-7</b><span>更多</span></div>
       </div>
+    </div>
+  `,
+  answerActions: `
+    <div class="answer-action-map" aria-label="回答操作區示意圖">
+      <div class="answer-bubble">
+        <span></span>
+        <span></span>
+        <span class="short"></span>
+      </div>
+      <div class="answer-toolbar">
+        <div class="answer-action-item"><b>1</b><span>複製</span></div>
+        <div class="answer-action-item"><b>2</b><span>分享 / 匯出</span></div>
+        <div class="answer-action-item"><b>3</b><span>重新生成</span></div>
+        <div class="answer-action-item active"><b>4</b><span>更多</span></div>
+        <div class="answer-action-item source"><b>5</b><span>資料來源</span></div>
+      </div>
+      <div class="answer-more-menu">
+        <strong>更多動作</strong>
+        <span><b>6</b>在新聊天中分支</span>
+        <span><b>7</b>大聲朗讀</span>
+      </div>
+      <p>回答不是終點，常用操作都在回答下方或「更多」選單中。</p>
     </div>
   `
 };
@@ -940,6 +989,12 @@ const state = {
   quizScores: JSON.parse(localStorage.getItem("aiGameQuizScores") || "{}")
 };
 
+state.current = Math.min(Math.max(state.current, 0), levels.length - 1);
+state.done = state.done.filter((index) => Number.isInteger(index) && index >= 0 && index < levels.length);
+state.quizScores = Object.fromEntries(
+  Object.entries(state.quizScores).filter(([index]) => Number(index) >= 0 && Number(index) < levels.length)
+);
+
 const stageTitle = document.getElementById("stageTitle");
 const stageTag = document.getElementById("stageTag");
 const stageBadge = document.getElementById("stageBadge");
@@ -973,7 +1028,7 @@ const victoryDialog = document.getElementById("victoryDialog");
 const victoryExp = document.getElementById("victoryExp");
 const victoryBadges = document.getElementById("victoryBadges");
 const versionFooter = document.getElementById("versionFooter");
-const appVersion = "V1.0";
+const appVersion = "V1.2";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
@@ -1167,7 +1222,7 @@ function render() {
                   ${
                     details.rows
                       ? `
-                        <div class="detail-table" role="table" aria-label="${details.title}">
+                        <div class="detail-table detail-cols-${details.headers.length}" role="table" aria-label="${details.title}">
                           <div class="detail-row detail-head" role="row">
                             ${details.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
                           </div>
@@ -1175,7 +1230,9 @@ function render() {
                             .map(
                               (row) => `
                                 <div class="detail-row" role="row">
-                                  ${row.map((cell) => `<span role="cell">${cell}</span>`).join("")}
+                                  ${row
+                                    .map((cell, cellIndex) => `<span role="cell" data-label="${details.headers[cellIndex]}">${cell}</span>`)
+                                    .join("")}
                                 </div>
                               `
                             )
@@ -1368,7 +1425,7 @@ const interfaceDialogTitle = document.getElementById("interfaceDialogTitle");
 const interfaceDialogBody = document.getElementById("interfaceDialogBody");
 const interfaceDialogContent = document.getElementById("interfaceDialogContent");
 
-document.querySelectorAll(".map-pin[data-interface-topic]").forEach((button) => {
+document.querySelectorAll("[data-interface-topic]").forEach((button) => {
   button.addEventListener("click", () => {
     const topic = interfaceTopics[button.dataset.interfaceTopic];
     if (!topic) return;

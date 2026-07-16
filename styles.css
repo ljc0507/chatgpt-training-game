@@ -998,8 +998,13 @@ button {
   font-weight: 800;
 }
 
+.interface-mobile-nav {
+  display: none;
+}
+
 .mock-sidebar,
 .mock-main,
+.mock-mode-switch,
 .mock-topbar,
 .mock-chat,
 .mock-input {
@@ -1052,10 +1057,36 @@ button {
   gap: 12px;
 }
 
+.mock-mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #eef4ef;
+  padding: 4px;
+  box-shadow: 0 8px 18px rgba(23, 32, 51, 0.08);
+}
+
+.mock-mode-switch span {
+  border-radius: 999px;
+  padding: 7px 18px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.mock-mode-switch span:first-of-type {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 3px 10px rgba(23, 32, 51, 0.08);
+}
+
 .mock-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   border: 1px solid var(--line);
   background: #fff;
   padding: 10px 14px;
@@ -1175,6 +1206,17 @@ button {
   left: 132px;
 }
 
+.pin-six {
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pin-six:hover,
+.pin-six:focus-visible {
+  transform: translateX(-50%) scale(1.08);
+}
+
 .interface-map-legend {
   display: flex;
   flex-wrap: wrap;
@@ -1204,6 +1246,41 @@ button {
   background: var(--accent);
   color: #fff;
   font-size: 12px;
+}
+
+.interface-mobile-nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 12px 14px;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: left;
+  cursor: pointer;
+}
+
+.interface-mobile-nav button:focus-visible,
+.interface-mobile-nav button:hover {
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--line));
+  background: var(--accent-soft);
+  outline: 0;
+}
+
+.interface-mobile-nav b {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
 }
 
 .desktop-workspace {
@@ -1628,6 +1705,10 @@ button {
   display: grid;
   grid-template-columns: 0.55fr 1.1fr 1.6fr;
   border-top: 1px solid var(--line);
+}
+
+.detail-cols-4 .detail-row {
+  grid-template-columns: 0.7fr 0.85fr 1.2fr 1.7fr;
 }
 
 .detail-row:first-child {
@@ -2747,13 +2828,113 @@ dialog::backdrop {
 .plus-home-map b {
   display: inline-grid;
   place-items: center;
-  width: 24px;
+  min-width: 30px;
   height: 24px;
+  padding: 0 6px;
   border-radius: 50%;
   background: var(--accent);
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   flex: 0 0 auto;
+}
+
+.answer-action-map {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: 8px;
+  background: #101820;
+  color: #f8fafc;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.answer-bubble {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 620px;
+  border-radius: 18px;
+  background: #232323;
+  padding: 18px;
+}
+
+.answer-bubble span {
+  display: block;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.answer-bubble .short {
+  width: 68%;
+}
+
+.answer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.answer-action-item,
+.answer-more-menu span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef5f7;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.answer-action-item.active {
+  background: color-mix(in srgb, var(--accent) 34%, #25313b);
+}
+
+.answer-action-item.source {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.answer-action-item b,
+.answer-more-menu b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+}
+
+.answer-more-menu {
+  justify-self: start;
+  display: grid;
+  gap: 8px;
+  min-width: 250px;
+  border-radius: 14px;
+  background: #2f2f2f;
+  padding: 14px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+.answer-more-menu strong {
+  color: #e5edf5;
+  font-size: 14px;
+  margin: 0;
+}
+
+.answer-action-map p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .interface-dialog-grid strong {
@@ -2983,8 +3164,11 @@ dialog::backdrop {
     font-weight: 900;
   }
 
-  .detail-row {
-    grid-template-columns: 1fr;
+  .detail-table {
+    display: grid;
+    gap: 10px;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+    padding: 12px;
   }
 
   .plan-row {
@@ -3006,9 +3190,39 @@ dialog::backdrop {
     border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
 
+  .detail-head {
+    display: none;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+    border-radius: 8px;
+    background: #fff;
+    padding: 12px;
+  }
+
+  .detail-row span {
+    display: grid;
+    gap: 4px;
+    border: 0;
+    padding: 0;
+    color: var(--ink);
+  }
+
+  .detail-row span::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 900;
+  }
+
   .detail-row span + span {
     border-left: 0;
     border-top: 1px solid var(--line);
+    padding-top: 8px;
   }
 
   .prompt-formula-card {
@@ -3024,16 +3238,17 @@ dialog::backdrop {
     border-top: 0;
   }
 
-  .interface-map {
-    grid-template-columns: 190px 430px;
-    min-width: 660px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x proximity;
+  .interface-map,
+  .interface-map-legend,
+  .mobile-scroll-note {
+    display: none;
   }
 
-  .mobile-scroll-note {
-    display: block;
+  .interface-mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 16px;
   }
 
   .mock-sidebar {

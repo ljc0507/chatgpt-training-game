@@ -303,13 +303,22 @@
               </div>
 
               <div class="interface-note">
-                先看「左側導覽、模型與工具、輸入框、回答操作、帳號設定」五個區域，再進入實作任務。
+                先看「左側導覽、工具入口、輸入框、回答操作、帳號設定、Chat / Work」六個區域，再進入實作任務。
               </div>
 
               <div class="section-subhead">
                 <p class="eyebrow">網頁版工作介面</p>
               </div>
               <p class="mobile-scroll-note">手機版可左右滑動查看完整工作介面。</p>
+
+              <div class="interface-mobile-nav" aria-label="手機版介面導覽">
+                <button type="button" data-interface-topic="nav"><b>1</b><span>左側導覽</span></button>
+                <button type="button" data-interface-topic="top"><b>2</b><span>工具入口</span></button>
+                <button type="button" data-interface-topic="input"><b>3</b><span>輸入與送出</span></button>
+                <button type="button" data-interface-topic="answer"><b>4</b><span>回答操作</span></button>
+                <button type="button" data-interface-topic="account"><b>5</b><span>帳號設定</span></button>
+                <button type="button" data-interface-topic="modeSwitch"><b>6</b><span>Chat / Work</span></button>
+              </div>
 
               <div class="interface-map" aria-label="ChatGPT 介面按鈕位置示意圖">
                 <div class="mock-sidebar">
@@ -324,8 +333,13 @@
                 </div>
                 <div class="mock-main">
                   <div class="mock-topbar">
-                    <button class="map-pin pin-two" type="button" data-interface-topic="top" aria-label="查看模式與工具入口說明">2</button>
-                    <div class="mock-model">模式 / 工具入口</div>
+                    <button class="map-pin pin-two" type="button" data-interface-topic="top" aria-label="查看工具入口與快捷工具說明">2</button>
+                    <div class="mock-model">工具入口</div>
+                    <div class="mock-mode-switch">
+                      <button class="map-pin pin-six" type="button" data-interface-topic="modeSwitch" aria-label="查看 Chat 與 Work 模式說明">6</button>
+                      <span>Chat</span>
+                      <span>Work</span>
+                    </div>
                     <div class="mock-share">分享</div>
                   </div>
                   <div class="mock-chat">
@@ -346,24 +360,11 @@
 
               <div class="interface-map-legend" aria-label="介面編號對照">
                 <span><b>1</b>左側導覽</span>
-                <span><b>2</b>模式與工具入口</span>
+                <span><b>2</b>工具入口</span>
                 <span><b>3</b>輸入與送出</span>
                 <span><b>4</b>回答操作</span>
                 <span><b>5</b>帳號設定</span>
-              </div>
-
-              <div class="interface-resource">
-                <div>
-                  <p class="eyebrow">介面補充資料</p>
-                  <strong>ChatGPT 常用功能介紹</strong>
-                </div>
-                <a
-                  href="https://app.notion.com/p/ChatGPT-39e8b2eb72168007b14bf4c146505859?source=copy_link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  打開功能介紹
-                </a>
+                <span><b>6</b>Chat / Work</span>
               </div>
 
               <div class="desktop-workspace" aria-label="桌面版 ChatGPT 工作介面">
@@ -374,6 +375,20 @@
                   </div>
                   <button id="desktopGuideButton" type="button">查看桌面版介紹</button>
                 </div>
+              </div>
+
+              <div class="interface-resource">
+                <div>
+                  <p class="eyebrow">Notion</p>
+                  <strong>ChatGPT 常用功能介紹</strong>
+                </div>
+                <a
+                  href="https://app.notion.com/p/ChatGPT-39e8b2eb72168007b14bf4c146505859?source=copy_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打開功能介紹
+                </a>
               </div>
             </section>
 
@@ -387,7 +402,7 @@
               tabindex="0"
             >
               <div>
-                <p class="eyebrow">補充資源</p>
+                <p class="eyebrow">補充資源 · Notion</p>
                 <h4>ChatGPT 主要方案比較</h4>
                 <p>搭配第一關理解不同版本、模式與適合情境。</p>
               </div>
@@ -487,7 +502,7 @@
             </section>
           </aside>
         </section>
-        <footer class="version-footer" id="versionFooter" aria-label="版本資訊">JARVISLIN V1.0</footer>
+        <footer class="version-footer" id="versionFooter" aria-label="版本資訊">JARVISLIN V1.2</footer>
       </section>
     </main>
 
