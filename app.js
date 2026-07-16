@@ -951,6 +951,7 @@ const beginnerRules = document.getElementById("beginnerRules");
 const interfaceGuide = document.getElementById("interfaceGuide");
 const knowledgeList = document.getElementById("knowledgeList");
 const modeResource = document.getElementById("modeResource");
+const modelGuideResource = document.getElementById("modelGuideResource");
 const exampleLinks = document.getElementById("exampleLinks");
 const taskTitle = document.getElementById("taskTitle");
 const taskBody = document.getElementById("taskBody");
@@ -971,6 +972,12 @@ const badgeGrid = document.getElementById("badgeGrid");
 const victoryDialog = document.getElementById("victoryDialog");
 const victoryExp = document.getElementById("victoryExp");
 const victoryBadges = document.getElementById("victoryBadges");
+const versionFooter = document.getElementById("versionFooter");
+const appVersion = "V1.0";
+
+function renderVersionInfo() {
+  versionFooter.textContent = `JARVISLIN ${appVersion}`;
+}
 
 function save() {
   localStorage.setItem("aiGameCurrent", String(state.current));
@@ -1059,6 +1066,7 @@ function render() {
   interfaceGuide.hidden = state.current !== 0;
   knowledgeList.hidden = state.current === 0;
   modeResource.hidden = state.current !== 1;
+  modelGuideResource.hidden = state.current !== 5;
   exampleLinks.hidden = state.current !== 5;
   taskTitle.textContent = level.taskTitle;
   taskBody.textContent = level.taskBody;
@@ -1447,6 +1455,19 @@ planDialog.addEventListener("click", (event) => {
   if (event.target === planDialog) planDialog.close();
 });
 
+const modelGuideDialog = document.getElementById("modelGuideDialog");
+modelGuideResource.addEventListener("click", () => modelGuideDialog.showModal());
+modelGuideResource.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    modelGuideDialog.showModal();
+  }
+});
+document.querySelector(".close-model-guide-dialog").addEventListener("click", () => modelGuideDialog.close());
+modelGuideDialog.addEventListener("click", (event) => {
+  if (event.target === modelGuideDialog) modelGuideDialog.close();
+});
+
 const desktopDialog = document.getElementById("desktopDialog");
 document.getElementById("desktopGuideButton").addEventListener("click", () => desktopDialog.showModal());
 document.querySelector(".close-desktop-dialog").addEventListener("click", () => desktopDialog.close());
@@ -1470,4 +1491,5 @@ victoryDialog.addEventListener("click", (event) => {
 });
 
 render();
+renderVersionInfo();
 

@@ -990,6 +990,14 @@ button {
   padding: 14px;
 }
 
+.mobile-scroll-note {
+  display: none;
+  margin: -4px 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .mock-sidebar,
 .mock-main,
 .mock-topbar,
@@ -2317,6 +2325,7 @@ dialog::backdrop {
 .close-interface-dialog,
 .close-instructor-dialog,
 .close-desktop-dialog,
+.close-model-guide-dialog,
 .close-victory-dialog {
   position: absolute;
   top: 16px;
@@ -2351,6 +2360,10 @@ dialog::backdrop {
 
 .plan-dialog-card {
   width: min(1080px, calc(100vw - 32px));
+}
+
+.model-guide-dialog-card {
+  width: min(760px, calc(100vw - 32px));
 }
 
 .desktop-dialog-card {
@@ -3012,20 +3025,27 @@ dialog::backdrop {
   }
 
   .interface-map {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    grid-template-columns: 190px 430px;
+    min-width: 660px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+  }
+
+  .mobile-scroll-note {
+    display: block;
   }
 
   .mock-sidebar {
-    min-height: 210px;
+    min-height: 310px;
   }
 
   .mock-main {
-    min-height: 280px;
+    min-height: 310px;
   }
 
   .mock-input {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr auto auto;
   }
 
   .plus-home-map {

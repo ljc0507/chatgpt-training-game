@@ -309,6 +309,7 @@
               <div class="section-subhead">
                 <p class="eyebrow">網頁版工作介面</p>
               </div>
+              <p class="mobile-scroll-note">手機版可左右滑動查看完整工作介面。</p>
 
               <div class="interface-map" aria-label="ChatGPT 介面按鈕位置示意圖">
                 <div class="mock-sidebar">
@@ -401,6 +402,23 @@
               </div>
             </section>
 
+            <section
+              class="resource-link-panel"
+              id="modelGuideResource"
+              aria-label="如何選擇適合的 ChatGPT 模型"
+              role="button"
+              tabindex="0"
+            >
+              <div>
+                <p class="eyebrow">補充資源</p>
+                <h4>如何選擇適合的 ChatGPT 模型？</h4>
+                <p>依任務難度、資料量與使用情境，選擇適合的模型。</p>
+              </div>
+              <div class="resource-actions">
+                <button class="secondary-button" type="button">查看模型選擇說明</button>
+              </div>
+            </section>
+
             <section class="example-links" id="exampleLinks" aria-label="AI 功能範例">
               <div class="example-head">
                 <p class="eyebrow">AI 功能範例</p>
@@ -469,7 +487,7 @@
             </section>
           </aside>
         </section>
-        <footer class="version-footer" aria-label="版本資訊">v1.0.0 · 2026.07.16</footer>
+        <footer class="version-footer" id="versionFooter" aria-label="版本資訊">JARVISLIN V1.0</footer>
       </section>
     </main>
 
@@ -524,6 +542,23 @@
         <p class="eyebrow">補充資源</p>
         <h3>ChatGPT 主要方案比較</h3>
         <div id="planDialogContent" class="plan-table"></div>
+      </div>
+    </dialog>
+
+    <dialog id="modelGuideDialog">
+      <div class="dialog-card model-guide-dialog-card">
+        <button class="icon-button close-model-guide-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">模型選擇</p>
+        <h3>如何選擇適合的 ChatGPT 模型？</h3>
+        <p>
+          不同模型各有適合的任務。GPT-5.5 適合快速完成改寫、摘要與一般文案；GPT-5.6 Sol
+          適合資料分析、文件比較、程式除錯與複雜規劃；GPT-5.4 與 o3
+          可作為特定推理任務或交叉驗證使用。實際可選模型與使用次數，也會依 ChatGPT 方案而有所不同。
+        </p>
       </div>
     </dialog>
 
