@@ -28,12 +28,18 @@
     title: "先看 ChatGPT 能幫你做什麼",
     badge: "成果想像徽章",
     quest: "從成果開始，而不是從按鈕開始",
-    story: "先看行政工作前後比較，知道 ChatGPT 可以協助整理、改寫、統計、檢查缺漏與產生初稿。",
+    story: "",
     knowledge: [
-      ["文字改寫", "把口語訊息整理成正式通知、Email 或公告"],
-      ["會議整理", "從長篇文字抓出摘要、決議、待辦、負責人與期限"],
-      ["資料統計", "先整理人數、出席率、缺漏欄位與異常值"],
-      ["大綱產出", "從空白頁產生簡報頁面標題、重點與講者備註"]
+      {
+        type: "compare",
+        rows: [
+          ["雜亂訊息要人工改成正式通知", "先整理成主旨、時間、地點、對象、待確認事項"],
+          ["會議紀錄要從長篇文字慢慢抓重點", "先產生摘要、決議、待辦、負責人、期限"],
+          ["報名資料要人工統計", "先整理人數、出席率、缺漏欄位、異常值"],
+          ["簡報大綱從空白頁開始", "先產生頁面標題、重點、講者備註"],
+          ["公告或 Email 不確定是否完整", "請 AI 檢查是否遺漏時間、地點、對象、期限、聯絡方式"]
+        ]
+      }
     ],
     taskTitle: "一句話變正式通知",
     taskBody: "請把一段口語訊息整理成正式校內通知，資訊不足處標示待確認。",
@@ -49,10 +55,34 @@
     quest: "知道 ChatGPT 擅長什麼，也知道不能取代什麼",
     story: "ChatGPT 是生成式 AI 助理，可以協助整理、改寫、比較、分析與產生初稿，但不能代替最終行政判斷。",
     knowledge: [
-      ["擅長任務", "整理文字、產生初稿、比較資料、改語氣、設計流程"],
-      ["不擅長任務", "最終法規解釋、核決承諾、未遮蔽個資、正式對外發布"],
-      ["錯誤原因", "資料來源不完整、背景太少、問題模糊或模型產生未查證內容"],
-      ["使用心法", "把 AI 當助理，不當主管；把回答當草稿，不當定稿"]
+      {
+        title: "ChatGPT 擅長什麼？",
+        points: [
+          "把雜亂文字整理成條列、表格或正式版本。",
+          "幫公告、Email、會議紀錄、簡報產生初稿。",
+          "比較不同資料、找出重點與待確認事項。",
+          "將口語內容改成正式、親切或簡短版本。",
+          "協助設計課程、活動流程、問卷與學習練習。"
+        ]
+      },
+      {
+        title: "ChatGPT 不擅長或不能直接代替人的地方",
+        points: [
+          "不是校內法規資料庫，也不保證永遠正確。",
+          "不能代替承辦人做最終行政判斷。",
+          "不適合直接處理未去識別化的個資與敏感資料。",
+          "不應直接代替主管核決、承諾經費或發布正式對外內容。"
+        ]
+      },
+      {
+        title: "為什麼 AI 可能回答錯誤？",
+        points: [
+          "資料來源不完整或過時。",
+          "使用者給的背景太少。",
+          "問題太模糊，AI 只能猜測意圖。",
+          "模型可能產生看似合理但未經查證的內容。"
+        ]
+      }
     ],
     taskTitle: "判斷哪些任務適合 AI",
     taskBody: "把常見任務分成適合 AI、需要人工確認、不適合直接交給 AI 三類。",
@@ -77,10 +107,19 @@
     quest: "把模糊需求變成可執行指令",
     story: "好提示詞等於任務、背景、對象、限制、輸出格式與查核要求。講清楚規格，AI 才能交出可用初稿。",
     knowledge: [
-      ["任務", "要 AI 做什麼，例如整理、改寫、分析、產生表格"],
-      ["背景與對象", "目前情境、資料來源，以及誰會閱讀這份內容"],
-      ["限制與格式", "字數、語氣、不能做什麼，以及表格、條列或 Email 格式"],
-      ["查核要求", "資料未提供就說未提供，不要自行補人名、日期、數字或法規"]
+      {
+        type: "formula",
+        title: "提示詞公式",
+        formula: "好提示詞 = 任務 + 背景 + 對象 + 限制 + 輸出格式 + 查核要求",
+        rows: [
+          ["任務", "要 AI 做什麼", "請整理成校內研習通知"],
+          ["背景", "目前情境與資料來源", "這是給行政同仁的研習活動"],
+          ["對象", "誰會看這份內容", "收件人是各單位行政人員"],
+          ["限制", "字數、語氣、不能做什麼", "200 字以內，正式但親切"],
+          ["輸出格式", "要表格、條列、Email 或大綱", "請用主旨、說明、注意事項呈現"],
+          ["查核要求", "不確定時如何處理", "資訊不足請標示待確認，不要自行編造"]
+        ]
+      }
     ],
     taskTitle: "補完整提示詞",
     taskBody: "請把「幫我寫通知」改成包含背景、限制、格式與查核要求的提示詞。",
@@ -105,12 +144,97 @@
     title: "行政六大應用",
     badge: "行政應用徽章",
     quest: "把同一套流程套用到不同工作場景",
-    story: "每個實作單元都可以用同一個模板：情境、原始資料、提示詞、AI 產出、人工檢查重點、進階追問。",
+    story: "每個實作單元都可以用同一個教學模板：情境 → 原始資料 → 提示詞 → AI 產出 → 人工檢查重點 → 進階追問。",
     knowledge: [
-      ["公告與 Email", "改寫、縮短、正式化、檢查缺漏"],
-      ["會議紀錄", "摘要、決議、待辦、負責人、期限"],
-      ["表格與問卷", "統計、分類、異常值、圖表建議"],
-      ["簡報與檔案", "大綱、頁面標題、講者備註、摘要與比較"]
+      {
+        title: "公告與 Email",
+        body: "適合情境：校內通知、活動提醒、會議通知。可練習任務：改寫、縮短、正式化、檢查缺漏",
+        prompt: `請將以下內容整理成正式的校內通知或 Email。
+
+情境：[請填入通知目的與對象]
+原始資料：[貼上原始文字]
+
+請協助：
+1. 改寫成正式、清楚、禮貌的語氣
+2. 檢查是否缺少時間、地點、對象、聯絡方式或附件
+3. 資訊不足處請標示「待確認」
+4. 請提供主旨與正文`
+      },
+      {
+        title: "會議紀錄",
+        body: "適合情境：逐字稿、討論筆記、訪談紀錄。可練習任務：摘要、決議、待辦、負責人、期限",
+        prompt: `請根據以下會議文字整理成會議紀錄。
+
+情境：[請填入會議名稱與目的]
+原始資料：[貼上逐字稿或討論筆記]
+
+請輸出：
+1. 會議摘要
+2. 主要討論重點
+3. 決議事項
+4. 待辦事項表格，欄位包含：事項、負責人、期限、待確認資訊
+5. 若資料沒有提到，請標示「未提供」`
+      },
+      {
+        title: "表格與問卷",
+        body: "適合情境：報名表、出席表、滿意度調查。可練習任務：統計、分類、異常值、圖表建議",
+        prompt: `請協助整理以下表格或問卷資料。
+
+情境：[請填入資料用途，例如活動報名或滿意度調查]
+原始資料：[貼上表格資料或欄位內容]
+
+請分析：
+1. 主要統計結果
+2. 分類整理重點
+3. 可能的缺漏欄位或異常值
+4. 適合製作哪些圖表
+5. 需要人工確認的地方`
+      },
+      {
+        title: "簡報與報告",
+        body: "適合情境：活動成果、主管簡報、課程教材。可練習任務：大綱、頁面標題、講者備註、報告摘要",
+        prompt: `請將以下資料整理成簡報或報告大綱。
+
+情境：[請填入簡報或報告用途]
+原始資料：[貼上活動成果、課程內容或主管需要看的資料]
+
+請輸出：
+1. 建議標題
+2. 6 到 8 頁簡報大綱或報告段落
+3. 每頁重點
+4. 講者備註或補充說明
+5. 主管最需要先看到的摘要`
+      },
+      {
+        title: "檔案摘要與比較",
+        body: "適合情境：PDF、Word、規章、會議資料。可練習任務：摘要、比較差異、列出待確認問題",
+        prompt: `請協助摘要與比較以下文件內容。
+
+情境：[請填入文件用途，例如規章修訂、會議資料或方案比較]
+原始資料：[貼上文件內容，或說明已上傳的檔案]
+
+請輸出：
+1. 文件重點摘要
+2. 重要條件、日期、金額、人名或單位
+3. 與另一份資料的差異比較
+4. 待確認問題清單
+5. 不能直接判斷的地方請標示「需要人工確認」`
+      },
+      {
+        title: "活動與教學設計",
+        body: "適合情境：活動流程、學習單、宣傳素材。可練習任務：流程規劃、題目設計、海報文案、課後練習",
+        prompt: `請協助設計一個活動或教學流程。
+
+情境：[請填入活動或課程主題、對象、人數、時間]
+原始資料：[貼上目前已有的構想或限制]
+
+請提供：
+1. 活動或課程流程
+2. 每個階段的目標與時間安排
+3. 可使用的互動題目或學習單題目
+4. 宣傳文案或海報文字
+5. 課後練習或延伸任務`
+      }
     ],
     taskTitle: "用模板完成行政任務",
     taskBody: "請選一個行政應用場景，依照情境、資料、提示詞、檢查與追問完成一輪練習。",
@@ -132,12 +256,109 @@
     title: "ChatGPT 功能選擇",
     badge: "功能選擇徽章",
     quest: "文字實作後，再知道什麼時候該換工具",
-    story: "功能介紹放在文字實作之後會比較容易理解：搜尋、檔案分析、圖片、語音、Canvas、Projects 與 Tasks 各有適合情境。",
+    story: "功能介紹放在文字實作之後會比較容易理解：Plus 版常見入口包含建立圖像、編寫或編輯、查資料、加號上傳、語音、專案與排程。",
     knowledge: [
-      ["搜尋", "最新資訊、政策、活動、產品；重要資訊仍要回官方來源確認"],
-      ["檔案分析", "PDF、Word、Excel、CSV、問卷、報名表、會議資料"],
-      ["語音與聽寫", "口述想法、會議後初稿、口說練習；人名日期數字要校對"],
-      ["Projects / Canvas", "Projects 管理長期任務與資料脈絡；Canvas 編修長文、企劃書與程式草稿"]
+      {
+        title: "查資料",
+        icon: "globe",
+        body: "適合情境：最新資訊、政策、活動、產品查詢。可練習任務：查找資料、整理來源、比對重點、列出待確認問題",
+        prompt: `請協助我查資料並整理成可判斷的重點。
+
+情境：[請填入要查詢的主題，例如最新政策、活動資訊、產品資料]
+我想知道：[請填入具體問題]
+
+請輸出：
+1. 重點摘要
+2. 可能的資料來源類型
+3. 需要回官方來源確認的地方
+4. 可能過時或不確定的資訊
+5. 下一步我應該查證什麼`
+      },
+      {
+        title: "加號與檔案",
+        icon: "plus",
+        body: "適合情境：PDF、Word、Excel、CSV、問卷、報名表、會議資料。可練習任務：摘要、分類、比較、找缺漏、整理表格",
+        prompt: `我已準備上傳或貼上一份資料，請協助分析。
+
+資料類型：[PDF / Word / Excel / CSV / 問卷 / 報名表 / 會議資料]
+分析目的：[請填入你要整理、比較或檢查什麼]
+
+請輸出：
+1. 資料重點摘要
+2. 分類或統計結果
+3. 缺漏欄位或異常值
+4. 可以製作的表格或圖表建議
+5. 需要人工確認的地方`
+      },
+      {
+        title: "建立圖像",
+        icon: "image",
+        body: "適合情境：海報概念、活動視覺、社群素材、課程封面。可練習任務：圖像構想、風格設定、文案搭配、版面方向",
+        prompt: `請幫我設計一張活動或課程視覺圖的生成提示詞。
+
+主題：[請填入活動或課程主題]
+對象：[請填入受眾]
+用途：[海報 / 社群貼文 / 簡報封面 / 網頁主視覺]
+風格：[專業 / 溫暖 / 科技感 / 校園感 / 活潑]
+
+請輸出：
+1. 圖像生成提示詞
+2. 建議色系
+3. 主要視覺元素
+4. 避免出現的元素
+5. 可搭配的標題文字`
+      },
+      {
+        title: "編寫或編輯",
+        icon: "compose",
+        body: "適合情境：公告、Email、企劃書、簡報文字、長文修改。可練習任務：改寫、潤飾、縮短、正式化、調整語氣",
+        prompt: `請協助我編寫或編輯以下文字。
+
+情境：[請填入用途，例如公告、Email、企劃書、簡報文字]
+對象：[請填入讀者]
+原始文字：[貼上文字]
+
+請協助：
+1. 改寫成清楚、正式、易讀的版本
+2. 保留原意，不自行增加未提供資訊
+3. 標示資訊不足或需要確認的地方
+4. 提供一版精簡版
+5. 提供一版較完整版本`
+      },
+      {
+        title: "語音與語言",
+        icon: "mic",
+        body: "適合情境：口述想法、會議後初稿、口說練習、跨語言溝通。可練習任務：口述整理、逐字稿修正、語氣調整、翻譯初稿",
+        prompt: `請將我的口述內容整理成可使用的文字。
+
+情境：[會議後整理 / 口述筆記 / 口說練習 / 翻譯初稿]
+口述內容：[貼上語音轉文字結果]
+
+請輸出：
+1. 條理化摘要
+2. 可直接使用的正式文字
+3. 人名、日期、數字與地點的校對清單
+4. 需要我補充的資訊
+5. 可追問的下一步`
+      },
+      {
+        title: "專案與排程",
+        icon: "schedule",
+        body: "適合情境：長期任務、課程籌備、例行提醒、定期追蹤。可練習任務：建立工作脈絡、整理資料、提醒事項、週期任務",
+        prompt: `請幫我規劃一個可長期追蹤的專案或排程任務。
+
+任務名稱：[請填入專案或例行工作]
+目標：[請填入希望完成的成果]
+相關資料：[請列出已有資料或檔案]
+頻率或期限：[一次性 / 每週 / 每月 / 指定日期]
+
+請輸出：
+1. 專案資料夾或對話應保存哪些內容
+2. 每次追蹤要檢查的項目
+3. 可設定的提醒或排程
+4. 每次回報格式
+5. 風險與待確認事項`
+      }
     ],
     taskTitle: "依任務選功能",
     taskBody: "請根據不同工作情境，選擇最適合的 ChatGPT 功能並說明原因。",
@@ -161,10 +382,37 @@
     quest: "先守住底線，再提高效率",
     story: "課程三條底線：不貼敏感資料、不直接相信答案、不把 AI 內容直接對外發布。",
     knowledge: [
-      ["不貼敏感資料", "學生成績、身分證號、健康資料、人事考績與申訴內容不直接上傳"],
-      ["查證三步驟", "來源是什麼、日期是什麼、是否能直接採用"],
-      ["責任邊界", "AI 只能協助整理，不能代替核決、採購決定或正式承諾"],
-      ["去識別化", "先把姓名、學號、聯絡方式與可識別資訊替換成代稱"]
+      {
+        title: "不貼敏感資料",
+        body: "學生成績、身分證號、健康資料、人事考績與申訴內容不直接上傳；若要請 AI 協助，先去識別化。",
+        points: [
+          "先把姓名、學號、電話、Email、地址與可識別資訊替換成代稱。",
+          "保留任務判斷需要的背景，但移除能指向特定個人的線索。"
+        ],
+        example: {
+          title: "去識別化範例",
+          beforeTitle: "原始資料，不建議直接貼上",
+          before: "王小明，學號 11312345，因家庭經濟困難申請補助，需要協助確認資料是否齊全。",
+          afterTitle: "去識別化後再使用",
+          after: "學生 A，某學年度新生，因家庭因素申請補助，需要協助確認資料是否齊全。"
+        }
+      },
+      {
+        title: "查證三步驟",
+        points: [
+          "來源是什麼？是否來自官方網站、校內規章或正式文件。",
+          "日期是什麼？是否為最新版本。",
+          "是否能直接採用？是否仍需承辦人、主管或權責單位確認。"
+        ],
+        details: {
+          title: "常見需要查證的內容",
+          items: ["校內規章", "教育部政策", "報名截止日期", "採購規定", "差旅費標準"]
+        }
+      },
+      {
+        title: "責任邊界",
+        body: "AI 只能協助整理，不能代替核決、採購決定或正式承諾。正式對外發布前，仍需由承辦人或主管確認。"
+      }
     ],
     taskTitle: "找出個資與錯誤資訊",
     taskBody: "請檢查一段文字是否有個資、需要查證的資訊或不適合直接發布的內容。",
@@ -190,9 +438,29 @@
     story: "最後一關不是結束，而是把提示詞庫、進階工具、最新功能觀念與 5 天練習帶回去，讓 ChatGPT 真的進入日常流程。",
     knowledge: [
       ["進階工具", "Canva、Notion、雲端文件、PDF 工具與資料分析類 GPT 可作為延伸"],
-      ["最新功能", "不要背模型名稱，改用任務判斷；依實際帳號介面為準"],
-      ["Codex 理解", "一般使用者知道用途即可；工程或網站維護者可延伸了解"],
-      ["5 天練習", "改寫公告、整理會議、分析表格、製作簡報大綱、建立提示詞庫"]
+      {
+        title: "最新功能",
+        body: "功能名稱與入口會隨帳號方案、版本與介面更新而不同。使用前先判斷任務需要什麼：搜尋、整理檔案、產生圖片、語音輸入、專案管理或排程，再到實際帳號中找對應入口。"
+      },
+      {
+        title: "Codex 理解",
+        body: "OpenAI 目前將 Codex 描述為 ChatGPT 中的 coding agent，可跨 ChatGPT、編輯器與終端機使用，並由 ChatGPT 帳號連接。對本課而言，可以用一句話理解：ChatGPT 幫你處理文字與資料，Codex 幫工程師處理程式與軟體專案。"
+      },
+      {
+        title: "5 天練習",
+        body: "改寫公告、整理會議、分析表格、製作簡報大綱、建立提示詞庫。",
+        details: {
+          title: "查看 5 天練習表",
+          headers: ["天數", "練習任務", "完成標準"],
+          rows: [
+            ["Day 1", "改寫公告或 Email", "產出正式版、親切版、簡短版。"],
+            ["Day 2", "整理會議紀錄", "產出摘要、決議、待辦、期限。"],
+            ["Day 3", "分析一份表格", "找出趨勢、異常值、圖表建議。"],
+            ["Day 4", "製作簡報大綱", "產出 5 頁標題、重點、講者備註。"],
+            ["Day 5", "建立提示詞庫", "把常用提示詞依用途分類保存。"]
+          ]
+        }
+      }
     ],
     taskTitle: "設計自己的 5 天練習表",
     taskBody: "請依自己的工作情境，設計 5 天課後練習與完成標準。",
@@ -255,10 +523,10 @@ const answerHints = [
     "完成標準：能說出 AI 產出後還需要人檢查什麼。"
   ],
   [
-    "建議工具：搜尋、檔案分析、語音、Canvas、Projects、圖片。方法：先看任務型態，再選工具。",
-    "最新政策或活動資訊用搜尋，但仍要回官方來源確認。",
-    "PDF、Word、Excel、CSV 可用檔案分析；長文與企劃書適合 Canvas。",
-    "會議後初步整理可用語音或聽寫，但人名、日期、地點、數字一定要校對。"
+    "建議入口：查資料、加號上傳、建立圖像、編寫或編輯、語音、專案、排程。方法：先看任務型態，再選入口。",
+    "最新政策或活動資訊用「查資料」，但仍要回官方來源確認。",
+    "PDF、Word、Excel、CSV 可從輸入框左側「＋」加入檔案，再請 ChatGPT 摘要、比較或分析。",
+    "長文、企劃書與公告可用「編寫或編輯」；會議後初步整理可用語音，但人名、日期、地點、數字一定要校對。"
   ],
   [
     "建議工具：一般 ChatGPT 對話。方法：要求 AI 先當資安檢查員，而不是直接改寫。",
@@ -311,10 +579,10 @@ const quizQuestions = [
     ["AI 產出行政內容後，不需要再檢查時間、地點與對象。", false]
   ],
   [
-    ["搜尋功能適合查最新資訊，但重要內容仍要回官方來源確認。", true],
-    ["檔案分析適合 PDF、Word、Excel 或 CSV 等資料。", true],
+    ["查資料適合查最新資訊，但重要內容仍要回官方來源確認。", true],
+    ["PDF、Word、Excel 或 CSV 等資料可從輸入框左側加號加入，再請 ChatGPT 分析。", true],
     ["語音或聽寫產出的日期、人名與數字不需要校對。", false],
-    ["Canvas 適合長文、企劃書或需要反覆修改的內容。", true],
+    ["編寫或編輯適合長文、企劃書或需要反覆修改的內容。", true],
     ["所有任務都只需要一般對話，不需要依情境選工具。", false]
   ],
   [
@@ -417,7 +685,7 @@ const characterTiers = [
   {
     min: 0,
     rank: 0,
-    title: "新手行政俠",
+    title: "新手俠",
     note: "目前裝備：空手入門，先學會安全使用 AI。",
     image: "./assets/characters/level-0-novice.png",
     equipment: ["空手入門"]
@@ -473,18 +741,196 @@ const characterTiers = [
   {
     min: 700,
     rank: 7,
-    title: "行政任務指揮官",
-    note: "取得裝備：金色冠冕，能把行政任務拆解成可執行流程。",
+    title: "任務指揮官",
+    note: "取得裝備：金色冠冕，能把任務拆解成可執行流程。",
     image: "./assets/characters/level-7-commander.png",
     equipment: ["資安盾牌", "金色冠冕"]
   },
   {
     min: 800,
     rank: 8,
-    title: "行政 AI 練功師",
+    title: "AI 練功師",
     note: "最高級裝備完成：能整合提問、文書、會議、Excel 與查核。",
     image: "./assets/characters/level-8-master.png",
     equipment: ["全套裝備", "練功星章"]
+  }
+];
+
+const interfaceTopics = {
+  nav: {
+    title: "1 左側導覽區",
+    body: "Plus 版左側導覽通常包含新對話、搜尋、資料庫、排程、外掛程式、更多工具、專案與聊天紀錄。不同任務最好開不同對話，避免上下文混在一起。",
+    items: [
+      ["新對話", "開一個新的聊天主題，適合開始新的任務。", "compose"],
+      ["搜尋對話", "快速找回之前的聊天內容，適合查找舊紀錄或關鍵字。", "search"],
+      ["資料庫", "集中查看或管理可用資料、檔案或知識來源；實際功能依帳號與版本而定。", "library"],
+      ["排程", "查看或管理已設定的提醒、排程或自動化任務。", "schedule"],
+      ["外掛程式", "連接其他工具或服務，依任務選擇是否啟用。", "plugin"],
+      ["更多", "展開圖像、GPT、網站等更多工具入口。", "more"],
+      ["專案", "把同一主題的對話、檔案與指令集中管理。", "project"],
+      ["聊天", "一般對話紀錄會放在這裡，可用於回到先前任務。", "chat"]
+    ]
+  },
+  top: {
+    title: "2 模式與工具入口",
+    body: "Plus 版首頁常見入口包含 Chat / Work 模式、輸入框旁的加號、語音與語言設定，以及畫面下方的工具捷徑。分享說明可另外對照右上方或更多選單。",
+    visual: "plusHome",
+    items: [
+      ["1 Chat / Work", "畫面上方中央切換不同工作模式；一般問答可用 Chat，較完整的工作流程可依帳號功能切到 Work。"],
+      ["2 加號", "輸入框左側的加號可加入檔案、圖片或開啟其他可用工具。"],
+      ["3 建立圖像", "畫面下方的快捷工具，可用來產生圖片或視覺素材。"],
+      ["4 編寫或編輯", "畫面下方的快捷工具，適合撰寫、改寫、潤飾文件、公告、文案或其他文字內容。"],
+      ["5 查資料", "畫面下方的快捷工具，適合搜尋、整理來源或做資料查詢；重要資訊仍需回到可靠來源確認。"],
+      ["6 語音 / 語言", "輸入框右側可切換語言、使用麥克風或語音模式，適合口述想法與練習口說。"],
+      ["7 分享", "分享按鈕常在對話右上方或更多選單裡；分享前要確認沒有敏感資訊。", "share"],
+      ["8 更多選單", "部分功能會因視窗寬度或版本被收合，可從更多選單尋找其他隱藏操作。"]
+    ]
+  },
+  input: {
+    title: "3 輸入與送出區",
+    body: "這是提示詞與素材進入 ChatGPT 的地方。好的輸入通常包含任務、背景、限制、格式與語氣。",
+    items: [
+      ["訊息輸入框", "輸入任務、背景、限制、格式與希望的語氣。"],
+      ["附件 / 上傳", "加入文件、表格、圖片或資料檔；上傳前先確認資安。"],
+      ["語音 / Dictation", "用口述輸入想法、會議重點或初步筆記。"],
+      ["送出 / 停止", "送出提示詞；生成中若方向不對，可停止再修正。"]
+    ]
+  },
+  answer: {
+    title: "4 回答操作區",
+    body: "ChatGPT Plus 的回答下方通常會出現一排操作圖示，部分功能會收在「更多」選單中。注意：實際按鈕可能依版本、裝置與回答類型略有不同。",
+    items: [
+      ["複製", "把回答複製到文件、信件、表格或簡報草稿中。"],
+      ["分享 / 匯出", "將回答或對話分享出去；分享前要確認沒有敏感資訊。"],
+      ["重新生成", "請 ChatGPT 換一版答案，適合比較不同寫法。"],
+      ["更多選單", "點「…」可看到額外功能，例如檢視資料來源、在新聊天中分支或大聲朗讀。"],
+      ["檢視資料來源", "若回答有引用來源，可用來回查資料依據；重要內容仍要人工確認。"],
+      ["在新聊天中分支 / 大聲朗讀", "分支可保留原對話再開新方向；朗讀適合聽稿、檢查語氣或輔助閱讀。"]
+    ]
+  },
+  account: {
+    title: "5 帳號與設定區",
+    body: "Plus 版帳號選單通常可管理方案、個人化、個人檔案、設定、說明與登出。這裡也適合提醒：帳號方案與設定會影響可用功能、資料處理與安全性。",
+    items: [
+      ["升級方案", "查看目前方案與升級選項；不同方案會影響模型、工具與使用額度。", "sparkle"],
+      ["個人化", "設定偏好語氣、工作情境或回應風格，讓回答更貼近常用需求。", "personalize"],
+      ["個人檔案", "管理帳號名稱、頭像或個人資料；教學時可提醒不要放敏感資訊。", "profile"],
+      ["設定", "管理一般設定、資料控制、記憶、通知與其他帳號偏好。", "settings"],
+      ["說明", "開啟說明中心、版本說明、下載應用程式、鍵盤快速鍵與回報問題。", "help"],
+      ["登出", "離開公用或教室電腦前務必登出，避免帳號被他人使用。", "logout"],
+      ["下載應用程式", "可安裝桌面版或行動版，方便日常工作中快速叫出 ChatGPT。", "download"],
+      ["隱私權政策 / 服務條款", "查看資料使用、服務規範與隱私相關說明。", "info"]
+    ]
+  }
+};
+
+const inlineIcons = {
+  compose: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>',
+  search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>',
+  library: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h3v15"/><path d="M9 19V4h5v15"/><path d="M14 19V5h4a2 2 0 0 1 2 2v12"/></svg>',
+  schedule: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  plugin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8a4 4 0 0 1 8 0v2h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1Z"/><path d="M8 10h8"/></svg>',
+  more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>',
+  project: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h6l2 2h8v10a2 2 0 0 1-2 2H4Z"/><path d="M4 6v14"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v10H8l-3 3Z"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>',
+  image: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m6 17 4-4 3 3 2-2 3 3"/></svg>',
+  globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3.2 3 14.8 0 18"/><path d="M12 3c-3 3.2-3 14.8 0 18"/></svg>',
+  mic: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8 21h8"/></svg>',
+  sparkle: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/></svg>',
+  personalize: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M8 16c1.2 1 2.5 1.5 4 1.5s2.8-.5 4-1.5"/></svg>',
+  profile: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20c1.5-4 12.5-4 14 0"/></svg>',
+  settings: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a8 8 0 0 0 .1-2l2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L15 5.5h-4L10.6 8a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a8 8 0 0 0 .1 2l-2.1 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1l.4 2.5h4l.4-2.5a8 8 0 0 0 1.7-1l2.4 1 2-3.5Z"/></svg>',
+  help: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.8 2.8 0 1 1 4.8 2c-.9.8-1.8 1.3-1.8 2.8"/><path d="M12 17h.01"/></svg>',
+  logout: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M14 4h5v16h-5"/></svg>',
+  download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10"/><path d="m8 10 4 4 4-4"/><path d="M5 20h14"/></svg>',
+  info: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6"/><path d="M12 7h.01"/></svg>',
+  share: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 14v5h14v-5"/></svg>'
+};
+
+const interfaceVisuals = {
+  plusHome: `
+    <div class="plus-home-map" aria-label="Plus 首頁工具位置示意圖">
+      <div class="plus-sidebar">
+        <strong>ChatGPT Plus</strong>
+        <span>新對話</span>
+        <span>搜尋對話</span>
+        <span>資料庫</span>
+        <span>排程</span>
+        <span>外掛程式</span>
+      </div>
+      <div class="plus-main">
+        <div class="mode-toggle"><b>1</b><span>Chat</span><span>Work</span></div>
+        <div class="share-dot"><b>7</b><span>分享</span></div>
+        <div class="hero-question">我可以幫你什麼忙？</div>
+        <div class="plus-input">
+          <b>2</b>
+          <span class="input-text">詢問 ChatGPT</span>
+          <span class="lang-dot">中</span>
+          <span class="voice-dot">6</span>
+        </div>
+        <div class="quick-tool tool-image"><b>3</b><span>建立圖像</span></div>
+        <div class="quick-tool tool-write"><b>4</b><span>編寫或編輯</span></div>
+        <div class="quick-tool tool-search"><b>5</b><span>查資料</span></div>
+        <div class="more-dot"><b>8</b><span>更多</span></div>
+      </div>
+    </div>
+  `
+};
+
+const instructorProfile = [
+  ["講師姓名", "林仁傑"],
+  [
+    "主要經歷",
+    '健豪印刷-設計企劃；上品綜合-專案管理/平面設計；<a href="https://www.instagram.com/ashunhouse/" target="_blank" rel="noopener noreferrer">Ashun+客製化</a>-主理人'
+  ],
+  ["教學經歷", "聯成電腦-講師；苗栗縣社區培力育成中心-講師"],
+  [
+    "專長",
+    "Adobe軟體 應用教學、專注於平面設計、活動企劃、AI工具應用與執行效率提升等務實面工作，也擅長將工作上寶貴經驗轉化為淺顯易懂的課程"
+  ],
+  [
+    "本課特色",
+    "以初學者能立即上手為目標，透過生活化案例、行政情境、提示詞卡片與課後練習，協助學員把 ChatGPT 變成日常工作助理。"
+  ]
+];
+
+const planComparison = [
+  {
+    plan: "Free",
+    audience: "偶爾使用的一般使用者",
+    feature: "可使用基本 ChatGPT 功能，但使用額度與部分工具可能有限制",
+    useCase: "日常問答、簡單翻譯、摘要、基礎文案"
+  },
+  {
+    plan: "Plus",
+    audience: "經常使用 ChatGPT 的個人使用者",
+    feature: "通常可使用更多模型與工具，使用額度也比免費版高",
+    useCase: "行政文書、資料整理、圖片生成、檔案分析"
+  },
+  {
+    plan: "Pro",
+    audience: "高頻率或重度使用者",
+    feature: "通常提供較高的使用額度，適合長時間處理複雜任務",
+    useCase: "深度研究、大量文件、複雜資料分析、進階工作流程"
+  },
+  {
+    plan: "Business",
+    audience: "公司、部門或小型團隊",
+    feature: "提供團隊工作區、帳號管理與較完整的商務使用環境",
+    useCase: "團隊協作、公司文件、共用 GPT、部門工作流程"
+  },
+  {
+    plan: "ChatGPT Edu",
+    audience: "大專院校與教育機構",
+    feature: "適合教學、研究與校園組織管理，實際功能依校方授權與設定而定",
+    useCase: "課程教學、研究整理、報告分析、校務行政"
+  },
+  {
+    plan: "Enterprise",
+    audience: "大型企業與組織",
+    feature: "強調權限管理、安全治理、資料控管與組織規模部署",
+    useCase: "跨部門協作、內部知識管理、大型組織 AI 導入"
   }
 ];
 
@@ -522,11 +968,30 @@ const characterImage = document.getElementById("characterImage");
 const characterNote = document.getElementById("characterNote");
 const equipmentRow = document.getElementById("equipmentRow");
 const badgeGrid = document.getElementById("badgeGrid");
+const victoryDialog = document.getElementById("victoryDialog");
+const victoryExp = document.getElementById("victoryExp");
+const victoryBadges = document.getElementById("victoryBadges");
 
 function save() {
   localStorage.setItem("aiGameCurrent", String(state.current));
   localStorage.setItem("aiGameDone", JSON.stringify(state.done));
   localStorage.setItem("aiGameQuizScores", JSON.stringify(state.quizScores));
+}
+
+async function copyText(content) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(content);
+  } else {
+    const textarea = document.createElement("textarea");
+    textarea.value = content;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
 }
 
 function xp() {
@@ -588,9 +1053,11 @@ function render() {
   questTitle.textContent = level.quest;
   questIcon.innerHTML = currentIcon;
   questStory.textContent = level.story;
+  questStory.hidden = !level.story;
   quickStart.hidden = state.current !== 0;
   beginnerRules.hidden = state.current !== 0;
   interfaceGuide.hidden = state.current !== 0;
+  knowledgeList.hidden = state.current === 0;
   modeResource.hidden = state.current !== 1;
   exampleLinks.hidden = state.current !== 5;
   taskTitle.textContent = level.taskTitle;
@@ -600,14 +1067,135 @@ function render() {
   renderQuiz();
 
   knowledgeList.innerHTML = level.knowledge
-    .map(
-      ([title, body]) => `
-        <div class="info-card">
-          <strong>${title}</strong>
-          <span>${body}</span>
+    .map((item, index) => {
+      if (!Array.isArray(item) && item.type === "compare") {
+        return `
+          <div class="compare-workflow-table" role="table" aria-label="原本做法與 ChatGPT 可協助比較">
+            <div class="compare-workflow-row compare-workflow-head" role="row">
+              <span role="columnheader">原本做法</span>
+              <span role="columnheader">ChatGPT 可協助</span>
+            </div>
+            ${item.rows
+              .map(
+                ([before, after]) => `
+                  <div class="compare-workflow-row" role="row">
+                    <span role="cell" data-label="原本做法">${before}</span>
+                    <span role="cell" data-label="ChatGPT 可協助">${after}</span>
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        `;
+      }
+      if (!Array.isArray(item) && item.type === "formula") {
+        return `
+          <div class="prompt-formula-card">
+            <h4>${item.title}</h4>
+            <p class="formula-line">${item.formula}</p>
+            <div class="formula-table" role="table" aria-label="${item.title}">
+              <div class="formula-row formula-head" role="row">
+                <span role="columnheader">元素</span>
+                <span role="columnheader">說明</span>
+                <span role="columnheader">範例</span>
+              </div>
+              ${item.rows
+                .map(
+                  ([element, description, example]) => `
+                    <div class="formula-row" role="row">
+                      <span role="cell" data-label="元素">${element}</span>
+                      <span role="cell" data-label="說明">${description}</span>
+                      <span role="cell" data-label="範例">${example}</span>
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
+          </div>
+        `;
+      }
+      const title = Array.isArray(item) ? item[0] : item.title;
+      const body = Array.isArray(item) ? item[1] : item.body;
+      const prompt = Array.isArray(item) ? "" : item.prompt;
+      const icon = Array.isArray(item) ? "" : item.icon;
+      const points = Array.isArray(item) ? null : item.points;
+      const example = Array.isArray(item) ? null : item.example;
+      const details = Array.isArray(item) ? null : item.details;
+      return `
+        <div class="info-card ${prompt ? "with-prompt" : ""} ${points ? "with-points" : ""} ${
+        example || details ? "with-extra" : ""
+      }">
+          <strong class="${icon ? "with-inline-icon" : ""}">
+            ${inlineIcons[icon] || ""}
+            <span>${title}</span>
+          </strong>
+          ${
+            points
+              ? `<ul>${points.map((point) => `<li>${point}</li>`).join("")}</ul>`
+              : `<span>${body}</span>`
+          }
+          ${
+            example
+              ? `
+                <div class="deidentify-example">
+                  <h5>${example.title}</h5>
+                  <section>
+                    <strong>${example.beforeTitle}</strong>
+                    <p>${example.before}</p>
+                  </section>
+                  <section>
+                    <strong>${example.afterTitle}</strong>
+                    <p>${example.after}</p>
+                  </section>
+                </div>
+              `
+              : ""
+          }
+          ${
+            details
+              ? `
+                <details class="info-card-details">
+                  <summary>${details.title}</summary>
+                  ${
+                    details.rows
+                      ? `
+                        <div class="detail-table" role="table" aria-label="${details.title}">
+                          <div class="detail-row detail-head" role="row">
+                            ${details.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
+                          </div>
+                          ${details.rows
+                            .map(
+                              (row) => `
+                                <div class="detail-row" role="row">
+                                  ${row.map((cell) => `<span role="cell">${cell}</span>`).join("")}
+                                </div>
+                              `
+                            )
+                            .join("")}
+                        </div>
+                      `
+                      : `<ul>${details.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>`
+                  }
+                </details>
+              `
+              : ""
+          }
+          ${
+            prompt
+              ? `
+                <div class="mini-prompt">
+                  <div class="mini-prompt-head">
+                    <span>範例提示詞</span>
+                    <button type="button" class="copy-mini-prompt" data-prompt-index="${index}">複製</button>
+                  </div>
+                  <pre>${prompt}</pre>
+                </div>
+              `
+              : ""
+          }
         </div>
-      `
-    )
+      `;
+    })
     .join("");
 
   document.querySelectorAll(".level-button").forEach((button) => {
@@ -656,10 +1244,10 @@ function render() {
     .map((item, index) => {
       const earned = state.done.includes(index);
       return `
-        <div class="badge ${earned ? "earned" : ""}">
+        <button class="badge ${earned ? "earned" : ""}" type="button" data-badge-level="${index}" aria-label="前往${item.title}">
           <span class="badge-icon">${earned ? "✓" : icons[levelThemes[index]]}</span>
           <span>${item.badge}</span>
-        </div>
+        </button>
       `;
     })
     .join("");
@@ -673,12 +1261,28 @@ document.querySelectorAll(".level-button").forEach((button) => {
   });
 });
 
+badgeGrid.addEventListener("click", (event) => {
+  const badge = event.target.closest("[data-badge-level]");
+  if (!badge) return;
+  state.current = Number(badge.dataset.badgeLevel);
+  save();
+  render();
+  document.querySelector(".game-stage").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
 completeButton.addEventListener("click", () => {
   if (!state.done.includes(state.current)) {
+    const completingFinalLevel = state.current === levels.length - 1;
     state.done.push(state.current);
     if (state.current < levels.length - 1) state.current += 1;
     save();
     render();
+    document.querySelector(".game-stage").scrollIntoView({ behavior: "smooth", block: "start" });
+    if (completingFinalLevel && state.done.length === levels.length) {
+      victoryExp.textContent = `${xp()} / ${levels.length * 100}`;
+      victoryBadges.textContent = `${state.done.length} / ${levels.length}`;
+      victoryDialog.showModal();
+    }
   }
 });
 
@@ -706,21 +1310,20 @@ submitQuiz.addEventListener("click", () => {
 });
 
 document.getElementById("copyPrompt").addEventListener("click", async () => {
-  const content = promptText.textContent;
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(content);
-  } else {
-    const textarea = document.createElement("textarea");
-    textarea.value = content;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    textarea.remove();
-  }
+  await copyText(promptText.textContent);
   const button = document.getElementById("copyPrompt");
+  button.textContent = "已複製";
+  setTimeout(() => {
+    button.textContent = "複製";
+  }, 1200);
+});
+
+knowledgeList.addEventListener("click", async (event) => {
+  const button = event.target.closest(".copy-mini-prompt");
+  if (!button) return;
+  const item = levels[state.current].knowledge[Number(button.dataset.promptIndex)];
+  if (!item?.prompt) return;
+  await copyText(item.prompt);
   button.textContent = "已複製";
   setTimeout(() => {
     button.textContent = "複製";
@@ -750,6 +1353,120 @@ document.querySelectorAll(".tool-card").forEach((button) => {
 document.querySelector(".close-dialog").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
+});
+
+const interfaceDialog = document.getElementById("interfaceDialog");
+const interfaceDialogTitle = document.getElementById("interfaceDialogTitle");
+const interfaceDialogBody = document.getElementById("interfaceDialogBody");
+const interfaceDialogContent = document.getElementById("interfaceDialogContent");
+
+document.querySelectorAll(".map-pin[data-interface-topic]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const topic = interfaceTopics[button.dataset.interfaceTopic];
+    if (!topic) return;
+    interfaceDialogTitle.textContent = topic.title;
+    interfaceDialogBody.textContent = topic.body;
+    const visual = topic.visual ? interfaceVisuals[topic.visual] || "" : "";
+    const cards = topic.items
+      .map(
+        ([title, body, icon]) => `
+          <article>
+            <strong class="${icon ? "with-inline-icon" : ""}">
+              ${inlineIcons[icon] || ""}
+              <span>${title}</span>
+            </strong>
+            <p>${body}</p>
+          </article>
+        `
+      )
+      .join("");
+    interfaceDialogContent.innerHTML = `${visual}<div class="interface-dialog-cards">${cards}</div>`;
+    interfaceDialog.showModal();
+  });
+});
+
+document.querySelector(".close-interface-dialog").addEventListener("click", () => interfaceDialog.close());
+interfaceDialog.addEventListener("click", (event) => {
+  if (event.target === interfaceDialog) interfaceDialog.close();
+});
+
+const instructorDialog = document.getElementById("instructorDialog");
+const instructorDialogContent = document.getElementById("instructorDialogContent");
+
+instructorDialogContent.innerHTML = instructorProfile
+  .map(
+    ([label, content]) => `
+      <article>
+        <strong>${label}</strong>
+        <p>${content}</p>
+      </article>
+    `
+  )
+  .join("");
+
+document.getElementById("instructorButton").addEventListener("click", () => instructorDialog.showModal());
+document.querySelector(".close-instructor-dialog").addEventListener("click", () => instructorDialog.close());
+instructorDialog.addEventListener("click", (event) => {
+  if (event.target === instructorDialog) instructorDialog.close();
+});
+
+const planDialog = document.getElementById("planDialog");
+const planDialogContent = document.getElementById("planDialogContent");
+
+planDialogContent.innerHTML = `
+  <div class="plan-row plan-head">
+    <span>方案</span>
+    <span>適合對象</span>
+    <span>主要特色</span>
+    <span>常見使用情境</span>
+  </div>
+  ${planComparison
+    .map(
+      (item) => `
+        <div class="plan-row">
+          <strong>${item.plan}</strong>
+          <span>${item.audience}</span>
+          <span>${item.feature}</span>
+          <span>${item.useCase}</span>
+        </div>
+      `
+    )
+    .join("")}
+`;
+
+modeResource.addEventListener("click", () => planDialog.showModal());
+modeResource.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    planDialog.showModal();
+  }
+});
+modeResource.querySelector("a").addEventListener("click", (event) => event.stopPropagation());
+document.querySelector(".close-plan-dialog").addEventListener("click", () => planDialog.close());
+planDialog.addEventListener("click", (event) => {
+  if (event.target === planDialog) planDialog.close();
+});
+
+const desktopDialog = document.getElementById("desktopDialog");
+document.getElementById("desktopGuideButton").addEventListener("click", () => desktopDialog.showModal());
+document.querySelector(".close-desktop-dialog").addEventListener("click", () => desktopDialog.close());
+desktopDialog.addEventListener("click", (event) => {
+  if (event.target === desktopDialog) desktopDialog.close();
+});
+
+document.querySelector(".close-victory-dialog").addEventListener("click", () => victoryDialog.close());
+document.querySelector(".close-victory-action").addEventListener("click", () => victoryDialog.close());
+document.querySelector(".replay-victory-action").addEventListener("click", () => {
+  victoryDialog.close();
+  state.current = 0;
+  state.done = [];
+  state.quizScores = {};
+  save();
+  render();
+  document.querySelector(".game-stage").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+victoryDialog.addEventListener("click", (event) => {
+  if (event.target === victoryDialog) victoryDialog.close();
 });
 
 render();

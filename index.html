@@ -24,11 +24,11 @@
 
         <section class="status-card character-card" aria-live="polite">
           <div class="character-scene" id="characterScene">
-            <img id="characterImage" class="character-image" src="./assets/characters/level-0-novice.png" alt="新手行政俠角色圖" />
+            <img id="characterImage" class="character-image" src="./assets/characters/level-0-novice.png" alt="新手俠角色圖" />
           </div>
           <div>
             <span class="label">修煉等級</span>
-            <strong id="levelLabel">新手行政俠</strong>
+            <strong id="levelLabel">新手俠</strong>
           </div>
           <p class="character-note" id="characterNote">目前裝備：空手入門，先學會安全使用 AI。</p>
           <div class="equipment-row" id="equipmentRow" aria-label="已取得裝備"></div>
@@ -101,7 +101,7 @@
           </div>
         </header>
 
-        <section class="map-band" aria-label="修煉地圖">
+        <section class="map-band" aria-label="修煉地圖" hidden>
           <div class="map-visual" aria-hidden="true">
             <svg viewBox="0 0 940 210">
               <defs>
@@ -220,13 +220,16 @@
             <section class="quick-start" id="quickStart" aria-label="三步開始">
               <div class="quick-start-head">
                 <p class="eyebrow">三步開始</p>
-                <a
-                  href="https://app.notion.com/p/AI-ChatGPT-1f48b2eb7216803ea830de522e3ef98a?pvs=21"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  打開提示詞庫
-                </a>
+                <div class="quick-actions">
+                  <button id="instructorButton" type="button">講師介紹</button>
+                  <a
+                    href="https://app.notion.com/p/AI-ChatGPT-1f48b2eb7216803ea830de522e3ef98a?pvs=21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    打開提示詞庫
+                  </a>
+                </div>
               </div>
               <div class="quick-steps">
                 <article>
@@ -303,6 +306,51 @@
                 先看「左側導覽、模型與工具、輸入框、回答操作、帳號設定」五個區域，再進入實作任務。
               </div>
 
+              <div class="section-subhead">
+                <p class="eyebrow">網頁版工作介面</p>
+              </div>
+
+              <div class="interface-map" aria-label="ChatGPT 介面按鈕位置示意圖">
+                <div class="mock-sidebar">
+                  <button class="map-pin pin-one" type="button" data-interface-topic="nav" aria-label="查看左側導覽說明">1</button>
+                  <div class="mock-brand">ChatGPT</div>
+                  <div class="mock-button">新增對話</div>
+                  <div class="mock-button">專案 / GPTs</div>
+                  <div class="mock-history"></div>
+                  <div class="mock-history short"></div>
+                  <button class="map-pin pin-five" type="button" data-interface-topic="account" aria-label="查看帳號設定說明">5</button>
+                  <div class="mock-user">帳號與設定</div>
+                </div>
+                <div class="mock-main">
+                  <div class="mock-topbar">
+                    <button class="map-pin pin-two" type="button" data-interface-topic="top" aria-label="查看模式與工具入口說明">2</button>
+                    <div class="mock-model">模式 / 工具入口</div>
+                    <div class="mock-share">分享</div>
+                  </div>
+                  <div class="mock-chat">
+                    <button class="map-pin pin-four" type="button" data-interface-topic="answer" aria-label="查看回答操作說明">4</button>
+                    <div class="mock-answer"></div>
+                    <div class="mock-answer narrow"></div>
+                    <div class="mock-actions">複製　分享　重新生成　更多</div>
+                  </div>
+                  <div class="mock-input">
+                    <button class="map-pin pin-three" type="button" data-interface-topic="input" aria-label="查看輸入與送出說明">3</button>
+                    <span>附件</span>
+                    <strong>輸入訊息或貼上提示詞</strong>
+                    <span>語音</span>
+                    <span>送出</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="interface-map-legend" aria-label="介面編號對照">
+                <span><b>1</b>左側導覽</span>
+                <span><b>2</b>模式與工具入口</span>
+                <span><b>3</b>輸入與送出</span>
+                <span><b>4</b>回答操作</span>
+                <span><b>5</b>帳號設定</span>
+              </div>
+
               <div class="interface-resource">
                 <div>
                   <p class="eyebrow">介面補充資料</p>
@@ -317,249 +365,29 @@
                 </a>
               </div>
 
-              <div class="section-subhead">
-                <p class="eyebrow">網頁版工作介面</p>
-                <span>適合課堂示範、跨裝置使用與分享連結</span>
-              </div>
-
-              <div class="interface-map" aria-label="ChatGPT 介面按鈕位置示意圖">
-                <div class="mock-sidebar">
-                  <span class="map-pin pin-one">1</span>
-                  <div class="mock-brand">ChatGPT</div>
-                  <div class="mock-button">新增對話</div>
-                  <div class="mock-button">專案 / GPTs</div>
-                  <div class="mock-history"></div>
-                  <div class="mock-history short"></div>
-                  <span class="map-pin pin-five">5</span>
-                  <div class="mock-user">帳號與設定</div>
-                </div>
-                <div class="mock-main">
-                  <div class="mock-topbar">
-                    <span class="map-pin pin-two">2</span>
-                    <div class="mock-model">模型 / 工具選單</div>
-                    <div class="mock-share">分享</div>
-                  </div>
-                  <div class="mock-chat">
-                    <span class="map-pin pin-four">4</span>
-                    <div class="mock-answer"></div>
-                    <div class="mock-answer narrow"></div>
-                    <div class="mock-actions">複製　重新生成　追問　評分</div>
-                  </div>
-                  <div class="mock-input">
-                    <span class="map-pin pin-three">3</span>
-                    <span>附件</span>
-                    <strong>輸入訊息或貼上提示詞</strong>
-                    <span>語音</span>
-                    <span>送出</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="interface-map-legend" aria-label="介面編號對照">
-                <span><b>1</b>左側導覽</span>
-                <span><b>2</b>上方控制</span>
-                <span><b>3</b>輸入與送出</span>
-                <span><b>4</b>回答操作</span>
-                <span><b>5</b>帳號設定</span>
-              </div>
-
               <div class="desktop-workspace" aria-label="桌面版 ChatGPT 工作介面">
                 <div class="desktop-head">
                   <div>
                     <p class="eyebrow">桌面版工作介面</p>
                     <h4>把 ChatGPT 變成工作時可快速叫出的助理</h4>
                   </div>
-                  <span>適合日常工作流程</span>
+                  <button id="desktopGuideButton" type="button">查看桌面版介紹</button>
                 </div>
-
-                <div class="desktop-layout">
-                  <div class="desktop-window">
-                    <div class="window-bar">
-                      <span></span><span></span><span></span>
-                      <strong>ChatGPT Desktop</strong>
-                    </div>
-                    <div class="window-body">
-                      <aside>
-                        <div></div>
-                        <div></div>
-                        <div class="short"></div>
-                      </aside>
-                      <main>
-                        <div class="desktop-chip">快速啟動</div>
-                        <div class="desktop-line"></div>
-                        <div class="desktop-line short"></div>
-                        <div class="desktop-input">貼上文字、上傳檔案、語音輸入</div>
-                      </main>
-                    </div>
-                  </div>
-                  <div class="desktop-points">
-                    <article>
-                      <strong>快速叫出</strong>
-                      <p>可在工作中快速開啟，不必先切到瀏覽器分頁。</p>
-                    </article>
-                    <article>
-                      <strong>檔案工作</strong>
-                      <p>適合拖曳或上傳文件、表格、圖片後請 AI 整理。</p>
-                    </article>
-                    <article>
-                      <strong>語音與口述</strong>
-                      <p>適合口述想法、會議重點或先做初步筆記。</p>
-                    </article>
-                    <article>
-                      <strong>工作不中斷</strong>
-                      <p>可搭配原本正在使用的文件、簡報、表格流程。</p>
-                    </article>
-                  </div>
-                </div>
-
-                <div class="compare-table" aria-label="網頁版與桌面版差異總結">
-                  <div class="compare-row compare-head">
-                    <span>比較項目</span>
-                    <span>網頁版 ChatGPT</span>
-                    <span>桌面版 ChatGPT</span>
-                  </div>
-                  <div class="compare-row">
-                    <span>進入方式</span>
-                    <span>打開瀏覽器登入使用。</span>
-                    <span>安裝 App 後從電腦直接開啟。</span>
-                  </div>
-                  <div class="compare-row">
-                    <span>適合情境</span>
-                    <span>課堂示範、跨裝置、共用連結。</span>
-                    <span>日常辦公、快速詢問、處理手邊檔案。</span>
-                  </div>
-                  <div class="compare-row">
-                    <span>操作感</span>
-                    <span>像一般網站，容易投影教學。</span>
-                    <span>像工作小工具，可快速切換與呼叫。</span>
-                  </div>
-                  <div class="compare-row">
-                    <span>注意事項</span>
-                    <span>留意瀏覽器分頁、登入帳號與分享資料。</span>
-                    <span>留意是否為官方 App、版本更新與資料安全。</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="interface-accordion">
-                <details open>
-                  <summary><span class="summary-number">1</span>左側導覽區</summary>
-                  <div class="interface-grid">
-                    <article>
-                      <strong>新增對話</strong>
-                      <p>開一個新的聊天主題，適合開始新的任務。</p>
-                    </article>
-                    <article>
-                      <strong>歷史紀錄</strong>
-                      <p>找回之前的對話，可重新命名、歸檔或刪除。</p>
-                    </article>
-                    <article>
-                      <strong>專案 / Projects</strong>
-                      <p>把同一任務的對話、檔案與指令集中管理。</p>
-                    </article>
-                    <article>
-                      <strong>GPTs / Apps</strong>
-                      <p>進入特定工具或連接服務，依任務選擇合適入口。</p>
-                    </article>
-                  </div>
-                </details>
-
-                <details>
-                  <summary><span class="summary-number">2</span>上方控制區</summary>
-                  <div class="interface-grid">
-                    <article>
-                      <strong>模型選擇</strong>
-                      <p>切換適合的模型或模式，例如一般問答、推理、研究或快速回應。</p>
-                    </article>
-                    <article>
-                      <strong>工具選單</strong>
-                      <p>開啟搜尋、檔案分析、圖片、圖表、Canvas 或其他可用工具。</p>
-                    </article>
-                    <article>
-                      <strong>分享</strong>
-                      <p>產生可分享連結；分享前要確認沒有敏感資訊。</p>
-                    </article>
-                    <article>
-                      <strong>更多選項</strong>
-                      <p>管理對話，例如重新命名、移動、封存或刪除。</p>
-                    </article>
-                  </div>
-                </details>
-
-                <details>
-                  <summary><span class="summary-number">3</span>輸入與送出區</summary>
-                  <div class="interface-grid">
-                    <article>
-                      <strong>訊息輸入框</strong>
-                      <p>輸入任務、背景、限制、格式與希望的語氣。</p>
-                    </article>
-                    <article>
-                      <strong>附件 / 上傳</strong>
-                      <p>加入文件、表格、圖片或資料檔；上傳前先確認資安。</p>
-                    </article>
-                    <article>
-                      <strong>語音 / Dictation</strong>
-                      <p>用口述輸入想法、會議重點或初步筆記。</p>
-                    </article>
-                    <article>
-                      <strong>送出 / 停止</strong>
-                      <p>送出提示詞；生成中若方向不對，可停止再修正。</p>
-                    </article>
-                  </div>
-                </details>
-
-                <details>
-                  <summary><span class="summary-number">4</span>回答操作區</summary>
-                  <div class="interface-grid">
-                    <article>
-                      <strong>複製</strong>
-                      <p>把回答複製到文件、信件、表格或簡報草稿中。</p>
-                    </article>
-                    <article>
-                      <strong>重新生成</strong>
-                      <p>請 ChatGPT 換一版答案，適合比較不同寫法。</p>
-                    </article>
-                    <article>
-                      <strong>追問</strong>
-                      <p>要求縮短、改語氣、補表格、列步驟或加查核來源。</p>
-                    </article>
-                    <article>
-                      <strong>評分回饋</strong>
-                      <p>對回答按好或不好，協助系統理解回答是否有幫助。</p>
-                    </article>
-                  </div>
-                </details>
-
-                <details>
-                  <summary><span class="summary-number">5</span>帳號與設定區</summary>
-                  <div class="interface-grid">
-                    <article>
-                      <strong>個人化設定</strong>
-                      <p>設定偏好語氣、工作情境或常用格式。</p>
-                    </article>
-                    <article>
-                      <strong>記憶</strong>
-                      <p>管理 ChatGPT 可能記住的偏好；不需要時可關閉或刪除。</p>
-                    </article>
-                    <article>
-                      <strong>資料控制</strong>
-                      <p>檢查聊天紀錄、訓練資料使用、匯出或刪除資料設定。</p>
-                    </article>
-                    <article>
-                      <strong>方案與功能限制</strong>
-                      <p>不同帳號方案會影響模型、工具、檔案與語音功能可用性。</p>
-                    </article>
-                  </div>
-                </details>
               </div>
             </section>
 
             <div class="info-stack" id="knowledgeList"></div>
 
-            <section class="resource-link-panel" id="modeResource" aria-label="ChatGPT 版本與模式差異整理">
+            <section
+              class="resource-link-panel"
+              id="modeResource"
+              aria-label="ChatGPT 主要方案比較"
+              role="button"
+              tabindex="0"
+            >
               <div>
                 <p class="eyebrow">補充資源</p>
-                <h4>ChatGPT 版本與模式差異整理</h4>
+                <h4>ChatGPT 主要方案比較</h4>
                 <p>搭配第一關理解不同版本、模式與適合情境。</p>
               </div>
               <div class="resource-actions">
@@ -568,7 +396,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  版本與模式差異整理
+                  ChatGPT 方案、工作方式與適用情境
                 </a>
               </div>
             </section>
@@ -605,7 +433,6 @@
                 </div>
                 <pre id="promptText"></pre>
               </div>
-              <button class="primary-button" id="completeButton" type="button">完成本關</button>
               <details class="answer-hint">
                 <summary>解答提示</summary>
                 <div id="answerHint"></div>
@@ -621,6 +448,7 @@
                 <form id="quizForm" class="quiz-form"></form>
                 <button class="secondary-button" id="submitQuiz" type="button">送出測驗</button>
               </section>
+              <button class="primary-button" id="completeButton" type="button">完成本關</button>
             </section>
           </article>
 
@@ -641,6 +469,7 @@
             </section>
           </aside>
         </section>
+        <footer class="version-footer" aria-label="版本資訊">v1.0.0 · 2026.07.16</footer>
       </section>
     </main>
 
@@ -655,6 +484,163 @@
         <h3 id="toolTitle"></h3>
         <p id="toolBody"></p>
         <pre id="toolPrompt"></pre>
+      </div>
+    </dialog>
+
+    <dialog id="interfaceDialog">
+      <div class="dialog-card interface-dialog-card">
+        <button class="icon-button close-interface-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">介面導覽</p>
+        <h3 id="interfaceDialogTitle"></h3>
+        <p id="interfaceDialogBody"></p>
+        <div id="interfaceDialogContent" class="interface-dialog-grid"></div>
+      </div>
+    </dialog>
+
+    <dialog id="instructorDialog">
+      <div class="dialog-card instructor-dialog-card">
+        <button class="icon-button close-instructor-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">講師介紹</p>
+        <h3>林仁傑</h3>
+        <div id="instructorDialogContent" class="instructor-profile"></div>
+      </div>
+    </dialog>
+
+    <dialog id="planDialog">
+      <div class="dialog-card plan-dialog-card">
+        <button class="icon-button close-plan-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">補充資源</p>
+        <h3>ChatGPT 主要方案比較</h3>
+        <div id="planDialogContent" class="plan-table"></div>
+      </div>
+    </dialog>
+
+    <dialog id="desktopDialog">
+      <div class="dialog-card desktop-dialog-card">
+        <button class="icon-button close-desktop-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">桌面版工作介面</p>
+        <h3>把 ChatGPT 變成工作時可快速叫出的助理</h3>
+        <span class="dialog-tag">適合日常工作流程</span>
+
+        <div class="desktop-layout">
+          <div class="desktop-window">
+            <div class="window-bar">
+              <span></span><span></span><span></span>
+              <strong>ChatGPT Desktop</strong>
+            </div>
+            <div class="window-body">
+              <aside>
+                <div></div>
+                <div></div>
+                <div class="short"></div>
+              </aside>
+              <main>
+                <div class="desktop-chip">快速啟動</div>
+                <div class="desktop-line"></div>
+                <div class="desktop-line short"></div>
+                <div class="desktop-input">貼上文字、上傳檔案、語音輸入</div>
+              </main>
+            </div>
+          </div>
+          <div class="desktop-points">
+            <article>
+              <strong>快速叫出</strong>
+              <p>可在工作中快速開啟，不必先切到瀏覽器分頁。</p>
+            </article>
+            <article>
+              <strong>檔案工作</strong>
+              <p>適合拖曳或上傳文件、表格、圖片後請 AI 整理。</p>
+            </article>
+            <article>
+              <strong>語音與口述</strong>
+              <p>適合口述想法、會議重點或先做初步筆記。</p>
+            </article>
+            <article>
+              <strong>工作不中斷</strong>
+              <p>可搭配原本正在使用的文件、簡報、表格流程。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="compare-table" aria-label="網頁版與桌面版差異總結">
+          <div class="compare-row compare-head">
+            <span>比較項目</span>
+            <span>網頁版 ChatGPT</span>
+            <span>桌面版 ChatGPT</span>
+          </div>
+          <div class="compare-row">
+            <span>進入方式</span>
+            <span>打開瀏覽器登入使用。</span>
+            <span>安裝 App 後從電腦直接開啟。</span>
+          </div>
+          <div class="compare-row">
+            <span>適合情境</span>
+            <span>課堂示範、跨裝置、共用連結。</span>
+            <span>日常辦公、快速詢問、處理手邊檔案。</span>
+          </div>
+          <div class="compare-row">
+            <span>操作感</span>
+            <span>像一般網站，容易投影教學。</span>
+            <span>像工作小工具，可快速切換與呼叫。</span>
+          </div>
+          <div class="compare-row">
+            <span>注意事項</span>
+            <span>留意瀏覽器分頁、登入帳號與分享資料。</span>
+            <span>留意是否為官方 App、版本更新與資料安全。</span>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="victoryDialog">
+      <div class="dialog-card victory-dialog-card">
+        <button class="icon-button close-victory-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <div class="victory-confetti" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p class="eyebrow">Mission Complete</p>
+        <h3>恭喜破關，完成 ChatGPT 練功坊</h3>
+        <p>
+          你已完成所有關卡，收集完整徽章，也建立了從提問、實作、查核到課後練習的基本流程。
+        </p>
+        <div class="victory-stats">
+          <article>
+            <strong id="victoryExp">800 / 800</strong>
+            <span>EXP</span>
+          </article>
+          <article>
+            <strong id="victoryBadges">8 / 8</strong>
+            <span>徽章</span>
+          </article>
+          <article>
+            <strong>AI 練功師</strong>
+            <span>完成稱號</span>
+          </article>
+        </div>
+        <div class="victory-actions">
+          <button class="primary-button close-victory-action" type="button">回到課程</button>
+          <button class="secondary-button replay-victory-action" type="button">重新挑戰</button>
+        </div>
       </div>
     </dialog>
 
