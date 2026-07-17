@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChatGPT 練功坊：行政 AI 修煉之旅</title>
+    <title>ChatGPT 練功坊：AI 修煉之旅</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -222,13 +222,7 @@
                 <p class="eyebrow">三步開始</p>
                 <div class="quick-actions">
                   <button id="instructorButton" type="button">講師介紹</button>
-                  <a
-                    href="https://app.notion.com/p/AI-ChatGPT-1f48b2eb7216803ea830de522e3ef98a?pvs=21"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    打開提示詞庫
-                  </a>
+                  <button id="promptLibraryButton" class="primary-action" type="button">打開提示詞庫</button>
                 </div>
               </div>
               <div class="quick-steps">
@@ -377,7 +371,7 @@
                 </div>
               </div>
 
-              <div class="interface-resource">
+              <div class="interface-resource" hidden>
                 <div>
                   <p class="eyebrow">Notion</p>
                   <strong>ChatGPT 常用功能介紹</strong>
@@ -483,6 +477,7 @@
               </section>
               <button class="primary-button" id="completeButton" type="button">完成本關</button>
             </section>
+            <section class="post-task-supplement" id="postTaskSupplement" hidden></section>
           </article>
 
           <aside class="reward-panel">
@@ -502,9 +497,15 @@
             </section>
           </aside>
         </section>
-        <footer class="version-footer" id="versionFooter" aria-label="版本資訊">JARVISLIN V1.3</footer>
+        <footer class="version-footer" id="versionFooter" aria-label="版本資訊">JARVISLIN V1.24</footer>
       </section>
     </main>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="回到頁面最上方" title="回到最上方">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 5l-7 7m7-7l7 7M12 5v14" />
+      </svg>
+    </button>
 
     <dialog id="toolDialog">
       <div class="dialog-card">
@@ -544,6 +545,19 @@
         <p class="eyebrow">講師介紹</p>
         <h3>林仁傑</h3>
         <div id="instructorDialogContent" class="instructor-profile"></div>
+      </div>
+    </dialog>
+
+    <dialog id="promptLibraryDialog">
+      <div class="dialog-card prompt-library-dialog-card">
+        <button class="icon-button close-prompt-library-dialog" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+        <p class="eyebrow">提示詞庫</p>
+        <h3>複製一張卡片，再換成自己的內容</h3>
+        <div class="prompt-library-scroll" id="promptLibraryContent"></div>
       </div>
     </dialog>
 
@@ -654,6 +668,12 @@
             <span>留意瀏覽器分頁、登入帳號與分享資料。</span>
             <span>留意是否為官方 App、版本更新與資料安全。</span>
           </div>
+        </div>
+        <div class="desktop-footnote">
+          <strong>小補充：ChatGPT Work / Codex 怎麼分</strong>
+          <p>
+            ChatGPT Work 適合研究資料、整理檔案、產出文件、試算表、簡報與報告；Codex 主要給工程師處理程式、除錯、審查與軟體專案。本課只需知道差異，不列為實作重點。
+          </p>
         </div>
       </div>
     </dialog>

@@ -401,73 +401,97 @@
     story: "課程三條底線：不貼敏感資料、不直接相信答案、不把 AI 內容直接對外發布。",
     knowledge: [
       {
-        title: "不貼敏感資料",
-        body: "學生成績、身分證號、健康資料、人事考績與申訴內容不直接上傳；若要請 AI 協助，先去識別化。",
+        title: "使用前先檢查設定",
+        body: "先把個人化與資料控制當作第一道防護。設定可以降低資料被記憶或用於模型改善的機率，但不能取代去識別化與人工判斷。",
         points: [
-          "先把姓名、學號、電話、Email、地址與可識別資訊替換成代稱。",
-          "保留任務判斷需要的背景，但移除能指向特定個人的線索。"
+          "先檢查個人化設定：記憶功能是否開啟、是否有不該被記住的內容。",
+          "再檢查資料控制：是否關閉「為所有人改善模型」。",
+          "敏感任務可改用暫時聊天，但仍不要貼個資、合約、公文、成績或研究原始資料。"
         ],
-        example: {
-          title: "去識別化範例",
-          beforeTitle: "原始資料，不建議直接貼上",
-          before: "王小明，學號 11312345，因家庭經濟困難申請補助，需要協助確認資料是否齊全。",
-          afterTitle: "去識別化後再使用",
-          after: "學生 A，某學年度新生，因家庭因素申請補助，需要協助確認資料是否齊全。"
+        details: {
+          title: "查看設定防護步驟與畫面",
+          image: {
+            src: "./assets/screenshots/chatgpt-data-controls.png",
+            alt: "ChatGPT 資料控制設定畫面示意圖"
+          },
+          sections: [
+            {
+              title: "建議操作路徑",
+              items: [
+                "點選左下角帳號或設定入口。",
+                "進入「設定」。",
+                "檢查「個人化」：確認記憶功能是否符合課堂或工作需求。",
+                "檢查「資料控制」：關閉「為所有人改善模型」。",
+                "<span class=\"temp-chat-inline\" aria-hidden=\"true\"></span>若只是臨時詢問敏感邊界，可改用暫時聊天。"
+              ]
+            },
+            {
+              title: "提醒",
+              items: [
+                "設定是第一道防護，不是免責保證。",
+                "只要資料離開本機、上傳到雲端，就仍有留存、管理權限或第三方工具風險。"
+              ]
+            }
+          ]
         }
       },
       {
-        title: "資安風險提醒",
-        body: "教育版或校園授權帳號通常比個人免費版更適合教學使用，但不代表 100% 安全。即使資料不作為模型訓練素材，只要內容上傳到雲端，就仍可能涉及管理權限、短暫留存、第三方工具與外洩風險。",
+        title: "資料能不能交給 AI",
+        body: "先判斷資料是否包含個資、未公開資訊、合約、公文、研究資料或系統資訊；能不傳就不傳，必要時先去識別化。",
         points: [
-          "先問自己：這份資料如果明天出現在公開社群或競爭對手手上，會不會出事？",
-          "可以使用：已公開教材、通用知識、虛構範例資料、去識別化後的練習素材。",
-          "不要使用：真實個資、未發表研究、系統帳密、原始碼、合約、公文、預算與法律敏感資料。"
+          "綠燈：已公開教材、通用知識、虛構範例資料、去識別化後的練習素材。",
+          "黃燈：需要整理的正式資料，先刪除姓名、學號、電話、Email、地址與可識別資訊。",
+          "紅燈：真實個資、未發表研究、系統帳密、原始碼、合約、公文、預算與法律敏感資料。"
+        ],
+        detailGroups: [
+          {
+            title: "查看去識別化範例",
+            sections: [
+              {
+                title: "原始資料，不建議直接貼上",
+                items: ["王小明，學號 11312345，因家庭經濟困難申請補助，需要協助確認資料是否齊全。"]
+              },
+              {
+                title: "去識別化後再使用",
+                items: ["學生 A，某學年度新生，因家庭因素申請補助，需要協助確認資料是否齊全。"]
+              }
+            ]
+          },
+          {
+            title: "查看高風險情境表",
+            headers: ["情境", "高風險操作", "主要風險"],
+            rows: [
+              ["個資處理", "上傳學生名冊、成績單、教職員聯絡資訊或會議簽到表，請 AI 分組、調分或寫評語。", "可能違反個資保護要求；真實身分資料一旦上傳，就有外洩風險。"],
+              ["研究與實驗數據", "上傳未發表 Excel 原始數據、問卷結果或實驗資料，請 AI 統計、畫圖或找趨勢。", "研究成果在發表前離開本機，可能造成提前外洩或影響專利與發表。"],
+              ["程式碼除錯", "貼上校園系統、實驗室網站或後端腳本，請 AI 抓 Bug 或改寫程式。", "程式碼可能含 API Key、資料庫密碼、伺服器位置或系統漏洞。"],
+              ["敏感公文與合約", "貼上採購合約、產學合作草案、校務機密公文，請 AI 潤飾或翻譯。", "可能暴露商業機密、預算金額、法律條款與校務決策。"],
+              ["錄音與逐字稿", "上傳校務會議、評鑑會議或個別指導錄音，請 AI 轉文字與摘要。", "語音可能包含人事、未公開決策與特定人士隱私，風險高於一般文字。"]
+            ]
+          },
+          {
+            title: "查看隱藏風險表",
+            headers: ["風險來源", "為什麼重要", "避險做法"],
+            rows: [
+              ["學校管理權限", "教育版帳號多由學校管理，管理者可能依權限查看使用紀錄、指令或上傳檔案。", "不要輸入個人隱私、校務機密或未發表論文內容。"],
+              ["雲端短暫留存", "即使不訓練模型，資料仍可能因安全、稽核或服務需求短暫保留。", "能不傳就不傳；必要時先去識別化與刪除敏感欄位。"],
+              ["GPTs / 外掛程式", "第三方 GPTs 或 Actions 可能把資料送到外部開發者服務，未必受校方合約保護。", "只在確認可信來源與資料範圍後使用；敏感資料不要交給第三方工具。"],
+              ["智慧財產權", "AI 生成文字、圖表或架構可能與既有內容相似，直接公開可能引發著作權或學術倫理問題。", "公開前查核來源、改寫成自己的內容，並保留人工審閱流程。"]
+            ]
+          }
         ]
       },
       {
-        title: "5 個高風險操作情境",
-        body: "看似只是整理、翻譯或摘要，實際上可能已經把個資、研究成果、系統資訊或校務機密交給外部雲端服務。",
-        details: {
-          title: "查看高風險情境表",
-          headers: ["情境", "高風險操作", "主要風險"],
-          rows: [
-            ["個資處理", "上傳學生名冊、成績單、教職員聯絡資訊或會議簽到表，請 AI 分組、調分或寫評語。", "可能違反個資保護要求；真實身分資料一旦上傳，就有外洩風險。"],
-            ["研究與實驗數據", "上傳未發表 Excel 原始數據、問卷結果或實驗資料，請 AI 統計、畫圖或找趨勢。", "研究成果在發表前離開本機，可能造成提前外洩或影響專利與發表。"],
-            ["程式碼除錯", "貼上校園系統、實驗室網站或後端腳本，請 AI 抓 Bug 或改寫程式。", "程式碼可能含 API Key、資料庫密碼、伺服器位置或系統漏洞。"],
-            ["敏感公文與合約", "貼上採購合約、產學合作草案、校務機密公文，請 AI 潤飾或翻譯。", "可能暴露商業機密、預算金額、法律條款與校務決策。"],
-            ["錄音與逐字稿", "上傳校務會議、評鑑會議或個別指導錄音，請 AI 轉文字與摘要。", "語音可能包含人事、未公開決策與特定人士隱私，風險高於一般文字。"]
-          ]
-        }
-      },
-      {
-        title: "隱藏風險也要留意",
-        body: "安全不只看模型是否訓練資料，也要看帳號管理、資料留存、第三方工具與輸出內容是否可公開使用。",
-        details: {
-          title: "查看隱藏風險表",
-          headers: ["風險來源", "為什麼重要", "避險做法"],
-          rows: [
-            ["學校管理權限", "教育版帳號多由學校管理，管理者可能依權限查看使用紀錄、指令或上傳檔案。", "不要輸入個人隱私、校務機密或未發表論文內容。"],
-            ["雲端短暫留存", "即使不訓練模型，資料仍可能因安全、稽核或服務需求短暫保留。", "能不傳就不傳；必要時先去識別化與刪除敏感欄位。"],
-            ["GPTs / 外掛程式", "第三方 GPTs 或 Actions 可能把資料送到外部開發者服務，未必受校方合約保護。", "只在確認可信來源與資料範圍後使用；敏感資料不要交給第三方工具。"],
-            ["智慧財產權", "AI 生成文字、圖表或架構可能與既有內容相似，直接公開可能引發著作權或學術倫理問題。", "公開前查核來源、改寫成自己的內容，並保留人工審閱流程。"]
-          ]
-        }
-      },
-      {
-        title: "查證三步驟",
+        title: "查證與責任邊界",
         points: [
           "來源是什麼？是否來自官方網站、校內規章或正式文件。",
           "日期是什麼？是否為最新版本。",
-          "是否能直接採用？是否仍需承辦人、主管或權責單位確認。"
+          "是否能直接採用？是否仍需承辦人、主管或權責單位確認。",
+          "AI 只能協助整理，不能代替核決、採購決定或正式承諾。"
         ],
         details: {
           title: "常見需要查證的內容",
           items: ["校內規章", "教育部政策", "報名截止日期", "採購規定", "差旅費標準"]
         }
-      },
-      {
-        title: "責任邊界",
-        body: "AI 只能協助整理，不能代替核決、採購決定或正式承諾。正式對外發布前，仍需由承辦人或主管確認。"
       }
     ],
     taskTitle: "找出個資與錯誤資訊",
@@ -491,48 +515,160 @@
     title: "進階工具與課後資源",
     badge: "課後練功徽章",
     quest: "把課堂練習帶回日常工作",
-    story: "最後一關不是結束，而是把提示詞庫、進階工具、最新功能觀念與 5 天練習帶回去，讓 ChatGPT 真的進入日常流程。",
+    story: "最後一關不是結束，而是把提示詞庫、進階工具、最新功能觀念與練習包帶回去，讓 ChatGPT 真的進入日常流程。",
     knowledge: [
-      ["進階工具", "Canva、Notion、雲端文件、PDF 工具與資料分析類 GPT 可作為延伸"],
+      {
+        title: "進階工具",
+        body: "進階工具不是要一次全學會，而是依任務選擇：要整理資料就用檔案分析，要找內部資料就連接工具，要固定流程就建立自訂 GPT。",
+        points: [
+          "先判斷任務：寫作、整理、分析、設計、研究或固定流程。",
+          "再選入口：ChatGPT 內建工具、外掛 / Apps、雲端文件、Canva、Notion 或自訂 GPT。",
+          "最後檢查權限與資安：不要把敏感資料交給不熟悉的第三方工具。"
+        ],
+        detailGroups: [
+          {
+            title: "如何使用進階工具",
+            headers: ["工具類型", "適合任務", "使用方式"],
+            rows: [
+              ["檔案分析", "PDF、Word、Excel、CSV、問卷、會議資料", "用輸入框旁的加號上傳檔案，再要求摘要、分類、比較或產生表格。"],
+              ["Canva", "海報、活動視覺、簡報素材、社群圖片", "先請 ChatGPT 產出文案與版面方向，再到 Canva 製作或調整設計。"],
+              ["Notion", "提示詞庫、課程資料、專案追蹤、知識整理", "把常用提示詞、課程素材與工作流程分類保存，作為課後複習資料庫。"],
+              ["雲端文件", "Google Drive、OneDrive、SharePoint 等文件整理", "透過已授權的 Apps / Plugins 連接資料來源，讓 ChatGPT 查找、摘要或比對內容。"],
+              ["資料分析 GPT", "表格統計、問卷分析、圖表建議", "選擇適合資料分析的 GPT 或工具，輸入分析目標與欄位說明後再上傳資料。"]
+            ]
+          },
+          {
+            title: "如何串外掛程式 / Apps",
+            sections: [
+              {
+                title: "操作概念",
+                items: [
+                  "到 Plugin directory 或 ChatGPT 的 Apps / Plugins 入口找到需要的工具。",
+                  "依畫面指示連接帳號，通常需要登入並授權資料讀取或操作權限。",
+                  "使用時可在對話中用 @ 提及工具，或從加號、更多選單選擇可用工具。",
+                  "若是學校 Edu 或團隊帳號，能否安裝與使用通常會受到管理員設定影響。"
+                ]
+              },
+              {
+                title: "資安提醒",
+                items: [
+                  "只連接可信任工具，連接前先看它會讀取哪些資料。",
+                  "有寫入、建立、刪除資料能力的工具，送出前要再次確認。",
+                  "涉及學生個資、成績、合約、未公開研究資料時，不建議交給第三方工具處理。"
+                ]
+              },
+              {
+                title: "實際範例",
+                items: [
+                  "雲端文件查找：連接 Google Drive、OneDrive 或 SharePoint 後，請 ChatGPT 找出某份會議資料並整理重點。適合找歷年活動資料、會議紀錄或課程文件。",
+                  "Canva 製作素材：先請 ChatGPT 產生活動海報文案、簡報頁面大綱或社群貼文，再到 Canva 套版設計與輸出。",
+                  "Notion 知識整理：把提示詞、課程資源、常用行政流程存到 Notion，再用 ChatGPT 協助整理成分類清單或教學步驟。"
+                ]
+              },
+              {
+                title: "公開學習資源",
+                items: [
+                  "<a href=\"https://help.openai.com/en/articles/11487775-apps-in-chatgpt\" target=\"_blank\" rel=\"noreferrer\">OpenAI Help：Apps / Plugins in ChatGPT</a>",
+                  "<a href=\"https://help.openai.com/en/articles/8554407-gpts-faq\" target=\"_blank\" rel=\"noreferrer\">OpenAI Help：GPTs 是什麼</a>",
+                  "<a href=\"https://help.openai.com/en/articles/9442513\" target=\"_blank\" rel=\"noreferrer\">OpenAI Help：Configuring actions in GPTs</a>",
+                  "影片搜尋關鍵字：ChatGPT Apps 教學、ChatGPT Plugins 教學、ChatGPT 自訂 GPT 教學、ChatGPT 連接 Google Drive、ChatGPT Canva 教學。"
+                ]
+              }
+            ]
+          },
+          {
+            title: "自訂 GPT 是什麼？怎麼操作？",
+            sections: [
+              {
+                title: "一句話理解",
+                items: [
+                  "自訂 GPT 就是把 ChatGPT 設定成某個固定用途的版本，例如「校內公告助手」、「課程活動設計助理」或「會議紀錄整理員」。",
+                  "它可以包含固定指令、對話開場、上傳的知識資料，以及可啟用的能力或工具。"
+                ]
+              },
+              {
+                title: "基本建立流程",
+                items: [
+                  "從 Explore GPTs / 建立 GPT 入口開始。",
+                  "寫清楚這個 GPT 的用途、語氣、限制與不能做的事。",
+                  "放入可公開或已去識別化的知識檔案，例如常用格式、範例通知、課程模板。",
+                  "設定開場提示詞，讓使用者知道可以怎麼問。",
+                  "測試幾個真實情境，確認回答是否符合格式與資安要求。"
+                ]
+              },
+              {
+                title: "實際範例",
+                items: [
+                  "校內公告助手：放入公告格式、常用語氣、活動資訊欄位；開場提示可用「請貼上活動資訊，我會整理成校內公告」。",
+                  "會議紀錄整理員：放入會議紀錄格式、待辦欄位與負責人欄位；開場提示可用「請貼上逐字稿或討論筆記，我會整理摘要、決議與待辦」。",
+                  "課程活動設計助理：放入課程流程模板、學習單格式與活動案例；開場提示可用「請輸入課程主題、對象與時間，我會產出活動流程與討論題」。",
+                  "Rubric 評分規準助理：放入作業說明、評分面向範例與回饋句型；開場提示可用「請貼上作業要求，我會建立評分規準與回饋語句」。"
+                ]
+              }
+            ]
+          },
+          {
+            title: "使用範例",
+            headers: ["對象", "範例", "可用工具", "做法"],
+            rows: [
+              ["校園行政", "活動通知產生器", "自訂 GPT / Notion 提示詞庫", "放入校內通知格式與活動資訊欄位，固定輸出主旨、說明、時間地點、注意事項。"],
+              ["校園行政", "會議資料整理", "檔案分析 / 雲端文件", "上傳會議紀錄或長篇文字，請 AI 產出摘要、決議、待辦、負責人與期限。"],
+              ["校園行政", "報名表與滿意度分析", "Excel / CSV 分析工具", "上傳去識別化表格，請 AI 統計人數、出席率、異常值與圖表建議。"],
+              ["老師", "課程活動設計助理", "自訂 GPT / ChatGPT", "輸入課程主題、學生程度與時間，產出流程、討論題、活動步驟與教師提醒。"],
+              ["老師", "學習單與題目生成", "ChatGPT / Notion 題庫", "提供教學目標，請 AI 產出題目、提示、參考答案與延伸討論。"],
+              ["老師", "評分規準 Rubric", "ChatGPT / 文件工具", "貼上作業要求，請 AI 產出評分面向、等級描述與回饋句型。"]
+            ]
+          }
+        ]
+      },
       {
         title: "最新功能",
         body: "功能名稱與入口會隨帳號方案、版本與介面更新而不同。使用前先判斷任務需要什麼：搜尋、整理檔案、產生圖片、語音輸入、專案管理或排程，再到實際帳號中找對應入口。"
       },
       {
-        title: "Codex 理解",
-        body: "OpenAI 目前將 Codex 描述為 ChatGPT 中的 coding agent，可跨 ChatGPT、編輯器與終端機使用，並由 ChatGPT 帳號連接。對本課而言，可以用一句話理解：ChatGPT 幫你處理文字與資料，Codex 幫工程師處理程式與軟體專案。"
-      },
-      {
-        title: "5 天練習",
-        body: "改寫公告、整理會議、分析表格、製作簡報大綱、建立提示詞庫。",
-        details: {
-          title: "查看 5 天練習表",
-          headers: ["天數", "練習任務", "完成標準"],
-          rows: [
-            ["Day 1", "改寫公告或 Email", "產出正式版、親切版、簡短版。"],
-            ["Day 2", "整理會議紀錄", "產出摘要、決議、待辦、期限。"],
-            ["Day 3", "分析一份表格", "找出趨勢、異常值、圖表建議。"],
-            ["Day 4", "製作簡報大綱", "產出 5 頁標題、重點、講者備註。"],
-            ["Day 5", "建立提示詞庫", "把常用提示詞依用途分類保存。"]
-          ]
-        }
+        title: "AI 微練習",
+        body: "不用另外排一大段時間，先從最常見、最重複的小任務開始。行政與教學情境都可以用零碎時間練習，讓 ChatGPT 慢慢進入日常流程。",
+        detailGroups: [
+          {
+            title: "一般任務 10 分鐘練習包",
+            headers: ["時間", "練習任務", "完成標準"],
+            rows: [
+              ["3 分鐘", "改寫一段公告或 Email", "產出正式版與簡短版各一份。"],
+              ["5 分鐘", "整理一段會議文字", "產出摘要、決議與待辦事項。"],
+              ["8 分鐘", "分析一小段表格資料", "找出趨勢、異常值與圖表建議。"],
+              ["10 分鐘", "製作一份簡報或報告大綱", "產出 5 頁標題、重點與講者備註。"],
+              ["10 分鐘", "整理一張常用提示詞卡", "把提示詞依用途分類保存。"]
+            ]
+          },
+          {
+            title: "教師情境 10 分鐘練習包",
+            headers: ["時間", "練習方式", "完成標準"],
+            rows: [
+              ["3 分鐘", "把一段課程說明改成學生看得懂的版本", "產出「正式版／學生版」各一份"],
+              ["5 分鐘", "請 ChatGPT 幫一堂課列 3 個討論題", "題目可直接放到課堂使用"],
+              ["8 分鐘", "把一份作業要求改成評分規準", "產出 3 個評分面向"],
+              ["10 分鐘", "把學生常見錯誤整理成回饋語句", "產出可複製貼上的回饋模板"],
+              ["15 分鐘", "產出一頁課程活動流程", "包含時間、活動、教師提醒"]
+            ]
+          }
+        ]
       }
     ],
-    taskTitle: "設計自己的 5 天練習表",
-    taskBody: "請依自己的工作情境，設計 5 天課後練習與完成標準。",
-    prompt: `請幫我設計一份 5 天 ChatGPT 課後練習表。
+    taskTitle: "設計自己的 10 分鐘練習包",
+    taskBody: "請依自己的工作情境，設計可用零碎時間完成的課後練習與完成標準。",
+    prompt: `請幫我設計一份 ChatGPT 10 分鐘課後練習包。
 
 我的工作情境：
 [請填入你的工作內容或常見任務]
 
-請安排：
-1. Day 1：改寫公告或 Email
-2. Day 2：整理會議紀錄
-3. Day 3：分析一份表格
-4. Day 4：製作簡報或報告大綱
-5. Day 5：建立常用提示詞庫
+請安排 5 個可在 3 到 15 分鐘內完成的小練習，例如：
+1. 改寫公告或 Email
+2. 整理會議紀錄
+3. 分析一小段表格資料
+4. 製作簡報或報告大綱
+5. 建立常用提示詞卡
 
-請用表格回答，欄位包含：天數、練習任務、建議提示詞、完成標準、人工檢查重點。`
+請用表格回答，欄位包含：時間、練習任務、建議提示詞、完成標準、人工檢查重點。`
   }
 ];
 
@@ -591,8 +727,8 @@ const answerHints = [
     "安全做法：先去識別化，再請 AI 整理；正式發布前由承辦人或主管確認。"
   ],
   [
-    "建議工具：ChatGPT、提示詞庫、Notion、Canva、雲端文件或 PDF 工具。方法：把課堂任務改成自己的 5 天練習。",
-    "Day 1 公告 Email，Day 2 會議紀錄，Day 3 表格分析，Day 4 簡報大綱，Day 5 建提示詞庫。",
+    "建議工具：ChatGPT、提示詞庫、Notion、Canva、雲端文件或 PDF 工具。方法：把課堂任務改成自己的 10 分鐘練習包。",
+    "可以從公告 Email、會議紀錄、表格分析、簡報大綱、提示詞卡開始。",
     "最新功能不用背名稱，改用任務判斷：要研究、整理、建頁面、語音、圖表還是程式。",
     "完成標準：每一天都有練習任務、建議提示詞、完成標準與人工檢查重點。"
   ]
@@ -656,6 +792,60 @@ const quizQuestions = [
     ["建立常用提示詞庫有助於下次替換情境後重複使用。", true]
   ]
 ];
+
+const finalPostTaskSupplement = {
+  title: "Q&A：YouTube 影片可以交給 ChatGPT 分析嗎？",
+  body: "可以，但最穩的做法不是只丟影片連結，而是提供字幕稿、逐字稿或影片摘要，讓 ChatGPT 根據文字內容整理重點。",
+  detailGroups: [
+    {
+      title: "最穩的操作方式",
+      headers: ["步驟", "做法"],
+      rows: [
+        ["1", "打開 YouTube 影片，確認影片有字幕或逐字稿。"],
+        ["2", "取得字幕稿、逐字稿，或先整理成文字檔。"],
+        ["3", "把字幕貼到 ChatGPT，或上傳成文字檔。"],
+        ["4", "請 ChatGPT 整理重點、章節、QA、簡報大綱或教學活動。"],
+        ["5", "若內容涉及政策、日期、數據或人物資訊，最後仍要回到原影片或官方資料查證。"]
+      ]
+    },
+    {
+      title: "只有 YouTube 連結時怎麼辦？",
+      sections: [
+        {
+          title: "可以先試，但不要保證成功",
+          items: [
+            "可先貼 YouTube 連結請 ChatGPT 分析，但是否能讀到內容會受帳號功能、影片權限、字幕是否公開與平台限制影響。",
+            "如果 ChatGPT 無法直接讀取影片，請改提供字幕稿、逐字稿、影片摘要或手動摘錄重點。",
+            "教學時建議說法：ChatGPT 分析影片最可靠的方式，是提供影片字幕或逐字稿；連結可以先試，但不是每次都能成功。"
+          ]
+        }
+      ]
+    },
+    {
+      title: "可搭配的工具",
+      headers: ["工具", "適合用途", "提醒"],
+      rows: [
+        ["YouTube 內建逐字稿", "快速取得公開字幕內容", "適合短影片或有完整字幕的影片。"],
+        ["ChatGPT", "整理字幕、摘要重點、轉成簡報或產生討論題", "最好提供文字內容，不要只依賴連結。"],
+        ["NotebookLM", "把影片資料變成學習筆記、問答或摘要", "適合做課前預習、研究整理或教材補充。"],
+        ["字幕下載或轉錄工具", "取得 TXT、SRT、VTT 字幕檔", "使用第三方工具前要注意影片權限與資料安全。"],
+        ["語音轉文字工具", "影片沒有字幕時先產生逐字稿", "轉錄後仍要檢查人名、專有名詞、數字與時間。"]
+      ]
+    }
+  ],
+  prompt: `請根據以下 YouTube 影片字幕內容，幫我整理：
+
+1. 影片主題
+2. 5 個重點摘要
+3. 適合教學引用的段落
+4. 可轉成簡報的章節大綱
+5. 適合學員練習的提問
+6. 需要查證或可能過時的資訊
+
+字幕如下：
+[貼上字幕稿]`
+};
+
 const icons = {
   village:
     '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9 20v-6h6v6"/></svg>',
@@ -982,6 +1172,212 @@ const instructorProfile = [
   ]
 ];
 
+const promptLibraryHowTo = [
+  ["1", "先選你的任務類型，例如寫作、會議、行政、資料分析"],
+  ["2", "複製對應提示詞卡"],
+  ["3", "把 [方括號] 換成自己的內容"],
+  ["4", "如果回答不理想，要求它改語氣、縮短、補表格或重排"]
+];
+
+const promptLibrarySections = [
+  {
+    title: "萬用卡",
+    cards: [
+      {
+        title: "回聲提示詞卡",
+        use: "不知道怎麼問、問題還很模糊時。",
+        prompt:
+          "如果我的請求不夠清楚，請先幫我改寫成一個更清楚、更有效的提示詞，並簡單說明你改了哪些地方，再開始回答。"
+      },
+      {
+        title: "萬用任務模板卡",
+        use: "任何任務的起手式。",
+        prompt:
+          "請你扮演 [角色]，協助我完成 [任務]。\n背景是：[補充背景]。\n對象是：[讀者或使用者]。\n請注意：[限制條件，例如字數、語氣、格式、不要做什麼]。\n最後請用 [輸出格式，例如表格、條列、段落、Email、簡報大綱] 呈現。"
+      }
+    ]
+  },
+  {
+    title: "寫作與潤稿卡",
+    cards: [
+      {
+        title: "卡片 01｜草稿變清楚",
+        use: "公告、Email、活動文案、說明文字。",
+        prompt:
+          "請你扮演一位文字編輯，幫我改寫以下文字，讓它更清楚、自然、有禮貌。請保留原本意思，不要加入沒有提供的新資訊。請提供「修改後版本」與「修改重點」。\n\n文字如下：\n[貼上文字]"
+      },
+      {
+        title: "卡片 02｜三種語氣版本",
+        use: "想比較正式、親切、簡短三種寫法時。",
+        prompt:
+          "請幫我將以下內容改寫成三種版本：正式版、親切版、簡短版。對象是 [對象]，用途是 [用途]。\n\n內容如下：\n[貼上內容]"
+      },
+      {
+        title: "卡片 03｜Email 草稿",
+        use: "快速產生行政信件初稿。",
+        prompt:
+          "請你扮演大學行政助理，幫我撰寫一封 Email。收件人是 [收件人]，目的為 [目的]，需要包含 [重點1、重點2、重點3]。語氣請正式但親切，字數控制在 [字數] 字內，最後加上一句禮貌結尾。"
+      }
+    ]
+  },
+  {
+    title: "會議紀錄卡",
+    cards: [
+      {
+        title: "卡片 04｜正式會議紀錄",
+        use: "把逐字稿、討論紀錄整理成正式紀錄。",
+        prompt:
+          "請你扮演會議紀錄整理助理，根據以下內容整理成正式會議紀錄。請包含：會議主題、重點摘要、討論事項、決議事項、待辦事項、負責人、期限。若資料中沒有負責人或期限，請標示「未指定」。\n\n內容如下：\n[貼上會議內容]"
+      },
+      {
+        title: "卡片 05｜待辦事項表",
+        use: "會後追蹤任務。",
+        prompt:
+          "請從以下會議內容中整理出待辦事項。請用表格呈現，欄位包含：事項、負責人、期限、優先順序、備註。若資訊不足，請在備註中標示需要補問的問題。\n\n內容如下：\n[貼上會議內容]"
+      },
+      {
+        title: "卡片 06｜主管摘要版",
+        use: "給主管快速掌握重點。",
+        prompt:
+          "請把以下會議內容整理成主管可快速閱讀的摘要，長度控制在 300 字內，包含重要決議、風險提醒、下一步行動。\n\n內容如下：\n[貼上會議內容]"
+      }
+    ]
+  },
+  {
+    title: "行政公告卡",
+    cards: [
+      {
+        title: "卡片 07｜活動公告",
+        use: "活動通知、報名公告、課程公告。",
+        prompt:
+          "請你扮演學校行政人員，幫我撰寫一則活動公告。活動名稱是 [活動名稱]，對象是 [參加對象]，時間是 [時間]，地點是 [地點]，報名方式是 [報名方式]。語氣正式清楚，請用條列方式整理重要資訊。"
+      },
+      {
+        title: "卡片 08｜報名提醒",
+        use: "截止日前提醒學員、同仁或學生。",
+        prompt:
+          "請幫我撰寫一則報名提醒通知。對象是 [對象]，活動是 [活動名稱]，截止日期是 [日期]。請用溫和提醒的語氣，內容不要太長，並加入「如已完成報名，請忽略此訊息」。"
+      },
+      {
+        title: "卡片 09｜公文草稿",
+        use: "先產出可修改的公文初稿。",
+        prompt:
+          "請你協助我撰寫一份公文草稿。主旨是 [主旨]，說明包含 [說明1、說明2、說明3]，辦法包含 [辦法1、辦法2]。請使用正式、清楚、簡潔的行政語氣。這只是草稿，請提醒我最後仍需依機關格式與主管意見修正。"
+      }
+    ]
+  },
+  {
+    title: "Excel 與資料分析卡",
+    cards: [
+      {
+        title: "卡片 10｜分析方向",
+        use: "拿到資料後，不知道可以看什麼。",
+        prompt:
+          "我有一份 [資料類型]，欄位包含 [欄位名稱]。請你幫我規劃可以分析的方向，至少列出 5 個問題，並說明每個問題適合用哪一種圖表呈現。"
+      },
+      {
+        title: "卡片 11｜問卷摘要",
+        use: "課程回饋、滿意度調查、活動問卷。",
+        prompt:
+          "請根據我上傳的問卷資料，整理一份摘要。請包含：整體滿意度、最高分項目、最低分項目、常見意見、可改善建議。請用適合放進簡報的語氣呈現。"
+      },
+      {
+        title: "卡片 12｜資料清理",
+        use: "檢查表格是否有空白、重複或格式問題。",
+        prompt:
+          "請檢查我上傳的表格資料，幫我找出可能需要清理的地方，例如空白值、重複資料、格式不一致、異常值。請用表格列出問題、影響、建議處理方式。"
+      }
+    ]
+  },
+  {
+    title: "簡報與課程設計卡",
+    cards: [
+      {
+        title: "卡片 13｜簡報大綱",
+        use: "快速產生簡報架構。",
+        prompt:
+          "請你扮演課程設計助理，幫我設計一份 [主題] 的簡報大綱，對象是 [對象]，時間是 [分鐘數] 分鐘。請規劃 [頁數] 頁，每頁包含：頁面標題、三個重點、講者備註。"
+      },
+      {
+        title: "卡片 14｜文章變簡報",
+        use: "把長文、報告、教材變成簡報。",
+        prompt:
+          "請將以下文章整理成簡報大綱。請分成 6 頁，每頁包含標題、重點條列、適合搭配的圖片或圖表建議。\n\n文章如下：\n[貼上文章]"
+      },
+      {
+        title: "卡片 15｜課堂練習",
+        use: "設計學員可以現場操作的任務。",
+        prompt:
+          "請根據 [課程主題]，設計 3 個適合初學者的課堂練習。每個練習請包含：目標、操作步驟、預估時間、學員產出、教師提醒事項。"
+      }
+    ]
+  },
+  {
+    title: "學習複習卡",
+    cards: [
+      {
+        title: "卡片 16｜白話解釋",
+        use: "把難概念變簡單。",
+        prompt:
+          "請用初學者聽得懂的方式解釋 [概念]。請先用 100 字內說明，再舉一個生活例子，最後列出 3 個常見誤解。"
+      },
+      {
+        title: "卡片 17｜產生複習題",
+        use: "課後測驗、學習單、複習卡。",
+        prompt:
+          "請根據以下教材內容，幫我產生 10 題複習題，包含 5 題選擇題、3 題問答題、2 題情境應用題。請附上答案與簡短解析。\n\n教材內容如下：\n[貼上教材]"
+      },
+      {
+        title: "卡片 18｜學習計畫",
+        use: "自學一個新工具或新主題。",
+        prompt:
+          "我想在 [時間長度] 內學會 [主題]，目前程度是 [程度]，每天可投入 [時間]。請幫我規劃一份循序漸進的學習計畫，包含每天任務、練習方式、檢核標準。"
+      }
+    ]
+  },
+  {
+    title: "圖片、設計與 Notion 整理卡",
+    cards: [
+      {
+        title: "卡片 19｜海報文案",
+        use: "活動海報、社群貼文、簡報封面。",
+        prompt:
+          "請幫我設計 [活動名稱] 的海報文案。活動對象是 [對象]，活動特色是 [特色]，希望語氣 [語氣]。請提供：主標題 5 個、短文案 3 個、行動呼籲 3 個。"
+      },
+      {
+        title: "卡片 20｜圖片生成描述",
+        use: "把需求改成 AI 圖片提示詞。",
+        prompt:
+          "請幫我把以下需求改寫成適合 AI 生成圖片的描述。圖片用途是 [用途]，風格是 [風格]，畫面需要包含 [元素]，不要包含 [排除元素]。請提供 3 個版本。\n\n需求如下：\n[貼上需求]"
+      },
+      {
+        title: "卡片 21｜簡報封面方向",
+        use: "快速發想視覺風格。",
+        prompt:
+          "請為 [簡報主題] 提供 5 種封面視覺方向。每一種請包含：風格、主色、畫面元素、適合的標題排版方式。"
+      },
+      {
+        title: "卡片 22｜整理成 Notion 頁面",
+        use: "把零散資料整理成知識庫。",
+        prompt:
+          "請把以下內容整理成適合放進 Notion 的頁面架構。請包含：頁面標題、摘要、主要章節、重點條列、可延伸補充的資料。\n\n內容如下：\n[貼上內容]"
+      },
+      {
+        title: "卡片 23｜提示詞分類表",
+        use: "建立自己的提示詞庫。",
+        prompt:
+          "請幫我把以下提示詞依用途分類，類別可以包含：寫作、會議、行政、資料分析、簡報、學習、設計、其他。請用表格呈現，欄位包含：分類、提示詞名稱、適用情境、提示詞內容。\n\n提示詞如下：\n[貼上提示詞]"
+      },
+      {
+        title: "卡片 24｜課後複習頁",
+        use: "把課程內容變成複習頁。",
+        prompt:
+          "請根據以下課程內容，幫我整理成一頁 Notion 課後複習頁。請包含：本課重點、操作步驟、常見問題、練習任務、延伸資源。\n\n課程內容如下：\n[貼上課程內容]"
+      }
+    ]
+  }
+];
+
 const planComparison = [
   {
     plan: "Free",
@@ -1050,6 +1446,8 @@ const taskTitle = document.getElementById("taskTitle");
 const taskBody = document.getElementById("taskBody");
 const promptText = document.getElementById("promptText");
 const answerHint = document.getElementById("answerHint");
+const answerHintPanel = document.querySelector(".answer-hint");
+const postTaskSupplement = document.getElementById("postTaskSupplement");
 const completeButton = document.getElementById("completeButton");
 const quizForm = document.getElementById("quizForm");
 const quizScore = document.getElementById("quizScore");
@@ -1066,7 +1464,10 @@ const victoryDialog = document.getElementById("victoryDialog");
 const victoryExp = document.getElementById("victoryExp");
 const victoryBadges = document.getElementById("victoryBadges");
 const versionFooter = document.getElementById("versionFooter");
-const appVersion = "V1.3";
+const backToTop = document.getElementById("backToTop");
+const promptLibraryDialog = document.getElementById("promptLibraryDialog");
+const promptLibraryContent = document.getElementById("promptLibraryContent");
+const appVersion = "V1.24";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
@@ -1092,6 +1493,123 @@ async function copyText(content) {
     document.execCommand("copy");
     textarea.remove();
   }
+}
+
+function escapeText(content) {
+  return String(content)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function renderPromptLibrary() {
+  const howToRows = promptLibraryHowTo
+    .map(([step, action]) => `<div class="prompt-howto-row"><strong>${step}</strong><span>${escapeText(action)}</span></div>`)
+    .join("");
+
+  const sections = promptLibrarySections
+    .map((section, sectionIndex) => {
+      const cards = section.cards
+        .map((card, cardIndex) => {
+          const promptId = `${sectionIndex}-${cardIndex}`;
+          return `
+            <article class="prompt-library-card">
+              <div class="prompt-card-head">
+                <div>
+                  <h5>${escapeText(card.title)}</h5>
+                  <p><strong>適合情境：</strong>${escapeText(card.use)}</p>
+                </div>
+                <button class="copy-library-prompt" type="button" data-prompt-id="${promptId}">複製</button>
+              </div>
+              <pre>${escapeText(card.prompt)}</pre>
+            </article>
+          `;
+        })
+        .join("");
+
+      return `
+        <details class="prompt-library-section">
+          <summary>${escapeText(section.title)} <span>${section.cards.length} 張卡</span></summary>
+          <div class="prompt-library-cards">${cards}</div>
+        </details>
+      `;
+    })
+    .join("");
+
+  return `
+    <section class="prompt-library-howto" aria-label="使用方式">
+      <h4>使用方式</h4>
+      <div class="prompt-howto-table">${howToRows}</div>
+    </section>
+    <section class="prompt-library-group" aria-label="提示詞卡片">
+      ${sections}
+    </section>
+  `;
+}
+
+function renderFinalPostTaskSupplement() {
+  const detailGroups = finalPostTaskSupplement.detailGroups
+    .map(
+      (group) => `
+        <details class="info-card-details">
+          <summary>${group.title}</summary>
+          ${
+            group.sections
+              ? group.sections
+                  .map(
+                    (section) => `
+                      <section class="detail-section">
+                        <h5>${section.title}</h5>
+                        <ul>${section.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>
+                      </section>
+                    `
+                  )
+                  .join("")
+              : ""
+          }
+          ${
+            group.rows
+              ? `
+                <div class="detail-table detail-cols-${group.headers.length}" role="table" aria-label="${group.title}">
+                  <div class="detail-row detail-head" role="row">
+                    ${group.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
+                  </div>
+                  ${group.rows
+                    .map(
+                      (row) => `
+                        <div class="detail-row" role="row">
+                          ${row
+                            .map((cell, cellIndex) => `<span role="cell" data-label="${group.headers[cellIndex]}">${cell}</span>`)
+                            .join("")}
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>
+              `
+              : ""
+          }
+        </details>
+      `
+    )
+    .join("");
+
+  return `
+    <div class="info-card with-extra with-prompt post-task-card">
+      <strong><span>${finalPostTaskSupplement.title}</span></strong>
+      <span>${finalPostTaskSupplement.body}</span>
+      ${detailGroups}
+      <div class="mini-prompt">
+        <div class="mini-prompt-head">
+          <span>範例提示詞</span>
+          <button type="button" class="copy-final-youtube-prompt">複製</button>
+        </div>
+        <pre>${finalPostTaskSupplement.prompt}</pre>
+      </div>
+    </div>
+  `;
 }
 
 function xp() {
@@ -1164,7 +1682,12 @@ function render() {
   taskTitle.textContent = level.taskTitle;
   taskBody.textContent = level.taskBody;
   promptText.textContent = level.prompt;
+  if (answerHintPanel) {
+    answerHintPanel.hidden = state.current === levels.length - 1;
+  }
   answerHint.innerHTML = `<ul>${answerHints[state.current].map((hint) => `<li>${hint}</li>`).join("")}</ul>`;
+  postTaskSupplement.hidden = state.current !== levels.length - 1;
+  postTaskSupplement.innerHTML = state.current === levels.length - 1 ? renderFinalPostTaskSupplement() : "";
   renderQuiz();
 
   knowledgeList.innerHTML = level.knowledge
@@ -1222,9 +1745,10 @@ function render() {
       const points = Array.isArray(item) ? null : item.points;
       const example = Array.isArray(item) ? null : item.example;
       const details = Array.isArray(item) ? null : item.details;
+      const detailGroups = Array.isArray(item) ? null : item.detailGroups;
       return `
         <div class="info-card ${prompt ? "with-prompt" : ""} ${points ? "with-points" : ""} ${
-        example || details ? "with-extra" : ""
+        example || details || detailGroups ? "with-extra" : ""
       }">
           <strong class="${icon ? "with-inline-icon" : ""}">
             ${inlineIcons[icon] || ""}
@@ -1258,6 +1782,29 @@ function render() {
                 <details class="info-card-details">
                   <summary>${details.title}</summary>
                   ${
+                    details.image
+                      ? `
+                        <figure class="details-image">
+                          <img src="${details.image.src}" alt="${details.image.alt}">
+                        </figure>
+                      `
+                      : ""
+                  }
+                  ${
+                    details.sections
+                      ? details.sections
+                          .map(
+                            (section) => `
+                              <section class="detail-section">
+                                <h5>${section.title}</h5>
+                                <ul>${section.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>
+                              </section>
+                            `
+                          )
+                          .join("")
+                      : ""
+                  }
+                  ${
                     details.rows
                       ? `
                         <div class="detail-table detail-cols-${details.headers.length}" role="table" aria-label="${details.title}">
@@ -1277,10 +1824,63 @@ function render() {
                             .join("")}
                         </div>
                       `
-                      : `<ul>${details.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>`
+                      : details.items
+                        ? `<ul>${details.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>`
+                        : ""
                   }
                 </details>
               `
+              : ""
+          }
+          ${
+            detailGroups
+              ? detailGroups
+                  .map(
+                    (group) => `
+                      <details class="info-card-details">
+                        <summary>${group.title}</summary>
+                        ${
+                          group.sections
+                            ? group.sections
+                                .map(
+                                  (section) => `
+                                    <section class="detail-section">
+                                      <h5>${section.title}</h5>
+                                      <ul>${section.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>
+                                    </section>
+                                  `
+                                )
+                                .join("")
+                            : ""
+                        }
+                        ${
+                          group.rows
+                            ? `
+                              <div class="detail-table detail-cols-${group.headers.length}" role="table" aria-label="${group.title}">
+                                <div class="detail-row detail-head" role="row">
+                                  ${group.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
+                                </div>
+                                ${group.rows
+                                  .map(
+                                    (row) => `
+                                      <div class="detail-row" role="row">
+                                        ${row
+                                          .map((cell, cellIndex) => `<span role="cell" data-label="${group.headers[cellIndex]}">${cell}</span>`)
+                                          .join("")}
+                                      </div>
+                                    `
+                                  )
+                                  .join("")}
+                              </div>
+                            `
+                            : group.items
+                              ? `<ul>${group.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>`
+                              : ""
+                        }
+                      </details>
+                    `
+                  )
+                  .join("")
               : ""
           }
           ${
@@ -1433,6 +2033,16 @@ knowledgeList.addEventListener("click", async (event) => {
   }, 1200);
 });
 
+postTaskSupplement.addEventListener("click", async (event) => {
+  const button = event.target.closest(".copy-final-youtube-prompt");
+  if (!button) return;
+  await copyText(finalPostTaskSupplement.prompt);
+  button.textContent = "已複製";
+  setTimeout(() => {
+    button.textContent = "複製";
+  }, 1200);
+});
+
 document.getElementById("resetButton").addEventListener("click", () => {
   state.current = 0;
   state.done = [];
@@ -1513,6 +2123,25 @@ instructorDialog.addEventListener("click", (event) => {
   if (event.target === instructorDialog) instructorDialog.close();
 });
 
+promptLibraryContent.innerHTML = renderPromptLibrary();
+document.getElementById("promptLibraryButton").addEventListener("click", () => promptLibraryDialog.showModal());
+document.querySelector(".close-prompt-library-dialog").addEventListener("click", () => promptLibraryDialog.close());
+promptLibraryDialog.addEventListener("click", (event) => {
+  if (event.target === promptLibraryDialog) promptLibraryDialog.close();
+});
+promptLibraryContent.addEventListener("click", async (event) => {
+  const button = event.target.closest(".copy-library-prompt");
+  if (!button) return;
+  const [sectionIndex, cardIndex] = button.dataset.promptId.split("-").map(Number);
+  const card = promptLibrarySections[sectionIndex]?.cards[cardIndex];
+  if (!card) return;
+  await copyText(card.prompt);
+  button.textContent = "已複製";
+  setTimeout(() => {
+    button.textContent = "複製";
+  }, 1400);
+});
+
 const planDialog = document.getElementById("planDialog");
 const planDialogContent = document.getElementById("planDialogContent");
 
@@ -1583,6 +2212,10 @@ document.querySelector(".replay-victory-action").addEventListener("click", () =>
 });
 victoryDialog.addEventListener("click", (event) => {
   if (event.target === victoryDialog) victoryDialog.close();
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 render();
