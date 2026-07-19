@@ -1034,11 +1034,26 @@ const interfaceTopics = {
   modeSwitch: {
     title: "6 Chat / Work 模式",
     body: "7 月改版後，部分帳號會在畫面上方看到 Chat / Work 切換。使用前先判斷任務是單次問答，還是需要整理資料、產出文件與長流程工作。",
-    items: [
-      ["Chat 模式", "適合快速問答、改寫一句話、翻譯、摘要、靈感發想與一般對話。範例：請把這段口語訊息改成正式通知。"],
-      ["Work 模式", "適合較完整的工作流程，例如研究資料、整理檔案、產出文件、表格、簡報大綱或報告。範例：請根據這份活動資料整理成果報告架構。"],
-      ["怎麼選", "任務短、資料少、只要快速回覆時用 Chat；資料多、需要檔案整理或產出正式成果時，優先嘗試 Work。"],
-      ["課堂練習範例", "同一段活動通知先在 Chat 要求改寫，再在 Work 要求整理成公告、Email、簡報大綱三種輸出，比較兩者差異。"]
+    compare: [
+      ["定位角色", "日常對話助理", "自動化數位員工（Agent）"],
+      ["互動模式", "一問一答、快速回覆，適合邊問邊修。", "規劃並執行多步驟任務，可處理較完整流程。"],
+      ["產出結果", "段落文字、摘要、翻譯、短文案或程式碼片段。", "可交付較完整的簡報大綱、Excel 表格、文件或報告。"],
+      ["工具串接", "主要使用 ChatGPT 內建工具與聯網查詢。", "可更深度連結 Gmail、Google Drive、Slack 等第三方工具，實際依帳號權限而定。"],
+      ["適合任務", "改寫通知、快速摘要、腦力激盪、單次問答。", "整理大量資料、比對檔案、產出正式成果、長流程專案。"]
+    ],
+    examples: [
+      {
+        title: "Chat 練習範例",
+        label: "範例文字",
+        material: "明天下午兩點行政大樓三樓會議室要開課程協調會，請各單位派一位同仁參加，記得帶上次會議資料。",
+        prompt: "請把以上口語訊息改成正式通知，語氣清楚、有禮貌，並補上主旨。"
+      },
+      {
+        title: "Work 練習範例",
+        label: "練習文件",
+        material: '<a href="./assets/docs/work-mode-example.txt" target="_blank" rel="noopener noreferrer">開啟活動資料範例</a>',
+        prompt: "請根據這份活動資料整理成果報告架構，包含摘要、活動亮點、參與狀況、成效分析、待補資料與簡報大綱。"
+      }
     ]
   },
   input: {
@@ -1467,7 +1482,7 @@ const versionFooter = document.getElementById("versionFooter");
 const backToTop = document.getElementById("backToTop");
 const promptLibraryDialog = document.getElementById("promptLibraryDialog");
 const promptLibraryContent = document.getElementById("promptLibraryContent");
-const appVersion = "V1.24";
+const appVersion = "V1.27";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
@@ -2080,20 +2095,63 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
     interfaceDialogTitle.textContent = topic.title;
     interfaceDialogBody.textContent = topic.body;
     const visual = topic.visual ? interfaceVisuals[topic.visual] || "" : "";
-    const cards = topic.items
-      .map(
-        ([title, body, icon]) => `
-          <article>
-            <strong class="${icon ? "with-inline-icon" : ""}">
-              ${inlineIcons[icon] || ""}
-              <span>${title}</span>
-            </strong>
-            <p>${body}</p>
-          </article>
-        `
-      )
-      .join("");
-    interfaceDialogContent.innerHTML = `${visual}<div class="interface-dialog-cards">${cards}</div>`;
+    const examples = topic.examples
+      ? `<section class="chat-work-examples" aria-label="Chat 與 Work 練習範例">
+          ${topic.examples
+            .map(
+              (example) => `
+                <article>
+                  <h5>${example.title}</h5>
+                  <div>
+                    <strong>${example.label}</strong>
+                    <p>${example.material}</p>
+                  </div>
+                  <div>
+                    <strong>可輸入</strong>
+                    <p>${example.prompt}</p>
+                  </div>
+                </article>
+              `
+            )
+            .join("")}
+        </section>`
+      : "";
+    const content = topic.compare
+      ? `
+        <div class="chat-work-compare" role="table" aria-label="Chat 與 Work 模式比較">
+          <div class="compare-row compare-head" role="row">
+            <span role="columnheader">比較項目</span>
+            <span role="columnheader">${inlineIcons.chat}<b>ChatGPT Chat</b></span>
+            <span role="columnheader">${inlineIcons.project}<b>ChatGPT Work</b></span>
+          </div>
+          ${topic.compare
+            .map(
+              ([label, chat, work]) => `
+                <div class="compare-row" role="row">
+                  <span role="rowheader">${label}</span>
+                  <span data-label="ChatGPT Chat">${chat}</span>
+                  <span data-label="ChatGPT Work">${work}</span>
+                </div>
+              `
+            )
+            .join("")}
+        </div>
+        ${examples}
+      `
+      : `<div class="interface-dialog-cards">${topic.items
+          .map(
+            ([title, body, icon]) => `
+              <article>
+                <strong class="${icon ? "with-inline-icon" : ""}">
+                  ${inlineIcons[icon] || ""}
+                  <span>${title}</span>
+                </strong>
+                <p>${body}</p>
+              </article>
+            `
+          )
+          .join("")}</div>`;
+    interfaceDialogContent.innerHTML = `${visual}${content}`;
     interfaceDialog.showModal();
   });
 });
