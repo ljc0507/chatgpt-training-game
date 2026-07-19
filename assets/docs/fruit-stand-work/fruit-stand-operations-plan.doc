@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>晴果小舖營運規劃</title>
+</head>
+<body>
+  <h1>晴果小舖營運規劃</h1>
+  <p>教學用虛擬資料，非真實店家。</p>
+  <table border="1" cellspacing="0" cellpadding="6">
+    <tr><th>流程</th><th>做法</th><th>待觀察指標</th></tr>
+    <tr><td>進貨</td><td>每日早上 6:30 到批發市場補貨，優先採購香蕉、芒果、西瓜與蘋果。</td><td>耗損率、缺貨次數</td></tr>
+    <tr><td>現場銷售</td><td>上午主打上班族水果盒，下午主打家庭採買與切盒優惠。</td><td>客單價、熱門時段</td></tr>
+    <tr><td>線上接單</td><td>LINE 收單，IG 導流至 LINE，滿 500 元可預約配送。</td><td>詢問數、轉單率</td></tr>
+    <tr><td>社群經營</td><td>每日發布 1 則限動，每週 3 則貼文，內容包含今日水果、保存方式與優惠。</td><td>觸及、互動、私訊</td></tr>
+    <tr><td>庫存管理</td><td>易熟水果晚間改做切盒或折扣組合。</td><td>報廢金額、剩貨品項</td></tr>
+  </table>
+  <h2>本週待改善問題</h2>
+  <ul>
+    <li>週末流量高，但人手不足導致回覆較慢。</li>
+    <li>芒果詢問多，實際購買率低，需檢查定價與組合方案。</li>
+    <li>社群互動不差，但導流到 LINE 的文字不夠明確。</li>
+  </ul>
+</body>
+</html>
