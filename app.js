@@ -14,9 +14,9 @@
         title: "GPT-5.6 模型速覽",
         body: "2026 年 7 月 GPT-5.6 開放後，模型拆成 Sol、Terra、Luna 三個版本。付費聊天主力以 Sol 為主；免費版聊天暫時仍以 5.5 線為主，選工具時仍建議先看任務需求與實際帳號介面。",
         points: [
-          "Sol：旗艦版本，適合複雜任務、長文件、深度整理與高品質產出。",
-          "Terra：均衡版本，適合資料整理、工作流程與成本效益較平衡的任務。",
-          "Luna：輕量版本，適合速度優先、成本較低或大量簡單任務。"
+          "Sol：最推薦的旗艦版本，能力最完整，適合複雜任務、長文件、深度整理與高品質產出。",
+          "Terra：日常首選的均衡版本，兼具性能與速度；做同樣任務時消耗額度較少，適合當日常預設模型。",
+          "Luna：系列裡速度最快、成本最低，但能力也最弱，適合需要馬上拿到回覆的簡單任務。"
         ],
         details: {
           title: "查看 Sol / Terra / Luna 差異",
@@ -57,14 +57,61 @@
           ["簡報大綱從空白頁開始", "先產生頁面標題、重點、講者備註"],
           ["公告或 Email 不確定是否完整", "請 AI 檢查是否遺漏時間、地點、對象、期限、聯絡方式"]
         ]
+      },
+      {
+        title: "對話框快捷符號：@ 與 /",
+        body: "除了直接輸入文字，有些帳號也可以在對話框用快捷符號呼叫工具。實際可用項目會依帳號方案、版本與管理設定而不同。",
+        icon: "plugin",
+        detailGroups: [
+          {
+            title: "操作範例",
+            headers: ["輸入方式", "代表意思", "課堂範例"],
+            rows: [
+              ["@ 外掛程式", "呼叫已連接的外掛、Apps 或外部工具。", "@Canva 請根據這份活動資訊，產生 3 個海報視覺方向。"],
+              ["/ 技能", "快速選擇可用技能或指令，例如整理、製圖、建立頁面或其他操作。", "/表格 請把這段會議紀錄整理成待辦追蹤表。"]
+            ]
+          },
+          {
+            title: "使用提醒",
+            sections: [
+              {
+                title: "先確認介面是否支援",
+                items: [
+                  "不是每個帳號都會看到相同的 @ 或 / 選單。",
+                  "如果沒有出現選單，也可以直接用文字說明想使用的工具或輸出格式。",
+                  "呼叫外部工具前，仍要確認是否會傳送個資、未公開資料或敏感文件。"
+                ]
+              }
+            ]
+          }
+        ],
+        prompt: `請示範如何用 @ 與 / 思考工具選擇。
+
+任務：
+我要把一段活動資訊整理成公告、表格和海報方向。
+
+請分別示範：
+1. 只用一般 ChatGPT 對話可以怎麼問
+2. 若有 @ 外掛程式，可以怎麼呼叫工具
+3. 若有 / 技能，可以怎麼選擇輸出方式
+
+最後請提醒我哪些資料不能直接貼上。`
       }
     ],
-    taskTitle: "一句話變正式通知",
-    taskBody: "請把一段口語訊息整理成正式校內通知，資訊不足處標示待確認。",
-    prompt: `請將以下內容整理成正式的校內會議通知，包含主旨、時間、地點、參加對象、攜帶資料與聯絡方式。資訊不足處請標示「待確認」，不要自行編造。
+    taskTitle: "看懂 AI 能協助到哪一步",
+    taskBody: "請選一個常見工作情境，整理成「原本做法、ChatGPT 可協助、人工仍要確認」三欄。",
+    prompt: `請幫我分析以下工作情境，整理成一張「AI 協助前後比較表」。
 
-內容如下：
-明天下午兩點在行政大樓三樓開會，請各單位派一人參加，記得帶上次資料。`
+工作情境：
+[公告或 Email／會議紀錄／報名資料／簡報大綱／資料檢查，請選一項並補充簡短背景]
+
+請用表格呈現，欄位包含：
+1. 原本做法
+2. ChatGPT 可協助的地方
+3. 人工仍要確認的地方
+4. 適合使用的提示詞方向
+
+提醒：請不要直接產出正式成品，而是先幫我判斷這個任務可以怎麼被 AI 協助。`
   },
   {
     tag: "第二關",
@@ -691,10 +738,11 @@ const answerHints = [
     "提醒：不同帳號介面可能不同，課堂以自己實際看到的功能為準。"
   ],
   [
-    "建議工具：一般 ChatGPT 對話。方法：貼入口語訊息，要求整理成正式通知並標示待確認。",
-    "注意「明天」要改成實際日期或標待確認，會議室名稱、攜帶資料與聯絡窗口也要確認。",
-    "可追問：請改成 150 字以內簡短版，並保留待確認欄位。",
-    "完成標準：產出主旨、時間、地點、對象、攜帶資料與待確認事項。"
+    "建議工具：一般 ChatGPT 對話。方法：先選一個情境，再請 AI 分析原本做法、可協助處與人工確認處。",
+    "重點不是直接產出成品，而是先建立「這件事可以交給 AI 到哪一步」的判斷。",
+    "可追問：請補充這個任務適合用 Chat、Work、檔案上傳或表格工具的原因。",
+    "若帳號支援 @ 或 /，可示範用快捷符號呼叫外掛或技能；沒有看到選單時，改用一般提示詞描述工具需求。",
+    "完成標準：表格中至少包含原本做法、ChatGPT 可協助、人工仍要確認、提示詞方向四欄。"
   ],
   [
     "建議工具：一般 ChatGPT 對話。方法：把任務逐條貼上，請 AI 判斷適合 AI、需要人工確認、不適合直接交給 AI。",
@@ -793,47 +841,99 @@ const quizQuestions = [
   ]
 ];
 
-const finalPostTaskSupplement = {
-  title: "Q&A：YouTube 影片可以交給 ChatGPT 分析嗎？",
-  body: "可以，但最穩的做法不是只丟影片連結，而是提供字幕稿、逐字稿或影片摘要，讓 ChatGPT 根據文字內容整理重點。",
-  detailGroups: [
-    {
-      title: "最穩的操作方式",
-      headers: ["步驟", "做法"],
-      rows: [
-        ["1", "打開 YouTube 影片，確認影片有字幕或逐字稿。"],
-        ["2", "取得字幕稿、逐字稿，或先整理成文字檔。"],
-        ["3", "把字幕貼到 ChatGPT，或上傳成文字檔。"],
-        ["4", "請 ChatGPT 整理重點、章節、QA、簡報大綱或教學活動。"],
-        ["5", "若內容涉及政策、日期、數據或人物資訊，最後仍要回到原影片或官方資料查證。"]
-      ]
-    },
-    {
-      title: "只有 YouTube 連結時怎麼辦？",
-      sections: [
-        {
-          title: "可以先試，但不要保證成功",
-          items: [
-            "可先貼 YouTube 連結請 ChatGPT 分析，但是否能讀到內容會受帳號功能、影片權限、字幕是否公開與平台限制影響。",
-            "如果 ChatGPT 無法直接讀取影片，請改提供字幕稿、逐字稿、影片摘要或手動摘錄重點。",
-            "教學時建議說法：ChatGPT 分析影片最可靠的方式，是提供影片字幕或逐字稿；連結可以先試，但不是每次都能成功。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "可搭配的工具",
-      headers: ["工具", "適合用途", "提醒"],
-      rows: [
-        ["YouTube 內建逐字稿", "快速取得公開字幕內容", "適合短影片或有完整字幕的影片。"],
-        ["ChatGPT", "整理字幕、摘要重點、轉成簡報或產生討論題", "最好提供文字內容，不要只依賴連結。"],
-        ["NotebookLM", "把影片資料變成學習筆記、問答或摘要", "適合做課前預習、研究整理或教材補充。"],
-        ["字幕下載或轉錄工具", "取得 TXT、SRT、VTT 字幕檔", "使用第三方工具前要注意影片權限與資料安全。"],
-        ["語音轉文字工具", "影片沒有字幕時先產生逐字稿", "轉錄後仍要檢查人名、專有名詞、數字與時間。"]
-      ]
-    }
-  ],
-  prompt: `請根據以下 YouTube 影片字幕內容，幫我整理：
+const finalPostTaskSupplements = [
+  {
+    title: "Q&A：ChatGPT 有哪些主要方案？",
+    body: "常見方案可先用使用對象來理解：個人偶爾用、個人常用、重度使用、團隊使用、學校使用或大型組織導入。實際功能與可用額度會依帳號、地區與版本更新而不同。",
+    detailGroups: [
+      {
+        title: "主要方案比較",
+        headers: ["方案", "適合對象", "主要特色", "常見使用情境"],
+        rows: [
+          ["Free", "偶爾使用的一般使用者", "可使用基本 ChatGPT 功能，但使用額度與部分工具可能有限制。", "日常問答、簡單翻譯、摘要、基礎文案。"],
+          ["Plus", "經常使用 ChatGPT 的個人使用者", "通常可使用更多模型與工具，使用額度也比免費版高。", "文書改寫、資料整理、圖片生成、檔案分析。"],
+          ["Pro", "高頻率或重度使用者", "通常提供較高使用額度，適合長時間處理複雜任務。", "深度研究、大量文件、複雜資料分析、進階工作流程。"],
+          ["Business", "公司、部門或小型團隊", "提供團隊工作區、帳號管理與較完整的商務使用環境。", "團隊協作、公司文件、共用 GPT、部門工作流程。"],
+          ["ChatGPT Edu", "大專院校與教育機構", "適合教學、研究與校園組織管理，實際功能依校方授權與設定而定。", "課程教學、研究整理、報告分析、校務行政。"],
+          ["Enterprise", "大型企業與組織", "強調權限管理、安全治理、資料控管與組織規模部署。", "跨部門協作、內部知識管理、大型組織 AI 導入。"]
+        ]
+      },
+      {
+        title: "課堂提醒",
+        sections: [
+          {
+            title: "怎麼教學比較清楚",
+            items: [
+              "不要讓學員背方案名稱，先問：我是偶爾用、每天用、團隊共用，還是學校統一授權？",
+              "同一個功能在不同方案可能有額度、模型、工具或資料治理差異。",
+              "涉及校務資料、研究資料或個資時，優先依學校帳號政策與第六關資安原則判斷。"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Notion 補充資料",
+        sections: [
+          {
+            title: "延伸閱讀",
+            items: [
+              '<a href="https://app.notion.com/p/ChatGPT-39e8b2eb7216800eb398e0c7b7b9ab9b?source=copy_link" target="_blank" rel="noopener noreferrer">ChatGPT 方案、工作方式與適用情境</a>'
+            ]
+          }
+        ]
+      }
+    ],
+    prompt: `請幫我判斷目前適合使用哪一種 ChatGPT 方案或工作方式。
+
+我的使用情境：
+1. 使用頻率：[偶爾 / 每天 / 大量]
+2. 主要任務：[寫作 / 整理資料 / 檔案分析 / 團隊協作 / 教學研究]
+3. 是否會處理敏感資料：[是 / 否 / 不確定]
+4. 是否需要團隊管理或校方授權：[是 / 否 / 不確定]
+
+請用表格回答：建議方案、適合原因、需要注意的限制、資安提醒。`
+  },
+  {
+    title: "Q&A：YouTube 影片可以交給 ChatGPT 分析嗎？",
+    body: "可以，但最穩的做法不是只丟影片連結，而是提供字幕稿、逐字稿或影片摘要，讓 ChatGPT 根據文字內容整理重點。",
+    detailGroups: [
+      {
+        title: "最穩的操作方式",
+        headers: ["步驟", "做法"],
+        rows: [
+          ["1", "打開 YouTube 影片，確認影片有字幕或逐字稿。"],
+          ["2", "取得字幕稿、逐字稿，或先整理成文字檔。"],
+          ["3", "把字幕貼到 ChatGPT，或上傳成文字檔。"],
+          ["4", "請 ChatGPT 整理重點、章節、QA、簡報大綱或教學活動。"],
+          ["5", "若內容涉及政策、日期、數據或人物資訊，最後仍要回到原影片或官方資料查證。"]
+        ]
+      },
+      {
+        title: "只有 YouTube 連結時怎麼辦？",
+        sections: [
+          {
+            title: "可以先試，但不要保證成功",
+            items: [
+              "可先貼 YouTube 連結請 ChatGPT 分析，但是否能讀到內容會受帳號功能、影片權限、字幕是否公開與平台限制影響。",
+              "如果 ChatGPT 無法直接讀取影片，請改提供字幕稿、逐字稿、影片摘要或手動摘錄重點。",
+              "教學時建議說法：ChatGPT 分析影片最可靠的方式，是提供影片字幕或逐字稿；連結可以先試，但不是每次都能成功。"
+            ]
+          }
+        ]
+      },
+      {
+        title: "可搭配的工具",
+        headers: ["工具", "適合用途", "提醒"],
+        rows: [
+          ["YouTube 內建逐字稿", "快速取得公開字幕內容", "適合短影片或有完整字幕的影片。"],
+          ["ChatGPT", "整理字幕、摘要重點、轉成簡報或產生討論題", "最好提供文字內容，不要只依賴連結。"],
+          ["NotebookLM", "把影片資料變成學習筆記、問答或摘要", "適合做課前預習、研究整理或教材補充。"],
+          ["字幕下載或轉錄工具", "取得 TXT、SRT、VTT 字幕檔", "使用第三方工具前要注意影片權限與資料安全。"],
+          ["語音轉文字工具", "影片沒有字幕時先產生逐字稿", "轉錄後仍要檢查人名、專有名詞、數字與時間。"]
+        ]
+      }
+    ],
+    prompt: `請根據以下 YouTube 影片字幕內容，幫我整理：
 
 1. 影片主題
 2. 5 個重點摘要
@@ -844,7 +944,73 @@ const finalPostTaskSupplement = {
 
 字幕如下：
 [貼上字幕稿]`
-};
+  },
+  {
+    title: "Q&A：ChatGPT Sites／網站功能怎麼操作？",
+    body: "Sites 的重點不是單純做一個好看的網頁，而是把「研究資料、處理檔案、設計功能、建立並發布網站」放在同一條工作流程中完成。很適合把本課程的活動資訊、提示詞、練習任務與成果報告整理成可瀏覽的頁面。",
+    detailGroups: [
+      {
+        title: "Sites 的四步工作鏈",
+        headers: ["步驟", "可以做什麼", "本課程可怎麼用"],
+        rows: [
+          ["1. 研究資料", "搜尋、整理、分析資訊。", "彙整研習資料、課程資源、活動說明與常見問題。"],
+          ["2. 處理檔案", "匯入 PDF、Word、Excel、CSV 後整理重點。", "整理活動資料、問卷摘要、會議紀錄與成果素材。"],
+          ["3. 設計功能", "規劃頁面、互動元件與資料呈現方式。", "製作活動導覽、課程資源頁、任務追蹤或簡易儀表板。"],
+          ["4. 建立並發布網站", "產生可預覽網站，確認後再發布或分享。", "先預覽、人工查核，再決定是否提供學員或校內同仁使用。"]
+        ]
+      },
+      {
+        title: "適合本課程的使用場景",
+        headers: ["場景", "可做成什麼", "適合誰使用"],
+        rows: [
+          ["活動導覽頁", "課程資訊、流程、講師介紹、報名提醒。", "行政人員、承辦人、活動工作小組。"],
+          ["課程資源入口", "教材、提示詞庫、練習檔、Q&A 與延伸閱讀。", "教師、助教、學員。"],
+          ["互動式報告", "問卷結果、出席統計、活動亮點與成果摘要。", "行政成果彙報、主管簡報、課程結案。"],
+          ["資料儀表板", "表格統計、趨勢、待辦狀態與異常提醒。", "專案追蹤、活動成效、內部檢討。"],
+          ["內部工作工具", "常用連結、SOP、表單入口與文件索引。", "部門同仁、課程團隊、專案成員。"]
+        ]
+      },
+      {
+        title: "工具怎麼選",
+        headers: ["工具", "更適合", "本課建議用法"],
+        rows: [
+          ["ChatGPT Sites", "把研究、檔案、內容、互動頁與發布整合成一條工作鏈。", "用來做課程資源頁、活動頁、互動式成果報告或簡易儀表板。"],
+          ["Claude", "快速做出第一版漂亮介面、展示型網頁、小型互動原型。", "若只需要快速產生介面草稿或展示頁，可作為備選工具。"],
+          ["Gemini Canvas", "需要直接在畫面上選取修改、整合 Google 或 Firebase 生態。", "若資料已在 Google Drive，或想邊看畫面邊調整，可作為備選工具。"]
+        ]
+      },
+      {
+        title: "使用前提醒",
+        sections: [
+          {
+            title: "建議說法",
+            items: [
+              "Sites 適合把資料變成可以瀏覽、分享或操作的頁面，但完成後仍要先人工檢查。",
+              "安全流程是：先產生預覽，確認內容、移除敏感資訊、檢查版權素材，再決定是否公開或分享。",
+              "如果帳號看不到 Sites，可能是方案、地區、帳號權限或版本尚未開放，可先用 ChatGPT 產出網站文案、頁面架構與按鈕內容。"
+            ]
+          }
+        ]
+      }
+    ],
+    prompt: `請幫我建立一個適合本課程使用的研習活動網站草稿。
+
+用途：[活動導覽 / 課程資源 / 專案追蹤 / 互動式成果報告 / 儀表板]
+對象：[填入使用者]
+內容包含：[活動名稱、時間、地點、流程、報名方式、課程資源、練習任務、Q&A、注意事項]
+風格：[專業、清楚、適合校園或課堂使用]
+
+請先產生可預覽版本，不要直接公開發布。完成後請列出需要人工查核的資訊，例如時間、地點、報名連結、個資、版權素材與未公開資料。`
+    ,
+    preview: {
+      title: "預覽示意：尚未公開發布",
+      image: "./assets/screenshots/chatgpt-sites-preview-example.png",
+      alt: "ChatGPT Sites 產生研習活動網頁預覽版本的示意畫面",
+      note:
+        "此圖可搭配範例提示詞說明：Sites 先產生可預覽版本，尚未公開發布。正式使用前仍要查核活動日期、地點、講師姓名、聯絡資訊、報名方式、個資與版權素材。"
+    }
+  }
+];
 
 const icons = {
   village:
@@ -1012,14 +1178,17 @@ const interfaceTopics = {
       ["資料庫", "集中查看或管理可用資料、檔案或知識來源；實際功能依帳號與版本而定。", "library"],
       ["排程", "查看或管理已設定的提醒、排程或自動化任務。", "schedule"],
       ["外掛程式", "連接其他工具或服務，依任務選擇是否啟用。", "plugin"],
-      ["更多", "展開圖像、GPT、網站等更多工具入口。", "more"],
+      ["更多", "展開額外工具入口；常見會看到圖像、GPT、網站等選項。", "more"],
+      ["圖像", "用來產生活動主視覺、海報概念、社群圖片或教學插圖；適合先產生草稿，再人工挑選與修正。", "image"],
+      ["GPT", "使用或建立特定任務助手，例如公告助手、會議紀錄助手、課程活動設計助手；適合固定流程反覆使用。", "gpt"],
+      ["網站", "建立活動頁、課程資源頁、專案追蹤頁或簡易儀表板；發布前仍需人工查核內容與權限。", "globe"],
       ["專案", "把同一主題的對話、檔案與指令集中管理。", "project"],
       ["聊天", "一般對話紀錄會放在這裡，可用於回到先前任務。", "chat"]
     ]
   },
   top: {
     title: "2 工具入口與快捷工具",
-    body: "Plus 版首頁常見工具入口包含輸入框左側的加號、輸入框右側的語音與語言設定，以及畫面下方的快捷工具。Chat / Work 已移到第 6 點獨立說明。",
+    body: "Plus 版首頁常見工具入口包含輸入框左側的加號、輸入框右側的語音與語言設定，以及畫面下方的快捷工具。",
     visual: "plusHome",
     items: [
       ["2-1 加號", "輸入框左側的加號可加入檔案、圖片或開啟其他可用工具。適合把 PDF、Word、Excel、CSV 或圖片交給 ChatGPT 分析。"],
@@ -1033,7 +1202,7 @@ const interfaceTopics = {
   },
   modeSwitch: {
     title: "6 Chat / Work 模式",
-    body: "7 月改版後，部分帳號會在畫面上方看到 Chat / Work 切換。使用前先判斷任務是單次問答，還是需要整理資料、產出文件與長流程工作。",
+    body: "7 月改版後，部分帳號會在畫面上方看到 Chat / Work 切換。同一題在 Chat 也可能產出初稿；差別在於 Work 更適合資料多、步驟多、需要整理成完整成果的任務。",
     compare: [
       ["定位角色", "日常對話助理", "自動化數位員工（Agent）"],
       ["互動模式", "一問一答、快速回覆，適合邊問邊修。", "規劃並執行多步驟任務，可處理較完整流程。"],
@@ -1052,7 +1221,8 @@ const interfaceTopics = {
         title: "Work 練習範例",
         label: "練習文件",
         material: '<a href="./assets/docs/work-mode-example.txt" target="_blank" rel="noopener noreferrer">開啟活動資料範例</a>',
-        prompt: "請根據這份活動資料整理成果報告架構，包含摘要、活動亮點、參與狀況、成效分析、待補資料與簡報大綱。"
+        prompt: "請讀取這份活動資料，先列出需要補齊的資料，再整理成果報告架構，包含摘要、活動亮點、參與狀況、成效分析、待補資料與簡報大綱。最後請輸出可交付主管審閱的文件大綱。",
+        note: "提醒：這個任務在 Chat 也能產出初稿；這裡示範 Work 的重點，是讓它讀取練習文件、拆成多步驟整理，最後形成較完整的交付成果。"
       }
     ]
   },
@@ -1071,12 +1241,12 @@ const interfaceTopics = {
     body: "ChatGPT Plus 的回答下方通常會出現一排操作圖示，部分功能會收在「更多」選單中。注意：實際按鈕可能依版本、裝置與回答類型略有不同。",
     visual: "answerActions",
     items: [
-      ["複製", "把回答複製到文件、信件、表格或簡報草稿中。"],
-      ["分享 / 匯出", "將回答或對話分享出去；分享前要確認沒有敏感資訊。"],
-      ["重新生成", "請 ChatGPT 換一版答案，適合比較不同寫法。"],
-      ["更多選單", "點「…」可看到額外功能，例如檢視資料來源、在新聊天中分支或大聲朗讀。"],
-      ["檢視資料來源", "若回答有引用來源，可用來回查資料依據；重要內容仍要人工確認。"],
-      ["在新聊天中分支 / 大聲朗讀", "分支可保留原對話再開新方向；朗讀適合聽稿、檢查語氣或輔助閱讀。"]
+      ["4-1 複製", "把回答複製到文件、信件、表格或簡報草稿中。"],
+      ["4-2 分享 / 匯出", "將回答或對話分享出去；分享前要確認沒有敏感資訊。"],
+      ["4-3 重新生成", "請 ChatGPT 換一版答案，適合比較不同寫法。"],
+      ["4-4 更多選單", "點「…」可看到額外功能，例如檢視資料來源、在新聊天中分支或大聲朗讀。"],
+      ["4-5 檢視資料來源", "若回答有引用來源，可用來回查資料依據；重要內容仍要人工確認。"],
+      ["4-6 在新聊天中分支 / 大聲朗讀", "分支可保留原對話再開新方向；朗讀適合聽稿、檢查語氣或輔助閱讀。"]
     ]
   },
   account: {
@@ -1090,7 +1260,7 @@ const interfaceTopics = {
       ["說明", "開啟說明中心、版本說明、下載應用程式、鍵盤快速鍵與回報問題。", "help"],
       ["登出", "離開公用或教室電腦前務必登出，避免帳號被他人使用。", "logout"],
       ["下載應用程式", "可安裝桌面版或行動版，方便日常工作中快速叫出 ChatGPT。", "download"],
-      ["隱私權政策 / 服務條款", "查看資料使用、服務規範與隱私相關說明。", "info"]
+      ["隱私權政策 / 服務條款", "查看資料使用、服務規範與隱私相關說明；第六關「資安、查證與責任」會進一步說明使用邊界。", "info"]
     ]
   }
 };
@@ -1106,6 +1276,7 @@ const inlineIcons = {
   chat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v10H8l-3 3Z"/></svg>',
   plus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>',
   image: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m6 17 4-4 3 3 2-2 3 3"/></svg>',
+  gpt: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg>',
   globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3.2 3 14.8 0 18"/><path d="M12 3c-3 3.2-3 14.8 0 18"/></svg>',
   mic: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8 21h8"/></svg>',
   sparkle: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/></svg>',
@@ -1482,7 +1653,7 @@ const versionFooter = document.getElementById("versionFooter");
 const backToTop = document.getElementById("backToTop");
 const promptLibraryDialog = document.getElementById("promptLibraryDialog");
 const promptLibraryContent = document.getElementById("promptLibraryContent");
-const appVersion = "V1.27";
+const appVersion = "V1.45";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
@@ -1565,66 +1736,82 @@ function renderPromptLibrary() {
 }
 
 function renderFinalPostTaskSupplement() {
-  const detailGroups = finalPostTaskSupplement.detailGroups
-    .map(
-      (group) => `
-        <details class="info-card-details">
-          <summary>${group.title}</summary>
-          ${
-            group.sections
-              ? group.sections
-                  .map(
-                    (section) => `
-                      <section class="detail-section">
-                        <h5>${section.title}</h5>
-                        <ul>${section.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>
-                      </section>
-                    `
-                  )
-                  .join("")
-              : ""
-          }
-          ${
-            group.rows
-              ? `
-                <div class="detail-table detail-cols-${group.headers.length}" role="table" aria-label="${group.title}">
-                  <div class="detail-row detail-head" role="row">
-                    ${group.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
-                  </div>
-                  ${group.rows
-                    .map(
-                      (row) => `
-                        <div class="detail-row" role="row">
-                          ${row
-                            .map((cell, cellIndex) => `<span role="cell" data-label="${group.headers[cellIndex]}">${cell}</span>`)
-                            .join("")}
-                        </div>
-                      `
-                    )
-                    .join("")}
-                </div>
-              `
-              : ""
-          }
-        </details>
-      `
-    )
-    .join("");
+  return finalPostTaskSupplements
+    .map((supplement, supplementIndex) => {
+      const detailGroups = supplement.detailGroups
+        .map(
+          (group) => `
+            <details class="info-card-details">
+              <summary>${group.title}</summary>
+              ${
+                group.sections
+                  ? group.sections
+                      .map(
+                        (section) => `
+                          <section class="detail-section">
+                            <h5>${section.title}</h5>
+                            <ul>${section.items.map((detail) => `<li>${detail}</li>`).join("")}</ul>
+                          </section>
+                        `
+                      )
+                      .join("")
+                  : ""
+              }
+              ${
+                group.rows
+                  ? `
+                    <div class="detail-table detail-cols-${group.headers.length}" role="table" aria-label="${group.title}">
+                      <div class="detail-row detail-head" role="row">
+                        ${group.headers.map((header) => `<span role="columnheader">${header}</span>`).join("")}
+                      </div>
+                      ${group.rows
+                        .map(
+                          (row) => `
+                            <div class="detail-row" role="row">
+                              ${row
+                                .map((cell, cellIndex) => `<span role="cell" data-label="${group.headers[cellIndex]}">${cell}</span>`)
+                                .join("")}
+                            </div>
+                          `
+                        )
+                        .join("")}
+                    </div>
+                  `
+                  : ""
+              }
+            </details>
+          `
+        )
+        .join("");
+      const preview = supplement.preview
+        ? `
+          <figure class="qa-preview">
+            <figcaption>
+              <strong>${supplement.preview.title}</strong>
+              <span>${supplement.preview.note}</span>
+            </figcaption>
+            <img src="${supplement.preview.image}" alt="${supplement.preview.alt}" loading="lazy" />
+          </figure>
+        `
+        : "";
 
-  return `
-    <div class="info-card with-extra with-prompt post-task-card">
-      <strong><span>${finalPostTaskSupplement.title}</span></strong>
-      <span>${finalPostTaskSupplement.body}</span>
-      ${detailGroups}
-      <div class="mini-prompt">
-        <div class="mini-prompt-head">
-          <span>範例提示詞</span>
-          <button type="button" class="copy-final-youtube-prompt">複製</button>
+      return `
+        <div class="info-card with-extra with-prompt post-task-card">
+          <strong><span>${supplement.title}</span></strong>
+          <span>${supplement.body}</span>
+          ${detailGroups}
+          ${preview}
+          <div class="mini-prompt">
+            <div class="mini-prompt-head">
+              <span>範例提示詞</span>
+              <button type="button" class="copy-final-qa-prompt" data-supplement-index="${supplementIndex}">複製</button>
+            </div>
+            <pre>${supplement.prompt}</pre>
+          </div>
         </div>
-        <pre>${finalPostTaskSupplement.prompt}</pre>
-      </div>
-    </div>
-  `;
+      `;
+    })
+    .join("");
 }
 
 function xp() {
@@ -1691,7 +1878,7 @@ function render() {
   beginnerRules.hidden = state.current !== 0;
   interfaceGuide.hidden = state.current !== 0;
   knowledgeList.hidden = state.current === 0;
-  modeResource.hidden = state.current !== 1;
+  modeResource.hidden = true;
   modelGuideResource.hidden = state.current !== 5;
   exampleLinks.hidden = state.current !== 5;
   taskTitle.textContent = level.taskTitle;
@@ -2049,9 +2236,11 @@ knowledgeList.addEventListener("click", async (event) => {
 });
 
 postTaskSupplement.addEventListener("click", async (event) => {
-  const button = event.target.closest(".copy-final-youtube-prompt");
+  const button = event.target.closest(".copy-final-qa-prompt");
   if (!button) return;
-  await copyText(finalPostTaskSupplement.prompt);
+  const supplement = finalPostTaskSupplements[Number(button.dataset.supplementIndex)];
+  if (!supplement) return;
+  await copyText(supplement.prompt);
   button.textContent = "已複製";
   setTimeout(() => {
     button.textContent = "複製";
@@ -2110,6 +2299,7 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
                     <strong>可輸入</strong>
                     <p>${example.prompt}</p>
                   </div>
+                  ${example.note ? `<p class="example-note">${example.note}</p>` : ""}
                 </article>
               `
             )

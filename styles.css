@@ -607,8 +607,8 @@ button {
 
 .content-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 310px;
-  gap: 22px;
+  grid-template-columns: minmax(0, 1fr) clamp(230px, 20vw, 270px);
+  gap: 18px;
   align-items: start;
 }
 
@@ -988,6 +988,78 @@ button {
   white-space: nowrap;
 }
 
+.platform-guide {
+  display: grid;
+  gap: 12px;
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.platform-grid article {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-left: 6px solid color-mix(in srgb, var(--accent) 72%, #caa34e);
+  border-radius: 8px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.platform-grid article.is-recommended {
+  background: color-mix(in srgb, var(--accent) 9%, white);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+}
+
+.platform-grid strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.platform-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 13%, white);
+  color: var(--accent-ink);
+  flex: 0 0 auto;
+}
+
+.platform-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.platform-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.platform-grid span {
+  display: block;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  padding-top: 8px;
+  color: var(--accent-ink);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
 .interface-map {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
@@ -1080,10 +1152,11 @@ button {
 
 .mock-mode-switch span {
   border-radius: 999px;
-  padding: 7px 18px;
+  padding: 7px 14px;
   color: var(--muted);
   font-size: 13px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .mock-mode-switch span:first-of-type {
@@ -1096,7 +1169,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   border: 1px solid var(--line);
   background: #fff;
   padding: 10px 14px;
@@ -1110,6 +1183,8 @@ button {
   padding: 8px 12px;
   font-size: 13px;
   font-weight: 900;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .mock-chat {
@@ -1198,7 +1273,7 @@ button {
 
 .pin-two {
   top: -9px;
-  left: 122px;
+  left: 64px;
 }
 
 .pin-three {
@@ -2138,6 +2213,40 @@ button {
   background: linear-gradient(135deg, #fffdf7, #ffffff 72%);
 }
 
+.qa-preview {
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8faf7;
+}
+
+.qa-preview figcaption {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+}
+
+.qa-preview figcaption strong {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.qa-preview figcaption span {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.qa-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #111827;
+}
+
 .prompt-box {
   background: #1f2933;
   color: #eef2f4;
@@ -2360,11 +2469,11 @@ pre {
 
 .reward-panel {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .reward-panel section {
-  padding: 18px;
+  padding: 14px;
 }
 
 .version-footer {
@@ -2416,18 +2525,18 @@ pre {
 
 .badge-grid {
   display: grid;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .badge {
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 12px;
+  padding: 9px 10px;
   background: #f8fafc;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: #64748b;
   cursor: pointer;
   font: inherit;
@@ -2448,8 +2557,8 @@ pre {
 }
 
 .badge-icon {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #e2e8f0;
   display: grid;
@@ -2459,8 +2568,8 @@ pre {
 }
 
 .badge-icon svg {
-  width: 19px;
-  height: 19px;
+  width: 16px;
+  height: 16px;
 }
 
 .badge.earned {
@@ -2477,7 +2586,7 @@ pre {
 
 .tool-cards {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .tool-card {
@@ -2485,18 +2594,18 @@ pre {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: 8px;
-  padding: 13px;
+  padding: 10px;
   cursor: pointer;
   font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .tool-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--accent);
   flex: 0 0 auto;
 }
@@ -3371,6 +3480,15 @@ dialog::backdrop {
   line-height: 1.6;
 }
 
+.chat-work-examples .example-note {
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, var(--line));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gold) 10%, #ffffff);
+  color: var(--ink);
+  font-size: 15px;
+}
+
 .chat-work-examples a {
   display: inline-flex;
   width: fit-content;
@@ -3457,6 +3575,10 @@ dialog::backdrop {
   .interface-resource a {
     width: fit-content;
     white-space: normal;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr;
   }
 
   .compare-head {
