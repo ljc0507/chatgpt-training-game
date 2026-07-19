@@ -1208,7 +1208,7 @@ const interfaceTopics = {
       ["互動模式", "一問一答、快速回覆，適合邊問邊修。", "規劃並執行多步驟任務，可處理較完整流程。"],
       ["產出結果", "段落文字、摘要、翻譯、短文案或程式碼片段。", "可交付較完整的簡報大綱、Excel 表格、文件或報告。"],
       ["工具串接", "主要使用 ChatGPT 內建工具與聯網查詢。", "可更深度連結 Gmail、Google Drive、Slack 等第三方工具，實際依帳號權限而定。"],
-      ["適合任務", "改寫通知、快速摘要、腦力激盪、單次問答。", "整理大量資料、比對檔案、產出正式成果、長流程專案。"]
+      ["適合任務", "改寫通知、快速摘要、腦力激盪、單次問答。", "整理大量資料、比對檔案、分析上傳數據、生成簡報、制定行銷方案、建立適合工作類型的 Skills，或自動化每天重複的工作任務。"]
     ],
     examples: [
       {
@@ -1653,7 +1653,7 @@ const versionFooter = document.getElementById("versionFooter");
 const backToTop = document.getElementById("backToTop");
 const promptLibraryDialog = document.getElementById("promptLibraryDialog");
 const promptLibraryContent = document.getElementById("promptLibraryContent");
-const appVersion = "V1.45";
+const appVersion = "V1.46";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
