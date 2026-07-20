@@ -2486,10 +2486,12 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
                                           ${followup.gallery.images
                                             .map(
                                               (image) => `
-                                                <figure>
-                                                  <img src="${image.src}" alt="${image.alt}" loading="lazy">
-                                                  <figcaption>${image.alt}</figcaption>
-                                                </figure>
+                                                <a class="followup-gallery-link" href="${image.src}" target="_blank" rel="noopener" aria-label="放大檢視 ${image.alt}">
+                                                  <figure>
+                                                    <img src="${image.src}" alt="${image.alt}" loading="lazy">
+                                                    <figcaption>${image.alt}</figcaption>
+                                                  </figure>
+                                                </a>
                                               `
                                             )
                                             .join("")}
