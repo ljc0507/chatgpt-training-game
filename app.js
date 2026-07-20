@@ -1343,6 +1343,7 @@ const interfaceTopics = {
         material: `
           <span class="material-intro">下載這組虛擬資料後，一起上傳到 ChatGPT Work，練習多檔案整合。</span>
           <span class="material-link-stack">
+            <a class="material-bundle-link" href="./assets/docs/fruit-stand-work/fruit-stand-work-samples.zip" download>一鍵下載整組素材 ZIP</a>
             <a href="./assets/docs/fruit-stand-work/fruit-stand-startup-plan.doc" target="_blank" rel="noopener noreferrer">Word｜成立計劃</a>
             <a href="./assets/docs/fruit-stand-work/fruit-stand-operations-plan.doc" target="_blank" rel="noopener noreferrer">Word｜營運規劃</a>
             <a href="./assets/docs/fruit-stand-work/fruit-stand-sales-data.csv" target="_blank" rel="noopener noreferrer">Excel｜銷售數據 CSV</a>
@@ -1350,11 +1351,41 @@ const interfaceTopics = {
             <a href="./assets/docs/fruit-stand-work/fruit-stand-social-analytics.csv" target="_blank" rel="noopener noreferrer">社群瀏覽紀錄 CSV</a>
             <a href="./assets/docs/fruit-stand-work/fruit-stand-readme.txt" target="_blank" rel="noopener noreferrer">操作說明</a>
           </span>
-        `,
-        prompt: "請讀取我提供的水果攤資料，彙整成一份「業務狀況總表」。\n\n請整合以下資料來源：\n1. 成立計劃\n2. 營運規劃\n3. 銷售數據\n4. 網站瀏覽紀錄\n5. 社群瀏覽與互動紀錄\n\n請輸出：\n1. 業務總覽表：營運目標、主要客群、主力商品、銷售通路、目前問題\n2. 銷售表現表：品項、銷售額、毛利、熱銷程度、需要注意的地方\n3. 網站與社群成效表：流量、互動、詢問、訂單、轉換狀況\n4. 三個最重要的發現\n5. 三個改善建議\n6. 待補資料清單\n\n請不要自行編造缺少的數字，資料不足請標示「待確認」。",
-        note: "提醒：這組練習重點是多檔案整合。先讓 AI 做總表，再人工檢查數字、日期、來源與是否有自行推測。"
+      `,
+      prompt: "請讀取我提供的水果攤資料，彙整成一份「業務狀況總表」。\n\n請整合以下資料來源：\n1. 成立計劃\n2. 營運規劃\n3. 銷售數據\n4. 網站瀏覽紀錄\n5. 社群瀏覽與互動紀錄\n\n請輸出：\n1. 業務總覽表：營運目標、主要客群、主力商品、銷售通路、目前問題\n2. 銷售表現表：品項、銷售額、毛利、熱銷程度、需要注意的地方\n3. 網站與社群成效表：流量、互動、詢問、訂單、轉換狀況\n4. 三個最重要的發現\n5. 三個改善建議\n6. 待補資料清單\n\n請不要自行編造缺少的數字，資料不足請標示「待確認」。",
+      followups: [
+        {
+          title: "追問 1：生成圖示",
+          label: "技能：/imagegen",
+          text: "請根據最新討論，幫我將這些內容整理成三張圖片，繁體中文輸出。",
+          gallery: {
+            label: "查看生成圖片示意",
+            note: "以下為示意預覽，實際生成結果會依資料、提示詞與模型版本略有不同。",
+            images: [
+              {
+                src: "assets/work-examples/fruit-stand-images/fruit-insight-01.png",
+                alt: "水果攤業務圖示 1"
+              },
+              {
+                src: "assets/work-examples/fruit-stand-images/fruit-insight-02.png",
+                alt: "水果攤業務圖示 2"
+              },
+              {
+                src: "assets/work-examples/fruit-stand-images/fruit-insight-03.png",
+                alt: "水果攤業務圖示 3"
+              }
+            ]
+          }
+      },
+      {
+        title: "追問 2：彙整成總表",
+        label: "外掛程式:[@spreadsheets](plugin://spreadsheets@openai-primary-runtime)",
+        text: "將這些文件彙整，然後做一個訊息彙總表格，讓我能清楚了解這家店的業務情況。"
       }
-    ]
+      ],
+      note: "提醒：這組練習重點是多檔案整合。先讓 AI 做總表，再人工檢查數字、日期、來源與是否有自行推測。"
+    }
+  ]
   },
   input: {
     title: "3 輸入與送出區",
@@ -1783,7 +1814,7 @@ const versionFooter = document.getElementById("versionFooter");
 const backToTop = document.getElementById("backToTop");
 const promptLibraryDialog = document.getElementById("promptLibraryDialog");
 const promptLibraryContent = document.getElementById("promptLibraryContent");
-const appVersion = "V1.50";
+const appVersion = "V1.52";
 
 function renderVersionInfo() {
   versionFooter.textContent = `JARVISLIN ${appVersion}`;
@@ -2425,13 +2456,51 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
                     <strong>${example.label}</strong>
                     <div class="example-material">${example.material}</div>
                   </div>
-                  <div>
-                    <strong>可輸入</strong>
-                    <p class="example-prompt">${example.prompt}</p>
-                  </div>
-                  ${example.note ? `<p class="example-note">${example.note}</p>` : ""}
-                </article>
-              `
+                <div>
+                  <strong>可輸入</strong>
+                  <p class="example-prompt">${example.prompt}</p>
+                </div>
+                ${
+                  example.followups
+                    ? `<div class="work-followups">
+                        <strong>追問操作</strong>
+                        ${example.followups
+                          .map(
+                            (followup) => `
+                              <div class="followup-card">
+                                <span>${followup.title}</span>
+                                ${followup.label ? `<small>${followup.label}</small>` : ""}
+                                <p>${followup.text}</p>
+                                ${
+                                  followup.gallery
+                                    ? `<details class="followup-gallery">
+                                        <summary>${followup.gallery.label}</summary>
+                                        <p>${followup.gallery.note}</p>
+                                        <div class="followup-gallery-grid">
+                                          ${followup.gallery.images
+                                            .map(
+                                              (image) => `
+                                                <figure>
+                                                  <img src="${image.src}" alt="${image.alt}" loading="lazy">
+                                                  <figcaption>${image.alt}</figcaption>
+                                                </figure>
+                                              `
+                                            )
+                                            .join("")}
+                                        </div>
+                                      </details>`
+                                    : ""
+                                }
+                              </div>
+                            `
+                          )
+                          .join("")}
+                      </div>`
+                    : ""
+                }
+                ${example.note ? `<p class="example-note">${example.note}</p>` : ""}
+              </article>
+            `
             )
             .join("")}
         </section>`

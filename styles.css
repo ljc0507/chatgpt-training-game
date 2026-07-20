@@ -948,6 +948,10 @@ button {
   display: none !important;
 }
 
+#interfaceGuide .interface-resource[hidden] {
+  display: none !important;
+}
+
 .interface-resource strong {
   display: block;
   margin-top: 4px;
@@ -1218,7 +1222,7 @@ button {
 
 .mock-input {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto auto auto minmax(180px, 1fr) auto auto;
   align-items: center;
   gap: 10px;
   border: 1px solid var(--line);
@@ -1279,6 +1283,20 @@ button {
 .pin-three {
   top: -12px;
   left: 48%;
+}
+
+.mock-input .pin-two,
+.mock-input .pin-three {
+  position: static;
+  transform: none;
+  margin: 0;
+}
+
+.mock-input .pin-two:hover,
+.mock-input .pin-two:focus-visible,
+.mock-input .pin-three:hover,
+.mock-input .pin-three:focus-visible {
+  transform: scale(1.08);
 }
 
 .pin-four {
@@ -3523,6 +3541,17 @@ dialog::backdrop {
   font-weight: 900;
 }
 
+.chat-work-examples .material-link-stack a.material-bundle-link {
+  background: color-mix(in srgb, var(--accent) 16%, #ffffff);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  color: var(--ink);
+}
+
+.chat-work-examples .material-link-stack a.material-bundle-link::after {
+  content: "ZIP";
+  color: var(--accent-strong);
+}
+
 .chat-work-examples .example-note {
   padding: 10px 12px;
   border: 1px solid color-mix(in srgb, var(--gold) 28%, var(--line));
@@ -3908,7 +3937,7 @@ dialog::backdrop {
   }
 
   .mock-input {
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto auto auto minmax(130px, 1fr);
   }
 
   .plus-home-map {
@@ -3995,4 +4024,34 @@ dialog::backdrop {
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+.work-followups {
+  display: grid;
+  gap: 10px;
+}
+
+.followup-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.followup-card span {
+  display: block;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.followup-card small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.followup-card p {
+  margin: 6px 0 0;
+  white-space: pre-line;
 }
