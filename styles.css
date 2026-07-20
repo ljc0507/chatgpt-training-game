@@ -4055,3 +4055,83 @@ dialog::backdrop {
   margin: 6px 0 0;
   white-space: pre-line;
 }
+
+.followup-gallery,
+.followup-result {
+  margin-top: 10px;
+  border: 1px solid rgba(111, 145, 124, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+.followup-gallery summary,
+.followup-result summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-weight: 800;
+  color: #315f55;
+}
+
+.followup-gallery p,
+.followup-result p {
+  margin: 0;
+  padding: 0 12px 10px;
+  color: #60748a;
+  font-size: 0.9rem;
+}
+
+.followup-result-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 12px 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(111, 145, 124, 0.12);
+  color: #315f55;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.followup-result-link::after {
+  content: "下載";
+  color: #60748a;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.followup-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.followup-gallery figure {
+  margin: 0;
+  border: 1px solid rgba(111, 145, 124, 0.22);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.followup-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.followup-gallery figcaption {
+  padding: 8px;
+  font-size: 0.82rem;
+  color: #60748a;
+}
+
+@media (max-width: 720px) {
+  .followup-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

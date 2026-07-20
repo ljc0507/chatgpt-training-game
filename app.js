@@ -1380,7 +1380,13 @@ const interfaceTopics = {
       {
         title: "追問 2：彙整成總表",
         label: "外掛程式:[@spreadsheets](plugin://spreadsheets@openai-primary-runtime)",
-        text: "將這些文件彙整，然後做一個訊息彙總表格，讓我能清楚了解這家店的業務情況。"
+        text: "將這些文件彙整，然後做一個訊息彙總表格，讓我能清楚了解這家店的業務情況。",
+        result: {
+          label: "成果範例",
+          note: "這是追問 2 生成後的 Excel 彙總表，可下載後示範多檔案整合成果。",
+          fileLabel: "晴果小舖_業務資訊彙總表.xlsx",
+          href: "assets/work-examples/fruit-stand-results/fruit-stand-business-summary.xlsx"
+        }
       }
       ],
       note: "提醒：這組練習重點是多檔案整合。先讓 AI 做總表，再人工檢查數字、日期、來源與是否有自行推測。"
@@ -2488,6 +2494,15 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
                                             )
                                             .join("")}
                                         </div>
+                                      </details>`
+                                    : ""
+                                }
+                                ${
+                                  followup.result
+                                    ? `<details class="followup-result">
+                                        <summary>${followup.result.label}</summary>
+                                        <p>${followup.result.note}</p>
+                                        <a class="followup-result-link" href="${followup.result.href}" download>${followup.result.fileLabel}</a>
                                       </details>`
                                     : ""
                                 }
