@@ -2,7 +2,7 @@
   {
     tag: "新手村",
     title: "課程介紹與介面導覽",
-    badge: "入門導覽徽章",
+    badge: "課程介紹與介面導覽徽章",
     quest: "先知道課程目標，也認得 ChatGPT 介面",
     story: "這是一條三小時課堂路徑：先看到 ChatGPT 能做什麼，再練習提問、辨識風險，最後把提示詞與課後任務帶回去複習。",
     knowledge: [
@@ -42,9 +42,9 @@
 任務、ChatGPT 可協助的地方、需要人工確認的地方、第一個練習步驟。`
   },
   {
-    tag: "第一關",
-    title: "先看 ChatGPT 能幫你做什麼",
-    badge: "成果想像徽章",
+    tag: "第三關",
+    title: "先看 ChatGPT 能做什麼",
+    badge: "先看 ChatGPT 能做什麼徽章",
     quest: "從成果開始，而不是從按鈕開始",
     story: "",
     knowledge: [
@@ -116,7 +116,7 @@
   {
     tag: "第二關",
     title: "認識生成式 AI",
-    badge: "AI 概念徽章",
+    badge: "認識生成式 AI 徽章",
     quest: "知道 ChatGPT 擅長什麼，也知道不能取代什麼",
     story: "ChatGPT 是生成式 AI 助理，可以協助整理、改寫、比較、分析與產生初稿，但不能代替最終行政判斷。",
     knowledge: [
@@ -166,7 +166,7 @@
 請用表格回答，並補充每一項原因。`
   },
   {
-    tag: "第三關",
+    tag: "第四關",
     title: "提示詞公式",
     badge: "提示詞公式徽章",
     quest: "把模糊需求變成可執行指令",
@@ -205,9 +205,9 @@
 若資料中沒有答案，請回答「資料未提供」。不要自行補寫人名、日期、數字、法規名稱或政策內容。`
   },
   {
-    tag: "第四關",
+    tag: "第五關",
     title: "行政六大應用",
-    badge: "行政應用徽章",
+    badge: "行政六大應用徽章",
     quest: "把同一套流程套用到不同工作場景",
     story: "每個實作單元都可以用同一個教學模板：情境 → 原始資料 → 提示詞 → AI 產出 → 人工檢查重點 → 進階追問。",
     knowledge: [
@@ -430,9 +430,10 @@
 6. 進階追問`
   },
   {
-    tag: "第五關",
-    title: "ChatGPT 功能選擇",
-    badge: "功能選擇徽章",
+    tag: "第六關",
+    title: "ChatGPT功能選擇",
+    badge: "ChatGPT功能選擇徽章",
+    hidden: true,
     quest: "文字實作後，再知道什麼時候該換工具",
     story: "功能介紹放在文字實作之後會比較容易理解：Plus 版常見入口包含建立圖像、編寫或編輯、查資料、加號上傳、語音、專案與排程。",
     knowledge: [
@@ -554,9 +555,9 @@
 請用表格回答：任務、建議功能、使用方式、注意事項。`
   },
   {
-    tag: "第六關",
+    tag: "第一關",
     title: "資安、查證與責任",
-    badge: "資安查證徽章",
+    badge: "資安、查證與責任徽章",
     quest: "先守住底線，再提高效率",
     story: "課程三條底線：不貼敏感資料、不直接相信答案、不把 AI 內容直接對外發布。",
     knowledge: [
@@ -673,7 +674,7 @@
   {
     tag: "最終關",
     title: "進階工具與課後資源",
-    badge: "課後練功徽章",
+    badge: "進階工具與課後資源徽章",
     quest: "把課堂練習帶回日常工作",
     story: "最後一關不是結束，而是把提示詞庫、進階工具、最新功能觀念與練習包帶回去，讓 ChatGPT 真的進入日常流程。",
     knowledge: [
@@ -1820,10 +1821,243 @@ const versionFooter = document.getElementById("versionFooter");
 const backToTop = document.getElementById("backToTop");
 const promptLibraryDialog = document.getElementById("promptLibraryDialog");
 const promptLibraryContent = document.getElementById("promptLibraryContent");
-const appVersion = "V1.52";
+const appVersion = "V1.59";
+
+const versionHistory = [
+  {
+    version: "V1.59",
+    date: "2026.07.22",
+    changes: [
+      "隱藏獨立第六關「ChatGPT功能選擇」。",
+      "左側關卡、徽章收集與通關順序同步略過隱藏關卡。",
+      "工具內容保留在新手村「工具選擇與範例」按鈕中使用。"
+    ]
+  },
+  {
+    version: "V1.58",
+    date: "2026.07.21",
+    changes: [
+      "將六項工具選擇卡收進新手村的「工具選擇與範例」按鈕中，避免頁面過長。",
+      "工具選擇彈窗加入各工具的適合情境、練習任務與範例提示詞。",
+      "補上工具選擇彈窗內的提示詞複製功能。"
+    ]
+  },
+  {
+    version: "V1.57",
+    date: "2026.07.21",
+    changes: [
+      "將六項工具選擇卡移至新手村頁面，方便先認識入口與用途。",
+      "第六關原位置隱藏相同工具卡，避免內容重複。",
+      "調整知識卡顯示邏輯，讓新手村也能呈現補充卡片。"
+    ]
+  },
+  {
+    version: "V1.56",
+    date: "2026.07.21",
+    changes: [
+      "修正左側關卡初始順序與關卡名稱，資安單元顯示為第一關。",
+      "修復關卡按鈕文字、說明與小圖示同步更新。",
+      "更新載入版本，避免瀏覽器沿用舊版畫面。"
+    ]
+  },
+  {
+    version: "V1.55",
+    date: "2026.07.21",
+    changes: [
+      "修正瀏覽器載入舊版檔案造成畫面看起來沒有更新的問題。",
+      "同步左側關卡名稱、關卡小圖示、徽章與完成本關後的新版排序。",
+      "確認新手村可直接開啟 Chat/Work 差異與工具選擇範例。"
+    ]
+  },
+  {
+    version: "V1.54",
+    date: "2026.07.21",
+    changes: [
+      "修復新版關卡排序、側欄關卡點擊、徽章跳轉與完成本關後的前進順序。",
+      "完成新手村的「聊天(Chat)/工作(Work)差異與範例」與「工具選擇與範例」快速入口。",
+      "修復動態切換關卡後小圖示未重新載入的問題。"
+    ]
+  },
+  {
+    version: "V1.53",
+    date: "2026.07.21",
+    changes: [
+      "調整關卡順序：資安單元移到新手村後，AI 概念單元移到第一關前。",
+      "新手村新增「聊天(Chat)/工作(Work)差異與範例」與「工具選擇與範例」快速入口。",
+      "整合工具入口與 ChatGPT 功能選擇說明，方便課堂快速講解。"
+    ]
+  },
+  {
+    version: "V1.52",
+    date: "2026.07.21",
+    changes: [
+      "新增 Work 練習範例、素材下載與成果示意。",
+      "補強平台差異、介面導覽、Sites Q&A 與回到頁首按鈕。"
+    ]
+  },
+  {
+    version: "V1.0",
+    date: "2026.07.16",
+    changes: ["建立課程主架構、關卡內容與基礎互動。"]
+  }
+];
 
 function renderVersionInfo() {
-  versionFooter.textContent = `JARVISLIN ${appVersion}`;
+  if (!versionFooter) return;
+
+  const latestVersion = versionHistory[0];
+  const latestChanges = latestVersion.changes.map((change) => `<li>${change}</li>`).join("");
+
+  versionFooter.innerHTML = `
+    <span>JARVISLIN ${appVersion}</span>
+    <details class="version-history">
+      <summary>更新紀錄</summary>
+      <div class="version-history-panel">
+        <strong>${latestVersion.version}｜${latestVersion.date}</strong>
+        <ul>${latestChanges}</ul>
+      </div>
+    </details>
+  `;
+}
+
+function renderInterfaceQuickActions() {
+  if (!interfaceGuide || state.current !== 0) return;
+
+  let actions = interfaceGuide.querySelector(".interface-quick-actions");
+  if (!actions) {
+    actions = document.createElement("div");
+    actions.className = "interface-quick-actions";
+    actions.innerHTML = `
+      <button type="button" data-interface-quick="modeSwitch">聊天(Chat)/工作(Work)差異與範例</button>
+      <button type="button" data-interface-quick="top">工具選擇與範例</button>
+    `;
+    actions.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-interface-quick]");
+      if (!button) return;
+      if (button.dataset.interfaceQuick === "top") {
+        const topic = interfaceTopics.top;
+        interfaceDialogTitle.textContent = "工具選擇與範例";
+        interfaceDialogBody.textContent = "把查資料、上傳檔案、生成圖片、編寫、語音與專案排程收在這裡，點開後再複製需要的練習提示詞。";
+        interfaceDialogContent.innerHTML = renderStarterToolDialogContent();
+        refreshIcons();
+        interfaceDialog.showModal();
+        return;
+      }
+      const target = document.querySelector(`[data-interface-topic="${button.dataset.interfaceQuick}"]`);
+      if (target) target.click();
+    });
+
+    const anchor =
+      interfaceGuide.querySelector(".desktop-workspace") ||
+      interfaceGuide.querySelector(".interface-resource") ||
+      interfaceGuide.querySelector(".interface-map");
+    if (anchor) {
+      anchor.insertAdjacentElement("beforebegin", actions);
+    } else {
+      interfaceGuide.appendChild(actions);
+    }
+  }
+}
+
+const courseOrder = [0, 6, 2, 1, 3, 4, 5, 7].filter((index) => levels[index] && !levels[index].hidden);
+const courseFirstIndex = courseOrder[0] ?? 0;
+const courseLastIndex = courseOrder[courseOrder.length - 1] ?? levels.length - 1;
+const totalCourseXp = () => courseOrder.length * 100;
+
+function normalizeCurrentLevel() {
+  if (!courseOrder.includes(state.current)) state.current = courseFirstIndex;
+}
+
+function isFinalLevel(index = state.current) {
+  return index === courseLastIndex;
+}
+
+function nextLevelIndex(index = state.current) {
+  const position = courseOrder.indexOf(index);
+  if (position < 0 || position >= courseOrder.length - 1) return index;
+  return courseOrder[position + 1];
+}
+
+function orderPosition(index) {
+  const position = courseOrder.indexOf(index);
+  return position === -1 ? levels.length + index : position;
+}
+
+function orderedLevelEntries() {
+  return courseOrder.map((index) => ({ item: levels[index], index }));
+}
+
+function reorderLevelButtons() {
+  const buttons = Array.from(document.querySelectorAll(".level-button"));
+  const parent = buttons[0]?.parentElement;
+  if (!parent) return;
+  buttons
+    .sort((a, b) => orderPosition(Number(a.dataset.level)) - orderPosition(Number(b.dataset.level)))
+    .forEach((button) => parent.appendChild(button));
+}
+
+const starterToolTitles = new Set([
+  "查資料",
+  "加號與檔案",
+  "建立圖像",
+  "編寫或編輯",
+  "語音與語言",
+  "專案與排程"
+]);
+
+function getStarterToolCards() {
+  return (levels[5]?.knowledge || []).filter(
+    (item) => !Array.isArray(item) && starterToolTitles.has(item.title)
+  );
+}
+
+function getVisibleKnowledgeItems(level, index) {
+  const base = level.knowledge || [];
+  if (index === 0) {
+    return base;
+  }
+  if (index === 5) {
+    return base.filter((item) => Array.isArray(item) || !starterToolTitles.has(item.title));
+  }
+  return base;
+}
+
+function renderStarterToolDialogContent() {
+  const cards = getStarterToolCards();
+  if (!cards.length) return "";
+  return `
+    <section class="interface-dialog-section tool-choice-dialog-section" aria-label="工具選擇與範例">
+      <h3>工具選擇與範例</h3>
+      <p>以下六項是常見工具入口。先判斷任務需要查資料、上傳檔案、產圖、改寫、語音或專案管理，再選擇對應工具。</p>
+      <div class="interface-dialog-cards tool-choice-dialog-cards">
+        ${cards
+          .map(
+            (item) => `
+              <article class="interface-dialog-item tool-choice-dialog-card">
+                <h4>${item.icon ? `<i data-lucide="${item.icon}"></i>` : ""}${item.title}</h4>
+                <p>${item.desc || ""}</p>
+                ${
+                  item.prompt
+                    ? `<div class="mini-prompt compact">
+                        <div class="mini-prompt-head">
+                          <span>範例提示詞</span>
+                          <button type="button" class="copy-interface-tool-prompt" data-tool-title="${item.title}">複製</button>
+                        </div>
+                        <pre>${item.prompt}</pre>
+                      </div>`
+                    : ""
+                }
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function refreshIcons() {
+  if (window.lucide?.createIcons) window.lucide.createIcons();
 }
 
 function save() {
@@ -1982,7 +2216,7 @@ function renderFinalPostTaskSupplement() {
 }
 
 function xp() {
-  return state.done.length * 100;
+  return state.done.filter((index) => courseOrder.includes(index)).length * 100;
 }
 
 function characterTier(totalXp) {
@@ -2031,7 +2265,10 @@ function renderQuiz() {
 }
 
 function render() {
+  normalizeCurrentLevel();
+  reorderLevelButtons();
   const level = levels[state.current];
+  const knowledgeItems = getVisibleKnowledgeItems(level, state.current);
   document.body.dataset.theme = levelThemes[state.current];
   const currentIcon = icons[levelThemes[state.current]];
   stageTitle.textContent = level.title;
@@ -2044,7 +2281,8 @@ function render() {
   quickStart.hidden = state.current !== 0;
   beginnerRules.hidden = state.current !== 0;
   interfaceGuide.hidden = state.current !== 0;
-  knowledgeList.hidden = state.current === 0;
+  renderInterfaceQuickActions();
+  knowledgeList.hidden = knowledgeItems.length === 0;
   modeResource.hidden = true;
   modelGuideResource.hidden = state.current !== 5;
   exampleLinks.hidden = state.current !== 5;
@@ -2052,14 +2290,14 @@ function render() {
   taskBody.textContent = level.taskBody;
   promptText.textContent = level.prompt;
   if (answerHintPanel) {
-    answerHintPanel.hidden = state.current === levels.length - 1;
+    answerHintPanel.hidden = isFinalLevel();
   }
   answerHint.innerHTML = `<ul>${answerHints[state.current].map((hint) => `<li>${hint}</li>`).join("")}</ul>`;
-  postTaskSupplement.hidden = state.current !== levels.length - 1;
-  postTaskSupplement.innerHTML = state.current === levels.length - 1 ? renderFinalPostTaskSupplement() : "";
+  postTaskSupplement.hidden = !isFinalLevel();
+  postTaskSupplement.innerHTML = isFinalLevel() ? renderFinalPostTaskSupplement() : "";
   renderQuiz();
 
-  knowledgeList.innerHTML = level.knowledge
+  knowledgeList.innerHTML = knowledgeItems
     .map((item, index) => {
       if (!Array.isArray(item) && item.type === "compare") {
         return `
@@ -2272,7 +2510,21 @@ function render() {
 
   document.querySelectorAll(".level-button").forEach((button) => {
     const index = Number(button.dataset.level);
-    button.querySelector(".level-icon").innerHTML = icons[levelThemes[index]];
+    const level = levels[index];
+    if (level?.hidden) {
+      button.hidden = true;
+      button.classList.remove("active", "done");
+      return;
+    }
+    button.hidden = false;
+    const icon = button.querySelector(".level-icon");
+    const label = Array.from(button.children).find(
+      (child) => child.tagName === "SPAN" && !child.classList.contains("level-icon")
+    );
+    const description = button.querySelector("small");
+    if (level && icon) icon.innerHTML = icons[levelThemes[index]] || "";
+    if (level && label) label.textContent = `${level.tag}${state.done.includes(index) ? " ✓" : ""}`;
+    if (level && description) description.textContent = level.title;
     button.classList.toggle("active", index === state.current);
     button.classList.toggle("done", state.done.includes(index));
   });
@@ -2301,7 +2553,7 @@ function render() {
   completeButton.classList.toggle("completed", completed);
 
   const totalXp = xp();
-  const maxXp = levels.length * 100;
+  const maxXp = totalCourseXp();
   xpLabel.textContent = `${totalXp} / ${maxXp}`;
   xpBar.style.width = `${Math.min(100, (totalXp / maxXp) * 100)}%`;
   const tier = characterTier(totalXp);
@@ -2312,8 +2564,8 @@ function render() {
   characterImage.alt = `${tier.title}角色圖`;
   equipmentRow.innerHTML = tier.equipment.map((item) => `<span>${item}</span>`).join("");
 
-  badgeGrid.innerHTML = levels
-    .map((item, index) => {
+  badgeGrid.innerHTML = orderedLevelEntries()
+    .map(({ item, index }) => {
       const earned = state.done.includes(index);
       return `
         <button class="badge ${earned ? "earned" : ""}" type="button" data-badge-level="${index}" aria-label="前往${item.title}">
@@ -2323,11 +2575,14 @@ function render() {
       `;
     })
     .join("");
+  refreshIcons();
 }
 
 document.querySelectorAll(".level-button").forEach((button) => {
   button.addEventListener("click", () => {
-    state.current = Number(button.dataset.level);
+    const targetIndex = Number(button.dataset.level);
+    if (levels[targetIndex]?.hidden) return;
+    state.current = targetIndex;
     save();
     render();
   });
@@ -2336,7 +2591,9 @@ document.querySelectorAll(".level-button").forEach((button) => {
 badgeGrid.addEventListener("click", (event) => {
   const badge = event.target.closest("[data-badge-level]");
   if (!badge) return;
-  state.current = Number(badge.dataset.badgeLevel);
+  const targetIndex = Number(badge.dataset.badgeLevel);
+  if (levels[targetIndex]?.hidden) return;
+  state.current = targetIndex;
   save();
   render();
   document.querySelector(".game-stage").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2344,15 +2601,15 @@ badgeGrid.addEventListener("click", (event) => {
 
 completeButton.addEventListener("click", () => {
   if (!state.done.includes(state.current)) {
-    const completingFinalLevel = state.current === levels.length - 1;
+    const completingFinalLevel = isFinalLevel();
     state.done.push(state.current);
-    if (state.current < levels.length - 1) state.current += 1;
+    if (!completingFinalLevel) state.current = nextLevelIndex();
     save();
     render();
     document.querySelector(".game-stage").scrollIntoView({ behavior: "smooth", block: "start" });
-    if (completingFinalLevel && state.done.length === levels.length) {
-      victoryExp.textContent = `${xp()} / ${levels.length * 100}`;
-      victoryBadges.textContent = `${state.done.length} / ${levels.length}`;
+    if (completingFinalLevel && courseOrder.every((index) => state.done.includes(index))) {
+      victoryExp.textContent = `${xp()} / ${totalCourseXp()}`;
+      victoryBadges.textContent = `${courseOrder.filter((index) => state.done.includes(index)).length} / ${courseOrder.length}`;
       victoryDialog.showModal();
     }
   }
@@ -2557,7 +2814,9 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
             `
           )
           .join("")}</div>`;
-    interfaceDialogContent.innerHTML = `${visual}${content}`;
+    const starterTools = button.dataset.interfaceTopic === "top" ? renderStarterToolDialogContent() : "";
+    interfaceDialogContent.innerHTML = `${visual}${content}${starterTools}`;
+    refreshIcons();
     interfaceDialog.showModal();
   });
 });
@@ -2565,6 +2824,17 @@ document.querySelectorAll("[data-interface-topic]").forEach((button) => {
 document.querySelector(".close-interface-dialog").addEventListener("click", () => interfaceDialog.close());
 interfaceDialog.addEventListener("click", (event) => {
   if (event.target === interfaceDialog) interfaceDialog.close();
+});
+interfaceDialogContent.addEventListener("click", async (event) => {
+  const button = event.target.closest(".copy-interface-tool-prompt");
+  if (!button) return;
+  const item = getStarterToolCards().find((card) => card.title === button.dataset.toolTitle);
+  if (!item?.prompt) return;
+  await copyText(item.prompt);
+  button.textContent = "已複製";
+  setTimeout(() => {
+    button.textContent = "複製";
+  }, 1200);
 });
 
 const instructorDialog = document.getElementById("instructorDialog");
