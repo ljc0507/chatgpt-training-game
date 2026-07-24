@@ -713,6 +713,12 @@ button {
   border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
 }
 
+.quick-start-head button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+}
+
 .quick-start-head button.primary-action {
   background: var(--accent);
   color: #ffffff;

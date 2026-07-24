@@ -57,45 +57,6 @@
           ["簡報大綱從空白頁開始", "先產生頁面標題、重點、講者備註"],
           ["公告或 Email 不確定是否完整", "請 AI 檢查是否遺漏時間、地點、對象、期限、聯絡方式"]
         ]
-      },
-      {
-        title: "對話框快捷符號：@ 與 /",
-        body: "除了直接輸入文字，有些帳號也可以在對話框用快捷符號呼叫工具。實際可用項目會依帳號方案、版本與管理設定而不同。",
-        icon: "plugin",
-        detailGroups: [
-          {
-            title: "操作範例",
-            headers: ["輸入方式", "代表意思", "課堂範例"],
-            rows: [
-              ["@ 外掛程式", "呼叫已連接的外掛、Apps 或外部工具。", "@Canva 請根據以下活動資訊，產生 3 個海報視覺方向：活動名稱：AI 協作新思維；對象：教職員；時間：8/21 09:00-12:30；地點：校內會議廳；重點：提升教學與行政效率。"],
-              ["/ 技能", "快速選擇可用技能或指令，例如整理、製圖、建立頁面或其他操作。", "/表格 請把這段會議紀錄整理成待辦追蹤表。"]
-            ]
-          },
-          {
-            title: "使用提醒",
-            sections: [
-              {
-                title: "先確認介面是否支援",
-                items: [
-                  "不是每個帳號都會看到相同的 @ 或 / 選單。",
-                  "如果沒有出現選單，也可以直接用文字說明想使用的工具或輸出格式。",
-                  "呼叫外部工具前，仍要確認是否會傳送個資、未公開資料或敏感文件。"
-                ]
-              }
-            ]
-          }
-        ],
-        prompt: `請示範如何用 @ 與 / 思考工具選擇。
-
-任務：
-我要把一段活動資訊整理成公告、表格和海報方向。
-
-請分別示範：
-1. 只用一般 ChatGPT 對話可以怎麼問
-2. 若有 @ 外掛程式，可以怎麼呼叫工具
-3. 若有 / 技能，可以怎麼選擇輸出方式
-
-最後請提醒我哪些資料不能直接貼上。`
       }
     ],
     taskTitle: "看懂 AI 能協助到哪一步",
@@ -1006,6 +967,45 @@ const finalPostTaskSupplements = [
 4. 是否需要團隊管理或校方授權：[是 / 否 / 不確定]
 
 請用表格回答：建議方案、適合原因、需要注意的限制、資安提醒。`
+  },
+  {
+    title: "Q&A：對話框快捷符號 @ 與 / 怎麼用？",
+    body: "有些帳號可以在對話框用 @ 呼叫外掛程式或 Apps，用 / 呼叫可用技能。實際可用項目會依帳號方案、版本與管理設定而不同。",
+    icon: "plugin",
+    detailGroups: [
+      {
+        title: "操作範例",
+        headers: ["輸入方式", "代表意思", "課堂範例"],
+        rows: [
+          ["@ 外掛程式", "呼叫已連接的外掛、Apps 或外部工具。", "@Canva 請根據以下活動資訊，產生 3 個海報視覺方向：活動名稱：AI 協作新思維；對象：教職員；時間：8/21 09:00-12:30；地點：校內會議廳；重點：提升教學與行政效率。"],
+          ["/ 技能", "快速選擇可用技能或指令，例如整理、製圖、建立頁面或其他操作。", "/表格 請把這段會議紀錄整理成待辦追蹤表。"]
+        ]
+      },
+      {
+        title: "使用提醒",
+        sections: [
+          {
+            title: "先確認介面是否支援",
+            items: [
+              "不是每個帳號都會看到相同的 @ 或 / 選單。",
+              "如果沒有出現選單，也可以直接用文字說明想使用的工具或輸出格式。",
+              "呼叫外部工具前，仍要確認是否會傳送個資、未公開資料或敏感文件。"
+            ]
+          }
+        ]
+      }
+    ],
+    prompt: `請示範如何用 @ 與 / 思考工具選擇。
+
+任務：
+我要把一段活動資訊整理成公告、表格和海報方向。
+
+請分別示範：
+1. 只用一般 ChatGPT 對話可以怎麼問
+2. 若有 @ 外掛程式，可以怎麼呼叫工具
+3. 若有 / 技能，可以怎麼選擇輸出方式
+
+最後請提醒我哪些資料不能直接貼上。`
   },
   {
     title: "Q&A：YouTube 影片可以交給 ChatGPT 分析嗎？",
@@ -2851,7 +2851,10 @@ instructorDialogContent.innerHTML = instructorProfile
   )
   .join("");
 
-document.getElementById("instructorButton").addEventListener("click", () => instructorDialog.showModal());
+const instructorButton = document.getElementById("instructorButton");
+if (instructorButton && !instructorButton.disabled) {
+  instructorButton.addEventListener("click", () => instructorDialog.showModal());
+}
 document.querySelector(".close-instructor-dialog").addEventListener("click", () => instructorDialog.close());
 instructorDialog.addEventListener("click", (event) => {
   if (event.target === instructorDialog) instructorDialog.close();
